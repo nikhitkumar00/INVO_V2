@@ -1,5 +1,6 @@
 "use client";
 import { ChangeEvent, useEffect, useState } from "react";
+import Header from "../_components/Header";
 
 interface StockItem {
 	item_id: number;
@@ -70,23 +71,24 @@ const Page = () => {
 	const keys: string[] = data && data.length > 0 ? Object.keys(data[0]) : [];
 
 	return (
-		<div>
+		<div className="h-screen w-[calc(100vw-224px)]">
+			<Header title="Stocks" />
 			<input
 				type="text"
 				placeholder="Search..."
-				className="w-full ps-5 focus:border-black focus:outline-none focus:ring-0"
+				className="w-full ps-5 p-2 border focus:outline-none focus:ring-0"
 				value={searchTerm}
 				onChange={handleSearchChange}
 				autoFocus
 			/>
-			<div className="px-4 overflow-scroll h-[calc(100vh-120px)]">
+			<div className="px-4 overflow-y-scroll h-[calc(100vh-120px)]">
 				<table className="w-full">
 					<thead className="border-b-2 sticky top-0 bg-white">
 						<tr className="text-left capitalize">
 							{keys.map((key) => (
 								<th
 									key={key}
-									className="py-2 w-10 cursor-pointer"
+									className="py-2 font-semibold w-10 cursor-pointer"
 									onClick={() => sortData(key)}
 								>
 									{sortConfig.key === key && (
@@ -114,11 +116,7 @@ const Page = () => {
 							.map((item, index) => (
 								<tr
 									key={item.item_id}
-									className={
-										index % 2
-											? "bg-slate-100 hover:bg-slate-300"
-											: "bg-white hover:bg-slate-300"
-									}
+									className="odd:bg-slate-100 hover:bg-slate-300"
 								>
 									{keys.map((key) => (
 										<td

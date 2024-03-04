@@ -1,6 +1,6 @@
 "use client";
-import NavbarLayout from "../../layouts/NavbarLayout";
 import { ChangeEvent, useEffect, useState } from "react";
+import Header from "../_components/Header";
 
 interface StockItem {
 	bill_id: number;
@@ -71,11 +71,12 @@ const Page: React.FC = () => {
 	const keys: string[] = data && data.length > 0 ? Object.keys(data[0]) : [];
 
 	return (
-		<NavbarLayout title="Bill Logs">
+		<div className="h-screen w-[calc(100vw-224px)]">
+			<Header title="Bill Logs" />
 			<input
 				type="text"
 				placeholder="Search..."
-				className="w-full ps-5 bg-gray-50 focus:border-black focus:outline-none focus:ring-0"
+				className="w-full ps-5 p-2 border focus:outline-none focus:ring-0"
 				value={searchTerm}
 				onChange={handleSearchChange}
 				autoFocus
@@ -87,7 +88,7 @@ const Page: React.FC = () => {
 							{keys.map((key) => (
 								<th
 									key={key}
-									className="py-2 w-10 cursor-pointer"
+									className="py-2 font-semibold w-10 cursor-pointer"
 									onClick={() => sortData(key)}
 								>
 									{sortConfig.key === key && (
@@ -134,7 +135,7 @@ const Page: React.FC = () => {
 					</tbody>
 				</table>
 			</div>
-		</NavbarLayout>
+		</div>
 	);
 };
 

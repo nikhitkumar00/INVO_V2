@@ -2,6 +2,9 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
+import { Pacifico } from "next/font/google";
+
+const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 
 const Navbar = () => {
 	const pathname = usePathname();
@@ -36,7 +39,13 @@ const Navbar = () => {
 
 	return (
 		<div className="sticky top-0 py-4 max-w-56 min-w-56 h-dvh bg-primary flex flex-col gap-2 items-center">
-			<h1 className="text-2xl px-6 pb-2 text-white w-full">INVO</h1>
+			<h1
+				className={
+					pacifico.className + " text-2xl px-6 pb-2 text-white w-full"
+				}
+			>
+				INVO
+			</h1>
 			{links.map((link) => (
 				<Link
 					key={link.name}
