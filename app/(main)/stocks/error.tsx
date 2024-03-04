@@ -1,15 +1,14 @@
 "use client";
-import NavbarLayout from "../../layouts/NavbarLayout";
-import { Stocks } from "../../public/icons/icons";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const error = () => {
 	return (
-		<NavbarLayout title="Stocks">
+		<div>
 			<div className="w-full text-xl font-semibold h-[calc(100vh-75px)] flex justify-center items-center gap-4">
-				<Stocks className="w-10 stroke-2" />
+				<Icon className="size-10" icon="lucide:database" />
 				Database not connected
 			</div>
-		</NavbarLayout>
+		</div>
 	);
 };
 

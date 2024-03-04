@@ -1,15 +1,7 @@
 "use client";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
-import {
-	Dashboard,
-	Stocks,
-	Contact,
-	Settings,
-	Profile,
-	Billing,
-	Billlog,
-} from "../public/icons/icons";
 
 const Navbar = () => {
 	const pathname = usePathname();
@@ -17,36 +9,34 @@ const Navbar = () => {
 	const links: { name: string; link: string; icon: JSX.Element }[] = [
 		{
 			name: "Dashboard",
-			link: "/",
-			icon: <Dashboard className="w-6 stroke-2" />,
+			link: "/dashboard",
+			icon: <Icon className="size-6" icon="lucide:home" />,
 		},
 		{
 			name: "Stocks",
 			link: "/stocks",
-			icon: <Stocks className="w-6 stroke-2" />,
+			icon: <Icon className="size-6" icon="lucide:database" />,
 		},
 		{
 			name: "Billing",
 			link: "/billing",
-			icon: <Billing className="w-6 stroke-2" />,
+			icon: <Icon className="size-6" icon="lucide:file-text" />,
 		},
 		{
 			name: "Bill Logs",
 			link: "/billlog",
-			icon: <Billlog className="w-6 stroke-2" />,
+			icon: <Icon className="size-6" icon="lucide:history" />,
 		},
 		{
 			name: "Contact",
 			link: "/contact",
-			icon: <Contact className="w-6 stroke-2" />,
+			icon: <Icon className="size-6" icon="lucide:phone-call" />,
 		},
 	];
 
 	return (
 		<div className="sticky top-0 py-4 max-w-56 min-w-56 h-dvh bg-primary flex flex-col gap-2 items-center">
-			<h1 className="text-2xl px-6 pb-2 text-white font-pacifico w-full">
-				INVO
-			</h1>
+			<h1 className="text-2xl px-6 pb-2 text-white w-full">INVO</h1>
 			{links.map((link) => (
 				<Link
 					key={link.name}
@@ -68,7 +58,7 @@ const Navbar = () => {
 					(pathname === "/settings" ? "bg-secondary" : "bg-primary")
 				}
 			>
-				<Profile className="w-6 stroke-2" />
+				<Icon className="size-6" icon="lucide:circle-user-round" />
 				Profile
 			</Link>
 			<Link
@@ -78,7 +68,7 @@ const Navbar = () => {
 					(pathname === "/settings" ? "bg-secondary" : "bg-primary")
 				}
 			>
-				<Settings className="w-6 stroke-2" />
+				<Icon className="size-6" icon="lucide:settings" />
 				Settings
 			</Link>
 		</div>
