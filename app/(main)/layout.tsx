@@ -1,14 +1,14 @@
 import Navbar from "./_components/Navbar";
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<div className="w-screen h-screen flex">
-			<Navbar />
-			<div>{children}</div>
-		</div>
-	);
+  return (
+    <div className="flex h-screen w-screen">
+      <Navbar />
+      <div className="w-full">{children}</div>
+    </div>
+  );
 }
