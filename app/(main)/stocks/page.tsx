@@ -66,7 +66,7 @@ const Page = () => {
   const keys: string[] = data && data.length > 0 ? Object.keys(data[0]) : [];
 
   return (
-    <div className="h-screen">
+    <div className="flex h-screen flex-col">
       <Header title="Stocks" />
       <input
         type="text"
@@ -76,7 +76,7 @@ const Page = () => {
         onChange={handleSearchChange}
         autoFocus
       />
-      <div className="h-[calc(100vh-120px)] overflow-y-scroll px-4">
+      <div className="flex-grow overflow-y-scroll px-4">
         <table className="w-full">
           <thead className="sticky top-0 border-b-2 bg-white">
             <tr className="text-left capitalize">
@@ -105,10 +105,10 @@ const Page = () => {
                     .includes(searchTerm.toLowerCase()),
                 ),
               )
-              .map((item, index) => (
+              .map((item) => (
                 <tr
                   key={item.item_id}
-                  className="odd:bg-slate-100 hover:bg-slate-300"
+                  className="odd:bg-quartinary hover:bg-tertiary"
                 >
                   {keys.map((key) => (
                     <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
