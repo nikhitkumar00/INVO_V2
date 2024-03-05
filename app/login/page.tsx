@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Login = () => {
 	return (
 		<div className="h-full w-full">
-			<div className=" w-full bg-secondary-100 flex h-screen items-center py-16">
+			<div className=" w-full bg-secondary flex h-screen items-center py-16">
 				<div className="w-full max-w-md mx-auto p-6">
 					<div className="mt-7 bg-tertiary border border-secondary-200 rounded-xl shadow-sm ">
 						<div className="p-4 sm:p-7">
