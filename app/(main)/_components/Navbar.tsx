@@ -48,7 +48,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 flex h-dvh min-w-56 max-w-56 flex-col items-center gap-2 bg-primary py-4">
       <h1
-        className={pacifico.className + " w-full px-6 pb-2 text-2xl text-white"}
+        className={pacifico.className + " w-full px-6 pb-4 text-2xl text-white"}
       >
         INVO
       </h1>
@@ -57,7 +57,7 @@ const Navbar = () => {
           key={link.name}
           href={link.link}
           className={
-            `text-background flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize hover:bg-secondary ` +
+            `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-background hover:bg-secondary ` +
             (pathname === link.link ? "bg-secondary" : "bg-primary")
           }
         >

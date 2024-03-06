@@ -1,6 +1,7 @@
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
-
+import Restock from "./restock/Restock";
+import Chart from "./chart/chart";
 const DashboardPage = () => {
   const data = [
     {
@@ -29,8 +30,8 @@ const DashboardPage = () => {
     },
   ];
   return (
-    <>
-      <Header title="Dashboard" />
+    <div className="flex h-full w-full flex-col">
+      <Header title="Dashboard" logout />
       <div className="flex justify-around">
         {data.map((item) => (
           <div
@@ -42,7 +43,7 @@ const DashboardPage = () => {
                 {item.name}
               </div>
               <div className="text-2xl font-semibold">{item.value}</div>
-              <div className="text-xs font-semibold uppercase">
+              <div className="text-xs font-semibold uppercase text-secondary">
                 {item.status}
               </div>
             </div>
@@ -50,7 +51,22 @@ const DashboardPage = () => {
           </div>
         ))}
       </div>
-    </>
+      <hr className="mt-4" />
+      <div className="flex w-full flex-grow">
+        <div className="w-2/5">
+          <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
+          <div className="h-[calc(100vh-250px)] overflow-auto">
+            <Restock />
+          </div>
+        </div>
+        <div className="h-full w-full border-l">
+          <div className="px-4 pt-4 text-xl font-semibold">Sales</div>
+          <div className="h-[calc(100vh-250px)]">
+            <Chart />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 export default DashboardPage;
