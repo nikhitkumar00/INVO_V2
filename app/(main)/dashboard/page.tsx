@@ -1,6 +1,7 @@
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Restock from "./restock/Restock";
+import Chart from "./chart/chart";
 const DashboardPage = () => {
   const data = [
     {
@@ -50,14 +51,20 @@ const DashboardPage = () => {
           </div>
         ))}
       </div>
+      <hr className="mt-4" />
       <div className="flex w-full flex-grow">
-        <div className="w-1/3">
-          <div className="px-4 pt-4 text-2xl font-semibold">Restock Items</div>
-          <div className="h-[calc(100vh-250px)] flex-grow overflow-auto">
+        <div className="w-2/5">
+          <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
+          <div className="h-[calc(100vh-250px)] overflow-auto">
             <Restock />
           </div>
         </div>
-        <div className="h-full w-full"></div>
+        <div className="h-full w-full border-l">
+          <div className="px-4 pt-4 text-xl font-semibold">Sales</div>
+          <div className="h-[calc(100vh-250px)]">
+            <Chart />
+          </div>
+        </div>
       </div>
     </div>
   );
