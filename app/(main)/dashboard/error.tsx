@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 const error = () => {
   toast.error("Database not connected", {
-    description: "Check if server is turned on and connected to the database",
+    description: "Check if server is turned on",
     duration: 3000,
     icon: <Stocks className="size-4 stroke-2" />,
     position: "bottom-right",
