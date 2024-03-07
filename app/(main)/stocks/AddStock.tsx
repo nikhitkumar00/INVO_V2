@@ -8,15 +8,7 @@ import {
   DialogDescription,
 } from "@/components/dialog";
 import { Add } from "@/public/Icons";
-
-interface fieldprops {
-  Field: "string";
-  Type: "string";
-  Null: "string";
-  Key: "string";
-  Default: "string";
-  Extra: "string";
-}
+import { toast } from "sonner";
 
 const AddStock = async () => {
   const fields = await fetch("http://localhost:3000/stocks/api/inputfields", {
@@ -37,9 +29,21 @@ const AddStock = async () => {
         </DialogHeader>
         <div className="grid grid-cols-2 gap-3 p-3">
           {fields.map((field: any) => (
-            <Input key={field.Field} placeholder={field.Field} />
+            <Input
+              key={field.Field}
+              placeholder={
+                field.Field.charAt(0).toUpperCase() +
+                field.Field.slice(1).replace("_", " ")
+              }
+            />
           ))}
         </div>
+        <button
+          onClick={() => toast.success("Added Stock")}
+          className="mx-3 h-10 rounded-lg bg-primary text-quartinary hover:bg-secondary"
+        >
+          Add Stock
+        </button>
       </DialogContent>
     </Dialog>
   );
