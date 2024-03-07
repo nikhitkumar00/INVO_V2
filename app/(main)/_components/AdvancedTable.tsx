@@ -54,14 +54,14 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   const keys: string[] = data && data.length > 0 ? Object.keys(data[0]) : [];
 
   return (
-    <>
+    <div className="m-2 rounded-md border p-1">
       <table className="w-full">
         <thead className="sticky top-0 border-b-2 bg-white">
           <tr className="text-left capitalize">
             {keys.map((key) => (
               <th
                 key={key}
-                className="w-10 cursor-pointer py-2 text-sm font-medium uppercase"
+                className="w-fit cursor-pointer py-2 text-sm font-medium capitalize"
                 onClick={() => sortData(key)}
               >
                 {sortConfig.key === key && (
@@ -97,7 +97,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
             ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

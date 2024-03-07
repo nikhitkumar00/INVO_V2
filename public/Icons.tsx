@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const Dashboard = ({ className }: { className: string }) => {
   return (
     <svg
@@ -140,15 +142,45 @@ const Billlog = ({ className }: { className: string }) => {
     </svg>
   );
 };
+const Add = ({ className }: { className: string }) => {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M8 12h8m-4-4v8" />
+      </g>
+    </svg>
+  );
+};
+const Close = ({ className }: { className: string }) => {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m15 9l-6 6m0-6l6 6" />
+      </g>
+    </svg>
+  );
+};
 
 export {
-  Dashboard,
+  Add,
   Billing,
-  Logout,
-  Stocks,
-  Profile,
-  Settings,
-  Navigation,
-  Contact,
   Billlog,
+  Close,
+  Contact,
+  Dashboard,
+  Logout,
+  Navigation,
+  Profile,
+  Stocks,
+  Settings,
 };

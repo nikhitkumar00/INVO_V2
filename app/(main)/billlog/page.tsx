@@ -32,7 +32,7 @@ const Page = () => {
       <input
         type="text"
         placeholder="Search..."
-        className="w-full border p-2 ps-5 focus:outline-none focus:ring-0"
+        className="mx-auto w-[99%] rounded-md border-2 p-2 ps-5 focus:outline-none focus:ring-0"
         value={searchTerm}
         onChange={handleSearchChange}
         autoFocus
