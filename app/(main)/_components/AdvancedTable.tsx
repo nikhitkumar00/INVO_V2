@@ -65,7 +65,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                 onClick={() => sortData(key)}
               >
                 {sortConfig.key === key && (
-                  <span>
+                  <span className="text-xs">
                     {sortConfig.direction === "ascending" ? "▼ " : "▲ "}
                   </span>
                 )}

@@ -28,7 +28,7 @@ const Page = () => {
 
   return (
     <div className="flex h-screen flex-col">
-      <Header title="Stocks" logout />
+      <Header title="Bill Logs" logout />
       <input
         type="text"
         placeholder="Search..."
