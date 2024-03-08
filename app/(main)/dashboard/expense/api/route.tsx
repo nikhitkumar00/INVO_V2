@@ -11,7 +11,7 @@ export async function GET() {
   try {
     const results: Product[] = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT SUM(cost_price * qty) AS total_expense FROM stocks;",
+        "SELECT SUM(cost_price * qty) AS expense FROM stocks;",
         (err: any, result: any) => {
           if (err) {
             reject(err);
