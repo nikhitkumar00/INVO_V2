@@ -70,7 +70,7 @@ const Navbar = () => {
         href="/profile"
         className={
           `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-background hover:bg-secondary ` +
-          (pathname === "/settings" ? "bg-secondary" : "bg-primary")
+          (pathname === "/profile" ? "bg-secondary" : "bg-primary")
         }
       >
         <Profile className="size-6 stroke-2" />
