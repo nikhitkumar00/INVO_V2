@@ -1,5 +1,15 @@
 "use client";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/sheet";
 import React, { useState, useEffect } from "react";
+import { Input } from "@/components/Input";
+import { Settings } from "@/public/Icons";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -93,6 +103,41 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                     {item[key]}
                   </td>
                 ))}
+                <Sheet>
+                  <SheetTrigger>
+                    <td className="w-fit px-1 py-2">
+                      <Settings className="w-6 stroke-2" />
+                    </td>
+                  </SheetTrigger>
+                  <SheetContent>
+                    <SheetHeader>
+                      <SheetTitle>Edit / Delete Row</SheetTitle>
+                      <SheetDescription></SheetDescription>
+                    </SheetHeader>
+                    {keys.map((key) => (
+                      <div className="mt-2 flex items-center justify-between gap-2">
+                        <label
+                          key={key}
+                          className="text-sm font-medium capitalize"
+                        >
+                          {key.replace("_", " ")}
+                        </label>
+                        <Input
+                          className="w-52 px-1 py-2"
+                          key={key}
+                          name={key}
+                          value={item[key]}
+                        />
+                      </div>
+                    ))}
+                    <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
+                      Save
+                    </button>
+                    <button className="mt-2 w-full rounded-md bg-primary p-2 text-white">
+                      Delete
+                    </button>
+                  </SheetContent>
+                </Sheet>
               </tr>
             ))}
         </tbody>

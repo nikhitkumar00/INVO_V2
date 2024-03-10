@@ -1,4 +1,4 @@
--- Active: 1710054271627@@127.0.0.1@3306
+-- Active: 1710091263327@@127.0.0.1@3306
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
@@ -216,7 +216,7 @@ DECLARE
 	WHERE
 	    bi.bill_id = NEW.bill_id;
 	-- Check if total amount is greater than or equal to 200
-	 IF total_amount > = 50 THEN SET discount_amount = total_amount * 0 . 06;
+	 IF total_amount >= 50 THEN SET discount_amount = total_amount * 0.06;
 	-- 10% discount
 	ELSE SET discount_amount = 0;
 	-- No discount if total amount is less than 200
@@ -249,7 +249,7 @@ DECLARE
 	WHERE
 	    item_id = NEW.item_id;
 	-- Check if available quantity is sufficient
-	IF NEW.item_qty < = available_quantity THEN
+	IF NEW.item_qty <= available_quantity THEN
 	-- Update stocks_qty by subtracting the quantity
 	UPDATE stocks
 	SET

@@ -72,13 +72,13 @@ const DashboardPage = async () => {
       <div className="flex w-full flex-grow">
         <div className="w-2/5">
           <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
-          <div className="h-[calc(100vh-250px)] overflow-auto">
+          <div className="h-[calc(100vh-50%)] overflow-auto">
             <Restock />
           </div>
         </div>
         <div className="h-full w-full border-l">
           <div className="px-4 pt-4 text-xl font-semibold">Sales</div>
-          <div className="h-[calc(100vh-250px)]">
+          <div className="h-[calc(100vh-50%)]">
             <Chart />
           </div>
         </div>
