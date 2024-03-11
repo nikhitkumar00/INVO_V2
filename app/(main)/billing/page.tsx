@@ -2,7 +2,6 @@ import Header from "../_components/Header";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -43,29 +42,29 @@ const Billing = () => {
       <div className="flex h-full w-full flex-col ">
         <Header title="Billing" logout />
         <div className=" m-2 grid grid-cols-1 gap-2 border p-4 lg:grid-cols-4">
-          {data.map((item) => (
-            <div className="flex flex-col gap-2">
+          {data.map((item, index) => (
+            <div className="flex flex-col gap-2" key={index}>
               <label className="sr-only font-semibold">{item.name}</label>
               <input
                 type="text"
                 placeholder={item.name}
                 className="rounded-md border bg-transparent p-2 text-black placeholder-gray-600"
                 required
-              ></input>
+              />
             </div>
           ))}
         </div>
         <div className="m-2 flex justify-between border py-2 pl-20 ">
           <div className=" grid grid-cols-2 gap-2 lg:grid-cols-8">
-            {value.map((item) => (
-              <div className="flex flex-col gap-2">
+            {value.map((item, index) => (
+              <div className="flex flex-col gap-2" key={index}>
                 <label className="sr-only font-semibold">{item}</label>
                 <input
                   type="text"
                   placeholder={item}
                   className="rounded-md border bg-transparent p-2 text-black placeholder-gray-600"
                   required
-                ></input>
+                />
               </div>
             ))}
           </div>

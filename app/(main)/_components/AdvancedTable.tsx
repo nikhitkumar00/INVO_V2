@@ -15,6 +15,7 @@ interface TableWithSearchAndSortProps {
   data: StockItem[];
   searchTerm: string;
   sortBy: string;
+  edit?: boolean;
 }
 
 interface StockItem {
@@ -26,6 +27,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   data,
   searchTerm,
   sortBy,
+  edit,
 }) => {
   const [sortedData, setSortedData] = useState<StockItem[]>(data);
   const [sortConfig, setSortConfig] = useState<{
@@ -82,6 +84,9 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                 {key.replace("_", " ")}
               </th>
             ))}
+            <th className="w-10 cursor-pointer text-sm font-medium capitalize">
+              Edit
+            </th>
           </tr>
         </thead>
         <tbody className="px-4">
@@ -103,41 +108,45 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                     {item[key]}
                   </td>
                 ))}
-                <Sheet>
-                  <SheetTrigger>
-                    <td className="w-fit px-1 py-2">
-                      <Settings className="w-6 stroke-2" />
-                    </td>
-                  </SheetTrigger>
-                  <SheetContent>
-                    <SheetHeader>
-                      <SheetTitle>Edit / Delete Row</SheetTitle>
-                      <SheetDescription></SheetDescription>
-                    </SheetHeader>
-                    {keys.map((key) => (
-                      <div className="mt-2 flex items-center justify-between gap-2">
-                        <label
+                {edit && (
+                  <Sheet>
+                    <SheetTrigger>
+                      <td className="w-10 px-1 py-2">
+                        <Settings className="w-5 stroke-2" />
+                      </td>
+                    </SheetTrigger>
+                    <SheetContent>
+                      <SheetHeader>
+                        <SheetTitle>Edit / Delete Row</SheetTitle>
+                        <SheetDescription></SheetDescription>
+                      </SheetHeader>
+                      {keys.map((key) => (
+                        <div
+                          className="mt-2 flex items-center justify-between gap-2"
                           key={key}
-                          className="text-sm font-medium capitalize"
                         >
-                          {key.replace("_", " ")}
-                        </label>
-                        <Input
-                          className="w-52 px-1 py-2"
-                          key={key}
-                          name={key}
-                          value={item[key]}
-                        />
-                      </div>
-                    ))}
-                    <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
-                      Save
-                    </button>
-                    <button className="mt-2 w-full rounded-md bg-primary p-2 text-white">
-                      Delete
-                    </button>
-                  </SheetContent>
-                </Sheet>
+                          <label
+                            key={key}
+                            className="text-sm font-medium capitalize"
+                          >
+                            {key.replace("_", " ")}
+                          </label>
+                          <Input
+                            className="w-52 px-1 py-2"
+                            name={key}
+                            value={item[key]}
+                          />
+                        </div>
+                      ))}
+                      <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
+                        Save
+                      </button>
+                      <button className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary">
+                        Delete
+                      </button>
+                    </SheetContent>
+                  </Sheet>
+                )}
               </tr>
             ))}
         </tbody>

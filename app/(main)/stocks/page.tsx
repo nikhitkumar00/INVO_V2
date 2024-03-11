@@ -45,7 +45,7 @@ const Page = () => {
         <AddStock />
       </div>
       <div className="flex-grow overflow-auto">
-        <AdvancedTable data={data} searchTerm={searchTerm} sortBy="item_id" />
+        <AdvancedTable data={data} searchTerm={searchTerm} sortBy="item_id" edit />
       </div>
     </div>
   );

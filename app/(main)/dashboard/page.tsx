@@ -45,7 +45,7 @@ const DashboardPage = async () => {
   ];
   return (
     <div className="flex h-full w-full flex-col">
-      <Header title="Dashboard" logout />
+      <Header title="Dashboard" logout/>
       <div className="flex justify-around">
         {data.map((item) => (
           <div
