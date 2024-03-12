@@ -3,12 +3,12 @@ import Header from "../_components/Header";
 import Restock from "./restock/Restock";
 import Chart from "./chart/chart";
 const DashboardPage = async () => {
-  var income = await fetch("http://localhost:3000/dashboard/income/api", {
+  var income = await fetch("http://localhost:3000/dashboard/API/income", {
     cache: "no-store",
   }).then((res) => res.json());
   income = income[0].income;
 
-  var expense = await fetch("http://localhost:3000/dashboard/expense/api", {
+  var expense = await fetch("http://localhost:3000/dashboard/API/expense", {
     cache: "no-store",
   }).then((res) => res.json());
   expense = expense[0].expense;

@@ -10,6 +10,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/Input";
 import { Settings } from "@/public/Icons";
+import { toast } from "sonner";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -62,6 +63,30 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
     setSortedData(sorted);
     setSortConfig({ key, direction });
   };
+
+  async function deleteStock(itemId: number) {
+    try {
+      const response = await fetch("http://localhost:3000/stocks/api/deleteStock", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ item_id: itemId }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to delete stock item");
+      }
+
+      const responseData = await response.json();
+      toast.success("Item deleted successfully");
+      return responseData.message || "Stock item deleted successfully";
+    } catch (error) {
+      toast.error("Error deleting stock item:");
+      throw error;
+    }
+  }
 
   const keys: string[] = data && data.length > 0 ? Object.keys(data[0]) : [];
 
@@ -143,7 +168,10 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
                         Save
                       </button>
-                      <button className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary">
+                      <button
+                        onClick={() => deleteStock(item.item_id)}
+                        className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary"
+                      >
                         Delete
                       </button>
                     </SheetContent>

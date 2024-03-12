@@ -9,11 +9,9 @@ export async function POST(request: { json: () => Promise<StockData> }) {
   try {
     const requestData: StockData = await request.json();
 
-    // Extracting data from request body
     const keys: string[] = Object.keys(requestData);
     const values: any[] = Object.values(requestData);
 
-    // Validate required fields
     if (!keys.length || !values.length) {
       return NextResponse.json(
         { error: "No data provided for insertion" },
@@ -21,7 +19,6 @@ export async function POST(request: { json: () => Promise<StockData> }) {
       );
     }
 
-    // Constructing SQL query dynamically
     const placeholders: string = Array.from(
       { length: keys.length },
       () => "?",
@@ -29,7 +26,6 @@ export async function POST(request: { json: () => Promise<StockData> }) {
     const columns: string = keys.join(",");
     const query: string = `INSERT INTO stocks (${columns}) VALUES (${placeholders})`;
 
-    // Inserting new stock into the database
     await new Promise((resolve, reject) => {
       db.query(query, values, (err: Error | null, result: any) => {
         if (err) {
