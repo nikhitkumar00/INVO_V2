@@ -5,7 +5,7 @@ interface StockData {
   item_id: number;
 }
 
-export async function DELETE(request: { json: () => Promise<StockData> }) {
+export async function DELETE(request: any) {
   try {
     const { item_id } = await request.json();
 

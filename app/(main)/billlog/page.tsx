@@ -27,7 +27,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col duration-1000 animate-in fade-in">
       <Header title="Bill Logs" logout />
       <input
         type="text"

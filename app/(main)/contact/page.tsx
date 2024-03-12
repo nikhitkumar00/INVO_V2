@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <>
+    <div className="duration-1000 animate-in fade-in">
       <Header title="Contact" logout />
       <Contact />
-    </>
+    </div>
   );
 };
 

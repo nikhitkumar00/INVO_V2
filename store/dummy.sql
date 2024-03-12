@@ -1,41 +1,27 @@
+-- Active: 1710254908444@@localhost@3306
 -- Table structure for table `customer`
+
+CREATE DATABASE invov2;
+
+USE invov2;
+
 CREATE TABLE IF NOT EXISTS `customer` (
-    `customer_id` INT(11) PRIMARY KEY,
-    `customer_name` VARCHAR(40) NOT NULL,
-    `phone` INT(10) NOT NULL, `email` VARCHAR(40) NOT NULL,
-    `password_hash` VARCHAR(40) NOT NULL
+    `customer_id` INT(11) PRIMARY KEY, `customer_name` VARCHAR(40) NOT NULL, `phone` INT(10) NOT NULL, `email` VARCHAR(40) NOT NULL, `password_hash` VARCHAR(40) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 -- Table structure for table `stocks`
 CREATE TABLE IF NOT EXISTS `stocks` (
-    `item_id` INT(11) PRIMARY KEY,
-    `name` VARCHAR(40) NOT NULL,
-    `qty` INT(11) NOT NULL,
-    `cost_price` FLOAT NOT NULL,
-    `selling_price` FLOAT NOT NULL,
-    `mrp` FLOAT NOT NULL,
-    `shelf_no` VARCHAR(11) DEFAULT NULL,
-    `dealer` VARCHAR(40) DEFAULT NULL
+    `item_id` INT(11) PRIMARY KEY, `name` VARCHAR(40) NOT NULL, `qty` INT(11) NOT NULL, `cost_price` FLOAT NOT NULL, `selling_price` FLOAT NOT NULL, `mrp` FLOAT NOT NULL, `shelf_no` VARCHAR(11) DEFAULT NULL, `dealer` VARCHAR(40) DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 -- Table structure for table `bills`
 CREATE TABLE IF NOT EXISTS `bills` (
-    `bill_id` INT(11) PRIMARY KEY,
-    `total_amt` FLOAT NOT NULL,
-    `disc_amt` FLOAT NOT NULL,
-    `purchase_date` DATE DEFAULT NULL,
-    `customer_id` INT(11) DEFAULT NULL,
-    FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+    `bill_id` INT(11) PRIMARY KEY, `total_amt` FLOAT NOT NULL, `disc_amt` FLOAT NOT NULL, `purchase_date` DATE DEFAULT NULL, `customer_id` INT(11) DEFAULT NULL, FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 -- Table structure for table `bill_items`
 CREATE TABLE IF NOT EXISTS `bill_items` (
-    `bill_id` INT(11),
-    `item_id` INT(11),
-    `item_qty` INT(11) DEFAULT NULL,
-    PRIMARY KEY (`bill_id`, `item_id`),
-    FOREIGN KEY (`bill_id`) REFERENCES `bills` (`bill_id`),
-    FOREIGN KEY (`item_id`) REFERENCES `stocks` (`item_id`)
+    `bill_id` INT(11), `item_id` INT(11), `item_qty` INT(11) DEFAULT NULL, PRIMARY KEY (`bill_id`, `item_id`), FOREIGN KEY (`bill_id`) REFERENCES `bills` (`bill_id`), FOREIGN KEY (`item_id`) REFERENCES `stocks` (`item_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 -- Insert into stocks table
@@ -450,3 +436,103 @@ VALUES (1, 1, 10),
     (29, 2, 25),
     (30, 3, 8),
     (30, 4, 15);
+
+DELIMITER $$
+
+CREATE TRIGGER `before_insert_bill_items` BEFORE INSERT 
+ON `bill_items` FOR EACH ROW 
+BEGIN 
+DECLARE
+	new_bill_id INT;
+	-- Check if the bill_id already exists for the current transaction
+	IF NOT EXISTS (
+	    SELECT 1
+	    FROM bills
+	    WHERE
+	        bill_id = NEW.bill_id
+	) THEN
+	-- Find the maximum existing bill_id in the bills table
+	SELECT IFNULL(MAX(bill_id), 0) + 1 INTO new_bill_id
+	FROM bills;
+	-- Insert the new bill_id into the bills table if it doesn't exist already
+	INSERT IGNORE INTO
+	    bills (
+	        bill_id, total_amt, disc_amt, purchase_date
+	    )
+	VALUES (new_bill_id, 0, 0, CURDATE());
+	-- Set the new bill_id for insertion into the bill_items table
+	SET NEW.bill_id = new_bill_id;
+END
+	IF;
+END
+$$ 
+
+DELIMITER;
+
+DELIMITER $$
+
+CREATE TRIGGER `update_bills_on_submit` AFTER INSERT 
+ON `bill_items` FOR EACH ROW 
+BEGIN 
+DECLARE
+	total_amount FLOAT;
+DECLARE
+	discount_amount FLOAT;
+	-- Calculate total amount based on bill_items
+	SELECT SUM(item_qty * selling_price) INTO total_amount
+	FROM bill_items bi
+	    JOIN stocks s ON bi.item_id = s.item_id
+	WHERE
+	    bi.bill_id = NEW.bill_id;
+	-- Check if total amount is greater than or equal to 200
+	 IF total_amount >= 50 THEN SET discount_amount = total_amount * 0.06;
+	-- 10% discount
+	ELSE SET discount_amount = 0;
+	-- No discount if total amount is less than 200
+END
+	IF;
+	-- Update total_amt, disc_amt, and purchase_date in bills table
+	UPDATE bills
+	SET
+	    total_amt = total_amount - discount_amount,
+	    -- Subtract discount from total
+	    disc_amt = discount_amount,
+	    purchase_date = CURDATE()
+	WHERE
+	    bill_id = NEW.bill_id;
+END
+$$ 
+
+DELIMITER;
+
+DELIMITER $$
+
+CREATE TRIGGER `update_stocks_qty_after_submit` AFTER 
+INSERT ON `bill_items` FOR EACH ROW 
+BEGIN 
+DECLARE
+	available_quantity INT;
+	-- Retrieve available quantity for the item_id
+	SELECT qty INTO available_quantity
+	FROM stocks
+	WHERE
+	    item_id = NEW.item_id;
+	-- Check if available quantity is sufficient
+	IF NEW.item_qty <= available_quantity THEN
+	-- Update stocks_qty by subtracting the quantity
+	UPDATE stocks
+	SET
+	    qty = qty - NEW.item_qty
+	WHERE
+	    item_id = NEW.item_id;
+	ELSE
+	-- Raise an error if quantity is insufficient
+	SIGNAL SQLSTATE '45000'
+	SET
+	    MESSAGE_TEXT = 'Error: Insufficient quantity in stocks';
+END
+	IF;
+END
+$$ 
+
+DELIMITER;

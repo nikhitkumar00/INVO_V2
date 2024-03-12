@@ -1,7 +1,7 @@
 import db from "@/utils/db";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function POST() {
   try {
     const results: any[] = await new Promise((resolve, reject) => {
       db.query("DESCRIBE `stocks`;", (err: any, result: any) => {

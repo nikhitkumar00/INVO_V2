@@ -5,7 +5,7 @@ interface StockData {
   [key: string]: any;
 }
 
-export async function POST(request: { json: () => Promise<StockData> }) {
+export async function POST(request: any) {
   try {
     const requestData: StockData = await request.json();
 
@@ -37,7 +37,7 @@ export async function POST(request: { json: () => Promise<StockData> }) {
     });
 
     return NextResponse.json({ message: "Stock added successfully" });
-  } catch (error: any) {
+  } catch (error: Error | any) {
     console.error("Error adding stock:", error);
     return NextResponse.json(
       { error: error.message || "An unexpected error occurred" },

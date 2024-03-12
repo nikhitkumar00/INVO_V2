@@ -14,7 +14,7 @@ const Page = () => {
         const response = await fetch(
           "http://localhost:3000/stocks/api/stockdata",
           {
-            cache: "no-store",
+            method: "POST",
           },
         );
         const data = await response.json();
@@ -31,7 +31,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col duration-1000 animate-in fade-in">
       <Header title="Stocks" logout />
       <div className="flex w-full">
         <input
@@ -45,7 +45,12 @@ const Page = () => {
         <AddStock />
       </div>
       <div className="flex-grow overflow-auto">
-        <AdvancedTable data={data} searchTerm={searchTerm} sortBy="item_id" edit />
+        <AdvancedTable
+          data={data}
+          searchTerm={searchTerm}
+          sortBy="item_id"
+          edit
+        />
       </div>
     </div>
   );

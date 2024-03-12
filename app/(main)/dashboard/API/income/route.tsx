@@ -7,7 +7,7 @@ interface Product {
   qty: number;
 }
 
-export async function GET() {
+export async function POST() {
   try {
     const results: Product[] = await new Promise((resolve, reject) => {
       db.query(

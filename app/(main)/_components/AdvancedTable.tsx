@@ -1,16 +1,15 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { Input } from "@/components/Input";
+import { toast } from "sonner";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/sheet";
-import React, { useState, useEffect } from "react";
-import { Input } from "@/components/Input";
 import { Settings } from "@/public/Icons";
-import { toast } from "sonner";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -28,11 +27,11 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   data,
   searchTerm,
   sortBy,
-  edit,
+  edit = false,
 }) => {
-  const [sortedData, setSortedData] = useState<StockItem[]>(data);
+  const [sortedData, setSortedData] = useState<StockItem[]>([]);
   const [sortConfig, setSortConfig] = useState<{
-    key: string | null;
+    key: string;
     direction: "ascending" | "descending";
   }>({
     key: sortBy,
@@ -64,15 +63,18 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
     setSortConfig({ key, direction });
   };
 
-  async function deleteStock(itemId: number) {
+  const deleteStock = async (itemId: number): Promise<string> => {
     try {
-      const response = await fetch("http://localhost:3000/stocks/api/deleteStock", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "http://localhost:3000/stocks/api/deleteStock",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ item_id: itemId }),
         },
-        body: JSON.stringify({ item_id: itemId }),
-      });
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -86,102 +88,108 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
       toast.error("Error deleting stock item:");
       throw error;
     }
-  }
+  };
 
   const keys: string[] = data && data.length > 0 ? Object.keys(data[0]) : [];
 
   return (
-    <div className="m-2 rounded-md border p-1">
-      <table className="w-full">
-        <thead className="sticky top-0 border-b-2 bg-white">
-          <tr className="text-left capitalize">
-            {keys.map((key) => (
-              <th
-                key={key}
-                className="w-fit cursor-pointer py-2 text-sm font-medium capitalize"
-                onClick={() => sortData(key)}
-              >
-                {sortConfig.key === key && (
-                  <span className="text-xs">
-                    {sortConfig.direction === "ascending" ? "▼ " : "▲ "}
-                  </span>
-                )}
-                {key.replace("_", " ")}
-              </th>
-            ))}
-            {edit && (
-              <th className="w-10 cursor-pointer text-sm font-medium capitalize">
-                Edit
-              </th>
-            )}
-          </tr>
-        </thead>
-        <tbody className="px-4">
-          {sortedData
-            .filter((item) =>
-              keys.some((key) =>
-                String(item[key])
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase()),
-              ),
-            )
-            .map((item) => (
-              <tr
-                key={item.item_id}
-                className="odd:bg-quartinary hover:bg-tertiary"
-              >
+    <>
+      {data.length > 0 ? (
+        <div className="m-2 rounded-md border p-1">
+          <table className="w-full">
+            <thead className="sticky top-0 border-b-2 bg-white">
+              <tr className="text-left capitalize">
                 {keys.map((key) => (
-                  <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
-                    {item[key]}
-                  </td>
+                  <th
+                    key={key}
+                    className="w-fit cursor-pointer py-2 text-sm font-medium capitalize"
+                    onClick={() => sortData(key)}
+                  >
+                    {sortConfig.key === key && (
+                      <span className="text-xs">
+                        {sortConfig.direction === "ascending" ? "▼ " : "▲ "}
+                      </span>
+                    )}
+                    {key.replace("_", " ")}
+                  </th>
                 ))}
                 {edit && (
-                  <Sheet>
-                    <SheetTrigger>
-                      <td className="w-10 px-1 py-2">
-                        <Settings className="w-5 stroke-2" />
-                      </td>
-                    </SheetTrigger>
-                    <SheetContent>
-                      <SheetHeader>
-                        <SheetTitle>Edit / Delete Row</SheetTitle>
-                        <SheetDescription></SheetDescription>
-                      </SheetHeader>
-                      {keys.map((key) => (
-                        <div
-                          className="mt-2 flex items-center justify-between gap-2"
-                          key={key}
-                        >
-                          <label
-                            key={key}
-                            className="text-sm font-medium capitalize"
-                          >
-                            {key.replace("_", " ")}
-                          </label>
-                          <Input
-                            className="w-52 px-1 py-2"
-                            name={key}
-                            value={item[key]}
-                          />
-                        </div>
-                      ))}
-                      <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
-                        Save
-                      </button>
-                      <button
-                        onClick={() => deleteStock(item.item_id)}
-                        className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary"
-                      >
-                        Delete
-                      </button>
-                    </SheetContent>
-                  </Sheet>
+                  <th className="w-10 cursor-pointer text-sm font-medium capitalize">
+                    Edit
+                  </th>
                 )}
               </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <tbody className="px-4">
+              {sortedData
+                .filter((item) =>
+                  keys.some((key) =>
+                    String(item[key])
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()),
+                  ),
+                )
+                .map((item) => (
+                  <tr
+                    key={item.item_id}
+                    className="odd:bg-quartinary hover:bg-tertiary"
+                  >
+                    {keys.map((key) => (
+                      <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
+                        {item[key]}
+                      </td>
+                    ))}
+                    {edit && (
+                      <Sheet>
+                        <SheetTrigger>
+                          <td className="w-10 px-1 py-2">
+                            <Settings className="w-5 stroke-2" />
+                          </td>
+                        </SheetTrigger>
+                        <SheetContent>
+                          <SheetHeader>
+                            <SheetTitle>Edit / Delete Row</SheetTitle>
+                          </SheetHeader>
+                          {keys.map((key) => (
+                            <div
+                              className="mt-2 flex items-center justify-between gap-2"
+                              key={key}
+                            >
+                              <label className="text-sm font-medium capitalize">
+                                {key.replace("_", " ")}
+                              </label>
+                              <Input
+                                className="w-52 px-1 py-2"
+                                name={key}
+                                value={item[key]}
+                              />
+                            </div>
+                          ))}
+                          <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
+                            Save
+                          </button>
+                          <button
+                            onClick={() => deleteStock(item.item_id)}
+                            className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary"
+                          >
+                            Delete
+                          </button>
+                        </SheetContent>
+                      </Sheet>
+                    )}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="h-full w-full p-2">
+          <div className="flex h-full w-full items-center justify-center rounded-md border text-xl font-semibold animate-in fade-in zoom-in">
+            No data
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

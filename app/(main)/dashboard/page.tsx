@@ -4,12 +4,12 @@ import Restock from "./restock/Restock";
 import Chart from "./chart/chart";
 const DashboardPage = async () => {
   var income = await fetch("http://localhost:3000/dashboard/API/income", {
-    cache: "no-store",
+    method: "POST",
   }).then((res) => res.json());
   income = income[0].income;
 
   var expense = await fetch("http://localhost:3000/dashboard/API/expense", {
-    cache: "no-store",
+    method: "POST",
   }).then((res) => res.json());
   expense = expense[0].expense;
 
@@ -44,8 +44,8 @@ const DashboardPage = async () => {
     },
   ];
   return (
-    <div className="flex h-full w-full flex-col">
-      <Header title="Dashboard" logout/>
+    <div className="flex h-full w-full flex-col duration-1000 animate-in fade-in">
+      <Header title="Dashboard" logout />
       <div className="flex justify-around">
         {data.map((item) => (
           <div
