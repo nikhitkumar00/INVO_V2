@@ -84,9 +84,11 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                 {key.replace("_", " ")}
               </th>
             ))}
-            <th className="w-10 cursor-pointer text-sm font-medium capitalize">
-              Edit
-            </th>
+            {edit && (
+              <th className="w-10 cursor-pointer text-sm font-medium capitalize">
+                Edit
+              </th>
+            )}
           </tr>
         </thead>
         <tbody className="px-4">
