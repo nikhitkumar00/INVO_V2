@@ -35,7 +35,7 @@ const AddStock = () => {
       const response = await fetch(
         "http://localhost:3000/stocks/API/inputfields",
         {
-          cache: "no-store",
+          method: "POST",
         },
       );
       const schema: TableColumn[] = await response.json();
