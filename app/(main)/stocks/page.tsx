@@ -12,7 +12,7 @@ const Page = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/stocks/api/stockdata",
+          "http://localhost:3000/stocks/API/stockdata",
           {
             method: "POST",
           },

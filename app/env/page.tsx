@@ -21,7 +21,7 @@ const Page = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/env/api", {
+      const response = await fetch("http://localhost:3000/env/API", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

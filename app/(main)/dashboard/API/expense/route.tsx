@@ -1,15 +1,9 @@
 import db from "@/utils/db";
 import { NextResponse } from "next/server";
 
-interface Product {
-  item_id: number;
-  name: string;
-  qty: number;
-}
-
 export async function POST() {
   try {
-    const results: Product[] = await new Promise((resolve, reject) => {
+    const results: any = await new Promise((resolve, reject) => {
       db.query(
         "SELECT SUM(cost_price * qty) AS expense FROM stocks;",
         (err: any, result: any) => {

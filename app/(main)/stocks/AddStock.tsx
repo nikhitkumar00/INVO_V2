@@ -33,7 +33,7 @@ const AddStock = () => {
   const fetchTableSchema = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/stocks/api/inputfields",
+        "http://localhost:3000/stocks/API/inputfields",
         {
           cache: "no-store",
         },
@@ -49,7 +49,7 @@ const AddStock = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:3000/stocks/api/addStock",
+        "http://localhost:3000/stocks/API/addStock",
         {
           method: "POST",
           headers: {

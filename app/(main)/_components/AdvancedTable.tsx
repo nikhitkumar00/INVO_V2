@@ -66,7 +66,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   const deleteStock = async (itemId: number): Promise<string> => {
     try {
       const response = await fetch(
-        "http://localhost:3000/stocks/api/deleteStock",
+        "http://localhost:3000/stocks/API/deleteStock",
         {
           method: "DELETE",
           headers: {

@@ -10,7 +10,7 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/billlog/api", {
+        const response = await fetch("http://localhost:3000/billlog/API", {
           cache: "no-store",
         });
         const data = await response.json();
