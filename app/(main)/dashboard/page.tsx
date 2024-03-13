@@ -1,39 +1,24 @@
-"use client";
+"use server";
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Restock from "./restock/Restock";
 import Chart from "./chart/chart";
-import { useState, useEffect } from "react";
+const DashboardPage = async () => {
+  var income = await fetch("http://localhost:3000/dashboard/API/income", {
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data[0].income;
+    });
 
-const DashboardPage = () => {
-  const [income, setIncome] = useState(0);
-  const [expense, setExpense] = useState(0);
-  useEffect(() => {
-    const fetchIncome = async () => {
-      const response = await fetch(
-        "http://localhost:3000/dashboard/API/income",
-        {
-          method: "POST",
-        },
-      )
-        .then((res) => res.json())
-        .then((data) => setIncome(data[0]?.income || 0));
-    };
-
-    const fetchExpense = async () => {
-      const response = await fetch(
-        "http://localhost:3000/dashboard/API/expense",
-        {
-          method: "POST",
-        },
-      )
-        .then((res) => res.json())
-        .then((data) => setExpense(data[0]?.expense || 0));
-    };
-
-    fetchIncome();
-    fetchExpense();
-  }, []);
+  var expense = await fetch("http://localhost:3000/dashboard/API/expense", {
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data[0].expense;
+    });
 
   const data = [
     {
@@ -59,7 +44,7 @@ const DashboardPage = () => {
     },
     {
       name: "Orders Today",
-      value: 3426,
+      value: 34,
       unit: "units",
       status: "+20.1% from last month",
       icon: <Settings className="w-6 stroke-2" />,
