@@ -33,7 +33,7 @@ const AddStock = () => {
   const fetchTableSchema = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/stocks/API/inputfields",
+        "/stocks/API/inputfields",
         {
           method: "POST",
         },
@@ -49,7 +49,7 @@ const AddStock = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:3000/stocks/API/addStock",
+        "/stocks/API/addStock",
         {
           method: "POST",
           headers: {

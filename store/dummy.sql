@@ -1,10 +1,13 @@
--- Active: 1710254908444@@localhost@3306
--- Table structure for table `customer`
+-- Active: 1710254908444@@localhost@3306@invov2
+
+
+
 
 CREATE DATABASE invov2;
 
 USE invov2;
 
+-- Table structure for table `customer`
 CREATE TABLE IF NOT EXISTS `customer` (
     `customer_id` INT(11) PRIMARY KEY, `customer_name` VARCHAR(40) NOT NULL, `phone` INT(10) NOT NULL, `email` VARCHAR(40) NOT NULL, `password_hash` VARCHAR(40) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
@@ -536,3 +539,43 @@ END
 $$ 
 
 DELIMITER;
+ALTER TABLE stocks
+DROP COLUMN shelf_no,
+ADD COLUMN batch_no VARCHAR(50),
+ADD COLUMN manufacturer VARCHAR(100),
+ADD COLUMN production_date DATE;
+
+UPDATE stocks
+SET batch_no = 'BATCH1', manufacturer = 'Manufacturer1', production_date = '2024-03-13'
+WHERE item_id BETWEEN 1 AND 10;
+
+UPDATE stocks
+SET batch_no = 'BATCH2', manufacturer = 'Manufacturer2', production_date = '2024-03-13'
+WHERE item_id BETWEEN 11 AND 20;
+
+UPDATE stocks
+SET batch_no = 'BATCH3', manufacturer = 'Manufacturer3', production_date = '2024-03-13'
+WHERE item_id BETWEEN 21 AND 30;
+
+UPDATE stocks
+SET batch_no = 'BATCH4', manufacturer = 'Manufacturer4', production_date = '2024-03-13'
+WHERE item_id BETWEEN 31 AND 40;
+
+UPDATE stocks
+SET batch_no = 'BATCH5', manufacturer = 'Manufacturer5', production_date = '2024-03-13'
+WHERE item_id BETWEEN 41 AND 50;
+
+ALTER TABLE stocks
+DROP COLUMN production_date;
+
+UPDATE stocks set batch_no = '501' where batch_no = 'BATCH5';
+
+UPDATE stocks
+SET manufacturer = CASE 
+                        WHEN manufacturer = 'Manufacturer1' THEN 'ABC Inc.'
+                        WHEN manufacturer = 'Manufacturer2' THEN 'XYZ Corporation'
+                        WHEN manufacturer = 'Manufacturer3' THEN 'DEF Industries'
+                        WHEN manufacturer = 'Manufacturer4' THEN 'GHI Manufacturing'
+                        WHEN manufacturer = 'Manufacturer5' THEN 'JKL Enterprises'
+                        ELSE manufacturer
+                    END;

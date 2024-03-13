@@ -10,8 +10,8 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/billlog/API", {
-          cache: "no-store",
+        const response = await fetch("/billlog/API", {
+          method: "POST",
         });
         const data = await response.json();
         setData(data);

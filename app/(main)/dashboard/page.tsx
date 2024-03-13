@@ -1,8 +1,8 @@
 "use server";
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
-import Restock from "./restock/Restock";
 import Chart from "./chart/chart";
+import AdvancedTable from "../_components/AdvancedTable";
 const DashboardPage = async () => {
   var income = await fetch("http://localhost:3000/dashboard/API/income", {
     method: "POST",
@@ -20,6 +20,9 @@ const DashboardPage = async () => {
       return data[0].expense;
     });
 
+  const restock = await fetch("http://localhost:3000/dashboard/API/restock", {
+    method: "POST",
+  }).then((res) => res.json());
   const data = [
     {
       name: "Income",
@@ -80,7 +83,7 @@ const DashboardPage = async () => {
         <div className="w-2/5">
           <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
           <div className="h-[calc(100vh-50%)] overflow-auto">
-            <Restock />
+            <AdvancedTable data={restock} searchTerm="" sortBy="" />
           </div>
         </div>
         <div className="h-full w-full border-l">

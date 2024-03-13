@@ -8,7 +8,7 @@ interface Product {
 	purchase_date: string;
 }
 
-export async function GET() {
+export async function POST() {
 	try {
 		const results: Product[] = await new Promise((resolve, reject) => {
 			db.query(
