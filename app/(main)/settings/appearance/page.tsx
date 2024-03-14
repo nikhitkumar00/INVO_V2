@@ -1,21 +1,60 @@
+"use client";
 import { Switch } from "@/components/switch";
 import Header from "../../_components/Header";
+import { useEffect, useState } from "react";
+
+type CssVars = {
+  "--primary-color": string;
+  "--secondary-color": string;
+  "--tertiary-color": string;
+  "--quartinary-color": string;
+  "--background-color": string;
+  [key: string]: string;
+};
 
 const Appearance = () => {
+  const [cssVars, setCssVars] = useState<CssVars>({
+    "--primary-color": "#000000",
+    "--secondary-color": "#404040",
+    "--tertiary-color": "#d4d4d4",
+    "--quartinary-color": "#e5e5e5",
+    "--background-color": "#ffffff",
+  });
+
+  const changeColors = () => {
+    if (cssVars["--background-color"] === "#ffffff") {
+      setCssVars({
+        "--primary-color": "#ffffff",
+        "--secondary-color": "#404040",
+        "--tertiary-color": "#d4d4d4",
+        "--quartinary-color": "#e5e5e5",
+        "--background-color": "#000000",
+      });
+    } else {
+      setCssVars({
+        "--primary-color": "#000000",
+        "--secondary-color": "#404040",
+        "--tertiary-color": "#d4d4d4",
+        "--quartinary-color": "#e5e5e5",
+        "--background-color": "#ffffff",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const root = document.documentElement;
+    Object.keys(cssVars).forEach((key) => {
+      (root.style as any).setProperty(key, cssVars[key]);
+    });
+  }, [cssVars]);
+
   return (
-    // <div className="flex w-full flex-col gap-10 p-8 pl-10 align-middle">
-    //   <div className="flex gap-96">
-    //     <div className="text-lg">Dark Mode</div>
-    //     <Switch />
-    //   </div>
-    //   <div className="h-7 cursor-pointer text-xl font-semibold ">Themes</div>
-    // </div>
     <>
       <Header title="Themes" />
       <hr />
       <div className="flex gap-96 p-8">
         <div className="text-lg">Dark Mode</div>
-        <Switch />
+        <Switch onClick={changeColors} />
       </div>
     </>
   );

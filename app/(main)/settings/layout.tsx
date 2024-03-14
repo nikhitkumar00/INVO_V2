@@ -11,6 +11,10 @@ export default function RootLayout({
   const pathname = usePathname();
   const data: { name: string; link: string }[] = [
     {
+      name: "Status",
+      link: "/settings/status",
+    },
+    {
       name: "Appearance",
       link: "/settings/appearance",
     },
