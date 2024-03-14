@@ -11,7 +11,7 @@ export async function POST() {
   try {
     const results: Product[] = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT item_id, name, qty FROM `stocks` WHERE qty <20;",
+        "SELECT item_id, name, qty FROM `stocks` WHERE qty < 20;",
         (err: any, result: any) => {
           if (err) {
             reject(err);

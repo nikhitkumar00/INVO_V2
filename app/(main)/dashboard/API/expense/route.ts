@@ -15,7 +15,8 @@ export async function POST() {
         },
       );
     });
-    return NextResponse.json(results);
+    const expense: number = results[0]?.expense || 9999;
+    return NextResponse.json(expense);
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(

@@ -4,41 +4,48 @@ import Header from "../_components/Header";
 import Chart from "./chart/chart";
 import AdvancedTable from "../_components/AdvancedTable";
 const DashboardPage = async () => {
-  var income = await fetch("http://localhost:3000/dashboard/API/income", {
-    method: "POST",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data[0].income;
-    });
+  var income: number = await fetch(
+    "http://localhost:3000/dashboard/API/income",
+    {
+      method: "POST",
+    },
+  ).then((res) => res.json());
 
-  var expense = await fetch("http://localhost:3000/dashboard/API/expense", {
-    method: "POST",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data[0].expense;
-    });
+  var expense: number = await fetch(
+    "http://localhost:3000/dashboard/API/expense",
+    {
+      method: "POST",
+    },
+  ).then((res) => res.json());
 
-  var orders = await fetch("http://localhost:3000/dashboard/API/orders", {
-    method: "POST",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data[0].orders;
-    });
+  var totalorders: number = await fetch(
+    "http://localhost:3000/dashboard/API/totalorders",
+    {
+      method: "POST",
+    },
+  ).then((res) => res.json());
 
-  var today = await fetch("http://localhost:3000/dashboard/API/orderstoday", {
-    method: "POST",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data[0].orderstoday;
-    });
-  const restock = await fetch("http://localhost:3000/dashboard/API/restock", {
-    method: "POST",
-  }).then((res) => res.json());
-  const data = [
+  var today: number = await fetch(
+    "http://localhost:3000/dashboard/API/orderstoday",
+    {
+      method: "POST",
+    },
+  ).then((res) => res.json());
+
+  const restock: { item_id: number; name: string; qty: number }[] = await fetch(
+    "http://localhost:3000/dashboard/API/restock",
+    {
+      method: "POST",
+    },
+  ).then((res) => res.json());
+
+  const data: {
+    name: string;
+    value: number;
+    unit: string;
+    status: string;
+    icon: JSX.Element;
+  }[] = [
     {
       name: "Income",
       value: income,
@@ -55,14 +62,14 @@ const DashboardPage = async () => {
     },
     {
       name: "Total Orders",
-      value: orders,
+      value: totalorders,
       unit: "units",
       status: "+20.1% from last month",
       icon: <Billlog className="w-6 stroke-2" />,
     },
     {
       name: "Orders Today",
-      value: today || 0,
+      value: today,
       unit: "units",
       status: "+20.1% from last month",
       icon: <Settings className="w-6 stroke-2" />,
@@ -98,7 +105,7 @@ const DashboardPage = async () => {
         <div className="w-2/5">
           <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
           <div className="h-[calc(100vh-50%)] overflow-auto">
-            <AdvancedTable data={restock} searchTerm="" sortBy="" />
+            <AdvancedTable data={restock} searchTerm="" sortBy="qty" />
           </div>
         </div>
         <div className="h-full w-full border-l">

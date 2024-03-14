@@ -15,7 +15,8 @@ export async function POST() {
         },
       );
     });
-    return NextResponse.json(results);
+    const income: number = results[0]?.income;
+    return NextResponse.json(income);
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(

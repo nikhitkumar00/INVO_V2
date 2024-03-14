@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
-    const results = await new Promise((resolve, reject) => {
+    const results: any = await new Promise((resolve, reject) => {
       db.query(
         "SELECT COUNT(bill_id) AS orders FROM bills;",
         (err: any, result: any) => {
@@ -15,7 +15,8 @@ export async function POST() {
         },
       );
     });
-    return NextResponse.json(results);
+    const orders: number = results[0]?.orders || 9999;
+    return NextResponse.json(orders);
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(
