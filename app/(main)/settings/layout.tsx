@@ -49,7 +49,7 @@ export default function RootLayout({
               <Link
                 href={item.link}
                 className={
-                  `flex h-12 w-11/12 items-center justify-start gap-3 rounded-r-md px-6 py-4 text-sm font-semibold ` +
+                  `flex h-12 w-11/12 items-center justify-start gap-3 rounded-r-md px-6 py-4 text-sm font-semibold transition duration-200` +
                   (pathname === item.link
                     ? " bg-primary text-background"
                     : "bg-background text-primary hover:bg-secondary hover:text-background")
