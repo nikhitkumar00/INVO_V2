@@ -11,7 +11,7 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/stocks/API/stockdata", {
+        const response = await fetch("http://localhost:3000/stocks/API/stockdata", {
           method: "POST",
         });
         const data = await response.json();

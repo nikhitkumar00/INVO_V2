@@ -20,6 +20,14 @@ const DashboardPage = async () => {
       return data[0].expense;
     });
 
+  var orders = await fetch("http://localhost:3000/dashboard/API/orders", {
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data[0].orders;
+    });
+
   const restock = await fetch("http://localhost:3000/dashboard/API/restock", {
     method: "POST",
   }).then((res) => res.json());
@@ -40,7 +48,7 @@ const DashboardPage = async () => {
     },
     {
       name: "Total Orders",
-      value: 9324,
+      value: orders,
       unit: "units",
       status: "+20.1% from last month",
       icon: <Billlog className="w-6 stroke-2" />,
