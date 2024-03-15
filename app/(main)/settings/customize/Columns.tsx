@@ -29,12 +29,9 @@ const Columns = () => {
 
   const fetchTableSchema = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:3000/stocks/API/inputfields",
-        {
-          method: "POST",
-        },
-      );
+      const response = await fetch("/stocks/API/inputfields", {
+        method: "POST",
+      });
       const schema: TableColumn[] = await response.json();
       setTableSchema(schema);
     } catch (error) {
@@ -47,7 +44,7 @@ const Columns = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/settings/customize/API/deleteColumn",
+        "/settings/customize/API/deleteColumn",
         {
           method: "DELETE",
           body: JSON.stringify({ column_name: columnName }),
