@@ -1,39 +1,38 @@
-"use server";
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart/chart";
 import AdvancedTable from "../_components/AdvancedTable";
 const DashboardPage = async () => {
   var income: number = await fetch(
-    "http://localhost:3000/dashboard/API/income",
+    `${process.env.HOST_LINK}/dashboard/API/income`,
     {
       method: "POST",
     },
   ).then((res) => res.json());
 
   var expense: number = await fetch(
-    "http://localhost:3000/dashboard/API/expense",
+    `${process.env.HOST_LINK}/dashboard/API/expense`,
     {
       method: "POST",
     },
   ).then((res) => res.json());
 
   var totalorders: number = await fetch(
-    "http://localhost:3000/dashboard/API/totalorders",
+    `${process.env.HOST_LINK}/dashboard/API/totalorders`,
     {
       method: "POST",
     },
   ).then((res) => res.json());
 
   var today: number = await fetch(
-    "http://localhost:3000/dashboard/API/orderstoday",
+    `${process.env.HOST_LINK}/dashboard/API/orderstoday`,
     {
       method: "POST",
     },
   ).then((res) => res.json());
 
   const restock: { item_id: number; name: string; qty: number }[] = await fetch(
-    "http://localhost:3000/dashboard/API/restock",
+    `${process.env.HOST_LINK}/dashboard/API/restock`,
     {
       method: "POST",
     },
