@@ -579,3 +579,5 @@ SET manufacturer = CASE
                         WHEN manufacturer = 'Manufacturer5' THEN 'JKL Enterprises'
                         ELSE manufacturer
                     END;
+
+ALTER Table stocks add column nkns varchar(40);

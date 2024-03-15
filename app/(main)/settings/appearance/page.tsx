@@ -28,6 +28,7 @@ const Appearance = () => {
         "--secondary-color": "#404040",
         "--tertiary-color": "#d4d4d4",
         "--quartinary-color": "#e5e5e5",
+        "--navbar-color": "#000000",
         "--background-color": "#000000",
       });
     } else {
@@ -36,6 +37,7 @@ const Appearance = () => {
         "--secondary-color": "#404040",
         "--tertiary-color": "#d4d4d4",
         "--quartinary-color": "#e5e5e5",
+        "--navbar-color": "#000000",
         "--background-color": "#ffffff",
       });
     }

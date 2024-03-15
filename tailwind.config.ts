@@ -13,6 +13,7 @@ const config: Config = {
         secondary: "var(--secondary-color)",
         tertiary: "var(--tertiary-color)",
         quartinary: "var(--quartinary-color)",
+        navbar: "var(--navbar-color)",
         background: "var(--background-color)",
       },
     },

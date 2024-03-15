@@ -12,7 +12,7 @@ export default function RootLayout({
   const data: { name: string; link: string }[] = [
     {
       name: "Customize Columns",
-      link: "/settings/customizw",
+      link: "/settings/customize",
     },
     {
       name: "Status",
@@ -60,7 +60,7 @@ export default function RootLayout({
             </div>
           ))}
         </nav>
-        <div className="flex-grow">{children}</div>
+        <div className="flex-grow p-2">{children}</div>
       </div>
     </div>
   );

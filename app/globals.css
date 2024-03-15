@@ -7,6 +7,7 @@
   --secondary-color: #6d28d9;
   --tertiary-color: #c4b5fd;
   --quartinary-color: #ddd6fe;
+  --navbar-color: #2e1065;
   --background-color: #ffffff;
 } */
 :root {
@@ -14,5 +15,6 @@
   --secondary-color: #404040;
   --tertiary-color: #d4d4d4;
   --quartinary-color: #e5e5e5;
+  --navbar-color: #000000;
   --background-color: #ffffff;
 }
