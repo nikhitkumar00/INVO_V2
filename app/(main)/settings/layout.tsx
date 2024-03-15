@@ -19,8 +19,8 @@ export default function RootLayout({
       link: "/settings/status",
     },
     {
-      name: "Appearance",
-      link: "/settings/appearance",
+      name: "Themes",
+      link: "/settings/themes",
     },
     {
       name: "FAQ",
