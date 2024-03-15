@@ -1,9 +1,9 @@
 import Header from "../../_components/Header";
 
-const Privacypolicy = () => {
+const Termsofservice = () => {
   return (
     <div className="w-full px-4 pb-5 text-justify">
-      <Header title="Privacy Policy for INVO" />
+      <Header title="Terms of Service for INVO" />
       <div>
         At Website Name, accessible at Website.com, one of our main priorities
         is the privacy of our visitors. This Privacy Policy document contains
@@ -18,7 +18,7 @@ const Privacypolicy = () => {
         you hereby consent to our Privacy Policy and agree to its terms.
       </div>
       <hr className="mt-4" />
-      <Header title="How we use your information" />
+      <Header title="Product Service Information" />
       <div>
         We use the information we collect in various ways, including to:
         Provide, operate, and maintain our website Improve, personalize, and
@@ -56,7 +56,7 @@ const Privacypolicy = () => {
         https://policies.google.com/technologies/ads
       </div>
       <hr className="mt-4" />
-      <Header title="Advertising Partners Privacy Policies" />
+      <Header title="Our Services" />
       <div>
         You may consult this list to find the Privacy Policy for each of the
         advertising partners of Website Name. Third-party ad servers or ad
@@ -70,7 +70,7 @@ const Privacypolicy = () => {
         control over these cookies that are used by third-party advertisers.
       </div>
       <hr className="mt-4" />
-      <Header title="Third Party Privacy Policies" />
+      <Header title="Third Party Policies" />
       <div>
         Website Name&apos;s Privacy Policy does not apply to other advertisers
         or websites. Thus, we are advising you to consult the respective Privacy
@@ -120,4 +120,4 @@ const Privacypolicy = () => {
     </div>
   );
 };
-export default Privacypolicy;
+export default Termsofservice;

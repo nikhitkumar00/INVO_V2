@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/sheet";
-import { Settings } from "@/public/Icons";
+import { Pen } from "@/public/Icons";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -140,7 +140,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       <Sheet>
                         <SheetTrigger>
                           <td className="w-10 px-1 py-2">
-                            <Settings className="w-5 stroke-2" />
+                            <Pen className="w-5 stroke-2" />
                           </td>
                         </SheetTrigger>
                         <SheetContent>

@@ -11,6 +11,10 @@ export default function RootLayout({
   const pathname = usePathname();
   const data: { name: string; link: string }[] = [
     {
+      name: "Customize Columns",
+      link: "/settings/customizw",
+    },
+    {
       name: "Status",
       link: "/settings/status",
     },
@@ -24,19 +28,11 @@ export default function RootLayout({
     },
     {
       name: "Terms of Service",
-      link: "/settings",
-    },
-    {
-      name: "Privacy Policy",
-      link: "/settings/privacypolicy",
-    },
-    {
-      name: "Cookie Policy",
-      link: "/settings",
+      link: "/settings/termsofservice",
     },
     {
       name: "Help and Support",
-      link: "/stocks",
+      link: "/contact",
     },
     {
       name: "About",

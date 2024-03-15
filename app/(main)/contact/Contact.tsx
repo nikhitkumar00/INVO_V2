@@ -3,7 +3,7 @@
 const Contact = () => {
   return (
     <div className="mt-12 grid items-center gap-6 px-14 lg:grid-cols-2 lg:gap-16">
-      <div className="flex flex-col rounded-xl border p-4 sm:p-6 lg:p-8 ">
+      <div className="flex flex-col rounded-xl border border-tertiary p-4 sm:p-6 lg:p-8 ">
         <h2 className="text-secondary-800 mb-8 text-xl font-semibold ">
           Fill in the form
         </h2>
@@ -15,7 +15,7 @@ const Contact = () => {
                 <label className="sr-only">First Name</label>
                 <input
                   type="text"
-                  className="block w-full rounded-lg border px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                  className="block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                   placeholder="First Name"
                   required
                 />
@@ -25,7 +25,7 @@ const Contact = () => {
                 <label className="sr-only">Last Name</label>
                 <input
                   type="text"
-                  className="border-secondary-200 block w-full rounded-lg border px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                  className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                   placeholder="Last Name"
                 />
               </div>
@@ -36,7 +36,7 @@ const Contact = () => {
               <input
                 type="email"
                 autoComplete="email"
-                className="border-secondary-200 block w-full rounded-lg border px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                 placeholder="Email"
                 required
               />
@@ -46,7 +46,7 @@ const Contact = () => {
               <label className="sr-only">Phone Number</label>
               <input
                 type="text"
-                className="border-secondary-200 block w-full rounded-lg border px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                 placeholder="Phone Number"
                 required
               />
@@ -56,7 +56,7 @@ const Contact = () => {
               <label className="sr-only">Details</label>
               <textarea
                 name="hs-about-contacts-1"
-                className="border-secondary-200 block w-full rounded-lg border px-4 py-3 text-sm focus:border-gray-900 focus:ring-gray-900 disabled:pointer-events-none disabled:opacity-50 "
+                className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-gray-900 focus:ring-gray-900 disabled:pointer-events-none disabled:opacity-50 "
                 placeholder="Details"
                 required
               ></textarea>
