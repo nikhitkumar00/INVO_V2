@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
 const page = () => {
-  redirect("/settings/termsofservice");
+  redirect("/settings/themes");
 };
 export default page;

@@ -99,7 +99,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                 {keys.map((key) => (
                   <th
                     key={key}
-                    className="w-fit cursor-pointer py-2 text-sm font-medium capitalize"
+                    className="w-fit cursor-pointer bg-background py-2 text-sm font-medium capitalize"
                     onClick={() => sortData(key)}
                   >
                     {sortConfig.key === key && (
@@ -111,7 +111,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                   </th>
                 ))}
                 {edit && (
-                  <th className="w-10 cursor-pointer text-sm font-medium capitalize">
+                  <th className="w-10 cursor-pointer bg-background text-sm font-medium capitalize">
                     Edit
                   </th>
                 )}
