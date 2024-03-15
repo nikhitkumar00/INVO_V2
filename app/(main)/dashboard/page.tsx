@@ -105,7 +105,7 @@ const DashboardPage = async () => {
         <div className="w-2/5">
           <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
           <div className="h-[calc(100vh-50%)] overflow-auto">
-            <AdvancedTable data={restock} searchTerm="" sortBy="qty" />
+            <AdvancedTable data={restock} searchTerm="" sortBy="" />
           </div>
         </div>
         <div className="h-full w-full border-l">

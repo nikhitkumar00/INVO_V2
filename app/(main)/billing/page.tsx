@@ -3,6 +3,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -38,22 +39,22 @@ const Billing = () => {
     "Amount",
   ];
   return (
-    <div className="flex h-full w-full flex-col duration-1000 animate-in fade-in">
+    <div className="flex h-full w-full flex-col px-4 duration-1000 animate-in fade-in">
       <Header title="Billing" logout />
-      <div className=" m-2 grid grid-cols-1 gap-2 border p-4 lg:grid-cols-4">
+      <div className="my-2  grid grid-cols-1 gap-2 rounded-sm border border-secondary p-4 lg:grid-cols-4">
         {data.map((item, index) => (
           <div className="flex flex-col gap-2" key={index}>
             <label className="sr-only font-semibold">{item.name}</label>
             <input
               type="text"
               placeholder={item.name}
-              className="rounded-md border bg-transparent p-2 text-black placeholder-gray-600"
+              className="rounded-md border border-tertiary bg-transparent p-2 text-black placeholder-gray-600"
               required
             />
           </div>
         ))}
       </div>
-      <div className="m-2 flex justify-between border py-2 pl-20 ">
+      <div className="my-2 flex justify-between rounded-sm border border-secondary py-2 pl-20 ">
         <div className=" grid grid-cols-2 gap-2 lg:grid-cols-8">
           {value.map((item, index) => (
             <div className="flex flex-col gap-2" key={index}>
@@ -61,7 +62,7 @@ const Billing = () => {
               <input
                 type="text"
                 placeholder={item}
-                className="rounded-md border bg-transparent p-2 text-black placeholder-gray-600"
+                className="rounded-md border border-tertiary bg-transparent p-2 text-black placeholder-gray-600"
                 required
               />
             </div>
@@ -74,7 +75,7 @@ const Billing = () => {
           Add
         </button>
       </div>
-      <Table>
+      <Table className="h-96 border border-secondary">
         <TableHeader>
           <TableRow>
             {value.map((item) => (
@@ -90,7 +91,22 @@ const Billing = () => {
         <TableBody>
           <TableRow></TableRow>
         </TableBody>
+        <TableFooter className="text-3xl ">Total</TableFooter>
       </Table>
+      <div className="my-2 flex justify-around rounded-sm border border-secondary py-2 pl-20 ">
+        <button
+          type="submit"
+          className="h-10 w-24 rounded-md bg-primary p-2 text-background"
+        >
+          Save
+        </button>
+        <button
+          type="submit"
+          className="h-10 w-24 rounded-md bg-primary p-2 text-background"
+        >
+          Print
+        </button>
+      </div>
     </div>
   );
 };
