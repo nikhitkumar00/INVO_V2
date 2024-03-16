@@ -3,7 +3,6 @@ import { AreaChart, CurveType } from "@tremor/react";
 import { useState } from "react";
 
 const Chart = () => {
-  // Assuming CurveType is an enumeration with values like 'natural', 'monotone', etc.
   const [chartType, setChartType] = useState<CurveType>("natural");
 
   const dummyData = [
@@ -34,7 +33,7 @@ const Chart = () => {
       animationDuration={1500}
       showGradient={false}
       curveType={chartType}
-      onClick={(e) =>
+      onClick={() =>
         setChartType(
           chartTypes[(chartTypes.indexOf(chartType) + 1) % chartTypes.length],
         )
