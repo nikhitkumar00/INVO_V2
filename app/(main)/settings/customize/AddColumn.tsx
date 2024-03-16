@@ -73,7 +73,7 @@ const AddColumn = () => {
           <select
             value={columnType}
             onChange={(e) => setColumnType(e.target.value)}
-            className="w-40 rounded border border-gray-300 focus:border-primary focus:outline-none"
+            className="w-full rounded-md border bg-background text-sm focus:border-primary focus:outline-none"
           >
             <option value="">Select Column Type</option>
             <option value="integer">Number</option>

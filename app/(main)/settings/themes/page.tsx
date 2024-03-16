@@ -429,6 +429,34 @@ const Themes = () => {
       "--background-color": "#1a1a1a",
     },
   ];
+
+  const applyTheme = (theme: theme) => {
+    document.documentElement.style.setProperty(
+      "--primary-color",
+      theme["--primary-color"],
+    );
+    document.documentElement.style.setProperty(
+      "--secondary-color",
+      theme["--secondary-color"],
+    );
+    document.documentElement.style.setProperty(
+      "--tertiary-color",
+      theme["--tertiary-color"],
+    );
+    document.documentElement.style.setProperty(
+      "--quartinary-color",
+      theme["--quartinary-color"],
+    );
+    document.documentElement.style.setProperty(
+      "--navbar-color",
+      theme["--navbar-color"],
+    );
+    document.documentElement.style.setProperty(
+      "--background-color",
+      theme["--background-color"],
+    );
+  };
+
   return (
     <div className="flex h-full w-full flex-col">
       <Header title="Themes" />
@@ -439,30 +467,8 @@ const Themes = () => {
             key={index}
             className="flex h-36 cursor-pointer flex-col items-center justify-between p-2 duration-200 hover:scale-110 hover:border"
             onClick={() => {
-              document.documentElement.style.setProperty(
-                "--primary-color",
-                theme["--primary-color"],
-              );
-              document.documentElement.style.setProperty(
-                "--secondary-color",
-                theme["--secondary-color"],
-              );
-              document.documentElement.style.setProperty(
-                "--tertiary-color",
-                theme["--tertiary-color"],
-              );
-              document.documentElement.style.setProperty(
-                "--quartinary-color",
-                theme["--quartinary-color"],
-              );
-              document.documentElement.style.setProperty(
-                "--navbar-color",
-                theme["--navbar-color"],
-              );
-              document.documentElement.style.setProperty(
-                "--background-color",
-                theme["--background-color"],
-              );
+              applyTheme(theme);
+              localStorage.setItem("theme", JSON.stringify(theme));
               toast.info("Theme Changed to " + theme.name);
             }}
           >
@@ -497,4 +503,5 @@ const Themes = () => {
     </div>
   );
 };
+
 export default Themes;

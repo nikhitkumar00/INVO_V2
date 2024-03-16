@@ -11,11 +11,6 @@ import {
 } from "@/components/sheet";
 import { Pen } from "@/public/Icons";
 
-interface PenProps {
-  className: string;
-  onClick: () => void;
-}
-
 interface TableWithSearchAndSortProps {
   data: StockItem[];
   searchTerm: string;
