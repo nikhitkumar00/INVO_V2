@@ -11,6 +11,11 @@ import {
 } from "@/components/sheet";
 import { Pen } from "@/public/Icons";
 
+interface PenProps {
+  className: string;
+  onClick: () => void;
+}
+
 interface TableWithSearchAndSortProps {
   data: StockItem[];
   searchTerm: string;
@@ -37,6 +42,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
     key: sortBy,
     direction: "ascending",
   });
+  const [editedData, setEditedData] = useState<StockItem | null>(null);
 
   useEffect(() => {
     setSortedData([...data]);
@@ -63,7 +69,52 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
     setSortConfig({ key, direction });
   };
 
-  const deleteStock = async (itemId: number): Promise<string> => {
+  const toggleEditMode = (item: StockItem) => {
+    setEditedData(item);
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key: string,
+  ) => {
+    if (editedData) {
+      setEditedData({
+        ...editedData,
+        [key]: e.target.value,
+      });
+    }
+  };
+
+  const saveEditedData = async () => {
+    if (editedData) {
+      try {
+        const response = await fetch("/stocks/API/updateStock", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to update stock item");
+        }
+
+        const updatedData = sortedData.map((item) =>
+          item.item_id === editedData.item_id ? editedData : item,
+        );
+        setSortedData(updatedData);
+
+        setEditedData(null);
+
+        toast.success("Item updated successfully");
+      } catch (error) {
+        toast.error("Error updating stock item");
+      }
+    }
+  };
+
+  const deleteStock = async (itemId: number) => {
     try {
       const response = await fetch("/stocks/API/deleteStock", {
         method: "DELETE",
@@ -78,12 +129,12 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
         throw new Error(errorData.error || "Failed to delete stock item");
       }
 
-      const responseData = await response.json();
+      const updatedData = sortedData.filter((item) => item.item_id !== itemId);
+      setSortedData(updatedData);
+
       toast.success("Item deleted successfully");
-      return responseData.message || "Stock item deleted successfully";
     } catch (error) {
-      toast.error("Error deleting stock item:");
-      throw error;
+      toast.error("Error deleting stock item");
     }
   };
 
@@ -137,42 +188,55 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       </td>
                     ))}
                     {edit && (
-                      <Sheet>
-                        <SheetTrigger>
-                          <td className="w-10 px-1 py-2">
-                            <Pen className="w-5 stroke-2" />
-                          </td>
-                        </SheetTrigger>
-                        <SheetContent>
-                          <SheetHeader>
-                            <SheetTitle>Edit / Delete Row</SheetTitle>
-                          </SheetHeader>
-                          {keys.map((key) => (
-                            <div
-                              className="mt-2 flex items-center justify-between gap-2"
-                              key={key}
-                            >
-                              <label className="text-sm font-medium capitalize">
-                                {key.replace("_", " ")}
-                              </label>
-                              <Input
-                                className="w-52 px-1 py-2"
-                                name={key}
-                                value={item[key]}
-                              />
-                            </div>
-                          ))}
-                          <button className="mt-4 w-full rounded-md bg-primary p-2 text-white">
-                            Save
-                          </button>
-                          <button
-                            onClick={() => deleteStock(item.item_id)}
-                            className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary"
-                          >
-                            Delete
-                          </button>
-                        </SheetContent>
-                      </Sheet>
+                      <td className="w-10 px-1 py-2">
+                        <Sheet>
+                          <SheetTrigger>
+                            <Pen
+                              className="w-5 cursor-pointer stroke-2"
+                              onClick={() => toggleEditMode(item)}
+                            />
+                          </SheetTrigger>
+                          {editedData &&
+                            editedData.item_id === item.item_id && (
+                              <SheetContent>
+                                <SheetHeader>
+                                  <SheetTitle>Edit / Delete Row</SheetTitle>
+                                </SheetHeader>
+                                {keys.map((key) => (
+                                  <div
+                                    className="mt-2 flex items-center justify-between gap-2"
+                                    key={key}
+                                  >
+                                    <label className="text-sm font-medium capitalize">
+                                      {key.replace("_", " ")}
+                                    </label>
+                                    <Input
+                                      className="w-52 px-1 py-2"
+                                      name={key}
+                                      value={editedData[key]}
+                                      onChange={(e) =>
+                                        handleInputChange(e, key)
+                                      }
+                                      disabled={key === "item_id"}
+                                    />
+                                  </div>
+                                ))}
+                                <button
+                                  onClick={saveEditedData}
+                                  className="mt-4 w-full rounded-md bg-primary p-2 text-white"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  onClick={() => deleteStock(item.item_id)}
+                                  className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary"
+                                >
+                                  Delete
+                                </button>
+                              </SheetContent>
+                            )}
+                        </Sheet>
+                      </td>
                     )}
                   </tr>
                 ))}
