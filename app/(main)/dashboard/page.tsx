@@ -86,7 +86,7 @@ const DashboardPage = () => {
 
   // Rendering
   return (
-    <div className="flex h-full w-full flex-col duration-1000 animate-in fade-in">
+    <div className="flex h-full w-full flex-col">
       <Header title="Dashboard" logout />
       <div className="flex justify-around">
         {data.map((item) => (
