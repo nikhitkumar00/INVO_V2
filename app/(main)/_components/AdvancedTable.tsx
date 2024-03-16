@@ -172,11 +172,10 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       .includes(searchTerm.toLowerCase()),
                   ),
                 )
-                .map((item, index) => (
+                .map((item) => (
                   <tr
                     key={item.item_id}
-                    style={{ animationDelay: `${index * 0.04}s` }}
-                    className="animate-in slide-in-from-top-3 odd:bg-quartinary hover:bg-tertiary"
+                    className="animate-in slide-in-from-top-5 odd:bg-quartinary hover:bg-tertiary"
                   >
                     {keys.map((key) => (
                       <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
