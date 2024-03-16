@@ -1,6 +1,6 @@
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
-import Chart from "./chart/chart";
+import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
 const DashboardPage = async () => {
   var income: number = await fetch(

@@ -1,5 +1,11 @@
-import { AreaChart } from "@tremor/react";
+"use client";
+import { AreaChart, CurveType } from "@tremor/react";
+import { useState } from "react";
+
 const Chart = () => {
+  // Assuming CurveType is an enumeration with values like 'natural', 'monotone', etc.
+  const [chartType, setChartType] = useState<CurveType>("natural");
+
   const dummyData = [
     { name: "Jun", uv: 4000, pv: 3400, amt: 3000 },
     { name: "Jul", uv: 3000, pv: 1398, amt: 2210 },
@@ -12,6 +18,9 @@ const Chart = () => {
     { name: "Feb", uv: 2780, pv: 3908, amt: 2000 },
     { name: "Mar", uv: 1890, pv: 4800, amt: 2181 },
   ];
+
+  const chartTypes: CurveType[] = ["natural", "monotone", "step", "linear"];
+
   return (
     <AreaChart
       className="h-full p-4"
@@ -22,9 +31,14 @@ const Chart = () => {
       yAxisWidth={50}
       showLegend={false}
       showAnimation
-      animationDuration={3000}
+      animationDuration={1500}
       showGradient={false}
-      curveType="monotone"
+      curveType={chartType}
+      onClick={(e) =>
+        setChartType(
+          chartTypes[(chartTypes.indexOf(chartType) + 1) % chartTypes.length],
+        )
+      }
     />
   );
 };
