@@ -1,18 +1,19 @@
 "use client";
 import { useState } from "react";
 import { Input } from "@/components/Input";
+import { Add } from "@/public/Icons";
+import { toast } from "sonner";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/dialog";
-import { Add } from "@/public/Icons";
-import { toast } from "sonner";
 
-const AddColumn = () => {
+const AddColumn = ({ onAddColumn }: { onAddColumn: () => void }) => {
   const [columnName, setColumnName] = useState("");
   const [columnType, setColumnType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,7 @@ const AddColumn = () => {
       setColumnName("");
       setColumnType("");
       setIsLoading(false);
+      onAddColumn();
 
       toast.success("Column added successfully");
     } catch (error) {
@@ -82,13 +84,15 @@ const AddColumn = () => {
             <option value="boolean">True/False</option>
           </select>
         </div>
-        <button
-          className="w-full rounded bg-primary py-2 text-background duration-200 hover:bg-secondary"
-          onClick={handleAddColumn}
-          disabled={isLoading || !columnName || !columnType}
-        >
-          {isLoading ? "Adding..." : "Add Column"}
-        </button>
+        <DialogClose>
+          <button
+            className="w-full rounded bg-primary py-2 text-background duration-200 hover:bg-secondary"
+            onClick={handleAddColumn}
+            disabled={isLoading || !columnName || !columnType}
+          >
+            {isLoading ? "Adding..." : "Add Column"}
+          </button>
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );

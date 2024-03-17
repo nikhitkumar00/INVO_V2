@@ -19,13 +19,19 @@ interface TableColumn {
   Extra: string;
 }
 
-const Columns = () => {
+const Columns = ({
+  refresh,
+  onRefresh,
+}: {
+  refresh: boolean;
+  onRefresh: () => void;
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableSchema, setTableSchema] = useState<TableColumn[]>([]);
 
   useEffect(() => {
     fetchTableSchema();
-  }, []);
+  }, [refresh]);
 
   const fetchTableSchema = async () => {
     try {
@@ -43,16 +49,13 @@ const Columns = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        "/settings/customize/API/deleteColumn",
-        {
-          method: "DELETE",
-          body: JSON.stringify({ column_name: columnName }),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const response = await fetch("/settings/customize/API/deleteColumn", {
+        method: "DELETE",
+        body: JSON.stringify({ column_name: columnName }),
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!response.ok) {
         toast.error("Failed to delete column");
@@ -65,6 +68,7 @@ const Columns = () => {
     } finally {
       setIsLoading(false);
     }
+    onRefresh();
   };
 
   return tableSchema.map((item) => (
