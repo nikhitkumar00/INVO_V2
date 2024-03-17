@@ -19,8 +19,6 @@ const AddColumn = ({ onAddColumn }: { onAddColumn: () => void }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddColumn = async () => {
-    console.log("Column Name:", columnName);
-    console.log("Column Type:", columnType);
     setIsLoading(true);
 
     try {
@@ -41,20 +39,20 @@ const AddColumn = ({ onAddColumn }: { onAddColumn: () => void }) => {
 
       setColumnName("");
       setColumnType("");
-      setIsLoading(false);
       onAddColumn();
 
       toast.success("Column added successfully");
     } catch (error) {
-      setIsLoading(false);
       toast.error("Failed to add column");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="flex h-20 w-full cursor-pointer items-center justify-between rounded border-2 border-tertiary px-8 duration-200 hover:border-4 hover:border-primary">
+        <div className="flex h-20 w-full cursor-pointer items-center justify-between rounded border border-tertiary px-8 duration-200 hover:border-2 hover:border-primary hover:border-green-500">
           <p className="text-md font-semibold capitalize">Add Column</p>
           <Add className="size-6 stroke-2" />
         </div>

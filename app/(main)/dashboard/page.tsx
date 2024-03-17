@@ -4,7 +4,6 @@ import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
-import { toast } from "sonner";
 
 const DashboardPage = () => {
   const [income, setIncome] = useState(0);
@@ -84,7 +83,6 @@ const DashboardPage = () => {
     },
   ];
 
-  // Rendering
   return (
     <div className="flex h-full w-full flex-col">
       <Header title="Dashboard" logout />

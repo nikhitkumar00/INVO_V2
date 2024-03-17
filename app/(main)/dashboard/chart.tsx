@@ -1,6 +1,7 @@
 "use client";
 import { AreaChart, CurveType } from "@tremor/react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const Chart = () => {
   const [chartType, setChartType] = useState<CurveType>("natural");
@@ -33,11 +34,15 @@ const Chart = () => {
       animationDuration={1500}
       showGradient={false}
       curveType={chartType}
-      onClick={() =>
+      onClick={() => {
         setChartType(
           chartTypes[(chartTypes.indexOf(chartType) + 1) % chartTypes.length],
-        )
-      }
+        );
+        toast.info(
+          "Chart type changed to " +
+            chartTypes[(chartTypes.indexOf(chartType) + 1) % chartTypes.length],
+        );
+      }}
     />
   );
 };

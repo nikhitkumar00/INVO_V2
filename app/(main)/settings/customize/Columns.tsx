@@ -1,4 +1,6 @@
 "use client";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogTitle,
@@ -7,16 +9,10 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/dialog";
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
 
 interface TableColumn {
   Field: string;
   Type: string;
-  Null: string;
-  Key: string;
-  Default: string | null;
-  Extra: string;
 }
 
 const Columns = ({
@@ -42,6 +38,7 @@ const Columns = ({
       setTableSchema(schema);
     } catch (error) {
       console.error("Error fetching table schema:", error);
+      toast.error("Failed to fetch table schema");
     }
   };
 
@@ -61,55 +58,62 @@ const Columns = ({
         toast.error("Failed to delete column");
         throw new Error("Failed to delete column");
       }
+
       toast.success("Column deleted successfully");
+      onRefresh();
     } catch (error) {
       console.error("Error deleting column:", error);
       toast.error("Error deleting column");
     } finally {
       setIsLoading(false);
     }
-    onRefresh();
   };
 
-  return tableSchema.map((item) => (
-    <Dialog key={item.Field}>
-      <DialogTrigger className="relative flex h-20 w-full items-center justify-between rounded border border-tertiary px-8 hover:border-red-500">
-        <p className="text-md font-semibold capitalize">
-          {item.Field.replace("_", " ")}
-        </p>
-        <p>
-          {item.Type === "int"
-            ? "Number"
-            : item.Type === "float"
-              ? "Number"
-              : item.Type === "date"
-                ? "Date"
-                : "Text"}
-        </p>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Delete Column</DialogTitle>
-          <DialogDescription>
-            Once deleted, all the data in that column will be deleted along with
-            this action and cannot be retrieved
-            <br />
-            <br />
-            Are you sure you want to delete the column{" "}
-            <span className="text-md font-medium capitalize text-primary">
+  return (
+    <>
+      {tableSchema.map((item) => (
+        <Dialog key={item.Field}>
+          <DialogTrigger className="relative flex h-20 w-full items-center justify-between rounded border border-tertiary px-8 hover:border-2 hover:border-red-500">
+            <p className="text-md font-semibold capitalize">
               {item.Field.replace("_", " ")}
-            </span>
-          </DialogDescription>
-        </DialogHeader>
-        <button
-          className="rounded-md bg-red-600 py-2 text-white hover:bg-red-700"
-          onClick={() => handleDeleteColumn(item.Field)}
-          disabled={isLoading}
-        >
-          {isLoading ? "Deleting..." : "Delete"}
-        </button>
-      </DialogContent>
-    </Dialog>
-  ));
+            </p>
+            <p>
+              {item.Type === "int"
+                ? "Number"
+                : item.Type === "float"
+                  ? "Number"
+                  : item.Type === "date"
+                    ? "Date"
+                    : item.Type === "tinyint(1)"
+                      ? "True/False"
+                      : "Text"}
+            </p>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Delete Column</DialogTitle>
+              <DialogDescription>
+                Once deleted, all the data in that column will be deleted along
+                with this action and cannot be retrieved
+                <br />
+                <br />
+                Are you sure you want to delete the column{" "}
+                <span className="text-md font-medium capitalize text-primary">
+                  {item.Field.replace("_", " ")}
+                </span>
+              </DialogDescription>
+            </DialogHeader>
+            <button
+              className="rounded-md bg-red-600 py-2 text-white hover:bg-red-700"
+              onClick={() => handleDeleteColumn(item.Field)}
+              disabled={isLoading}
+            >
+              {isLoading ? "Deleting..." : "Delete"}
+            </button>
+          </DialogContent>
+        </Dialog>
+      ))}
+    </>
+  );
 };
 export default Columns;
