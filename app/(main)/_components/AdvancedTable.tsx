@@ -241,7 +241,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
       ) : (
         <div className="h-full w-full p-2">
           <div className="flex h-full w-full items-center justify-center rounded-md border text-xl font-semibold animate-in fade-in zoom-in">
-            No data
+            Loading
           </div>
         </div>
       )}
