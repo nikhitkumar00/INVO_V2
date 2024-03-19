@@ -1,5 +1,5 @@
-"use client";
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Input } from "@/components/Input";
 import { toast } from "sonner";
 import {
@@ -172,10 +172,13 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       .includes(searchTerm.toLowerCase()),
                   ),
                 )
-                .map((item) => (
-                  <tr
+                .map((item, index) => (
+                  <motion.tr
                     key={item.item_id}
-                    className="animate-in slide-in-from-top-5 odd:bg-quartinary hover:bg-tertiary"
+                    className="odd:bg-quartinary hover:bg-tertiary"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: index * 0.05 }}
                   >
                     {keys.map((key) => (
                       <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
@@ -233,7 +236,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                         </Sheet>
                       </td>
                     )}
-                  </tr>
+                  </motion.tr>
                 ))}
             </tbody>
           </table>
