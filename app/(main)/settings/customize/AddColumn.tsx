@@ -52,8 +52,8 @@ const AddColumn = ({ onAddColumn }: { onAddColumn: () => void }) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="flex h-20 w-full cursor-pointer items-center justify-between rounded border border-tertiary px-8 duration-200 hover:border-2 hover:border-primary hover:border-green-500">
-          <p className="text-md font-semibold capitalize">Add Column</p>
+        <div className="mr-8 flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-semibold uppercase text-background duration-200 hover:bg-secondary">
+          <p className="">Add</p>
           <Add className="size-6 stroke-2" />
         </div>
       </DialogTrigger>

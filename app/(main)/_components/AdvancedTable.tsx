@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/sheet";
-import { Pen } from "@/public/Icons";
+import { Dashboard, Pen } from "@/public/Icons";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -243,8 +243,8 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
         </div>
       ) : (
         <div className="h-full w-full p-2">
-          <div className="flex h-full w-full items-center justify-center rounded-md border text-xl font-semibold animate-in fade-in zoom-in">
-            Loading
+          <div className="flex h-full w-full items-center justify-center gap-4 rounded-md border text-xl animate-in fade-in zoom-in">
+            <Dashboard className="size-10 stroke-1" /> No Data
           </div>
         </div>
       )}

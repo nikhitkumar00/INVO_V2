@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
@@ -71,23 +72,30 @@ const Columns = ({
 
   return (
     <>
-      {tableSchema.map((item) => (
+      {tableSchema.map((item, index) => (
         <Dialog key={item.Field}>
-          <DialogTrigger className="relative flex h-20 w-full items-center justify-between rounded border border-tertiary px-8 hover:border-2 hover:border-red-500">
-            <p className="text-md font-semibold capitalize">
-              {item.Field.replace("_", " ")}
-            </p>
-            <p>
-              {item.Type === "int"
-                ? "Number"
-                : item.Type === "float"
+          <DialogTrigger>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.1 }}
+              className="relative flex h-20 w-full items-center justify-between rounded border border-tertiary px-8 hover:border-2 hover:border-red-500"
+            >
+              <p className="text-md font-semibold capitalize">
+                {item.Field.replace("_", " ")}
+              </p>
+              <p>
+                {item.Type === "int"
                   ? "Number"
-                  : item.Type === "date"
-                    ? "Date"
-                    : item.Type === "tinyint(1)"
-                      ? "True/False"
-                      : "Text"}
-            </p>
+                  : item.Type === "float"
+                    ? "Number"
+                    : item.Type === "date"
+                      ? "Date"
+                      : item.Type === "tinyint(1)"
+                        ? "True/False"
+                        : "Text"}
+              </p>
+            </motion.div>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>

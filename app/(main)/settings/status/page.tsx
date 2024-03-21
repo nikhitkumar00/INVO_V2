@@ -1,10 +1,14 @@
 "use client";
-import Header from "@/app/(main)/_components/Header";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
-
+import Header from "@/app/(main)/_components/Header";
 const Status = () => {
+  const [isDatabaseConnected, setIsDatabaseConnected] = useState(false);
+  const [isNetworkConnected, setIsNetworkConnected] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const checkDatabaseStatus = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("/settings/status/API", {
         method: "POST",
@@ -21,26 +25,55 @@ const Status = () => {
     } catch (error) {
       console.error("Error checking database status:", error);
       toast.error("Failed to check database status");
+    } finally {
+      setIsLoading(false);
     }
   };
+
   const handleToast = () => {
     toast.success("Success");
   };
 
+  const checkNetwork = () => {
+    setIsNetworkConnected(navigator.onLine);
+    if (navigator.onLine) {
+      toast.success("Network is connected");
+    } else {
+      toast.error("Network is not connected");
+    }
+  };
+
   const buttonData = [
     { label: "Database", onClick: checkDatabaseStatus },
+    { label: "Network", onClick: checkNetwork },
     { label: "Toast", onClick: handleToast },
   ];
 
-  const [isDatabaseConnected, setIsDatabaseConnected] = useState(false);
+  const getColorClass = (
+    isLoading: boolean,
+    label: string,
+    isConnected: boolean,
+  ) => {
+    if (isLoading) {
+      return "bg-orange-500";
+    } else if (label === "Database") {
+      return isConnected ? "bg-green-500" : "bg-red-500";
+    } else if (label === "Network") {
+      return isConnected ? "bg-green-500" : "bg-red-500";
+    } else {
+      return "bg-green-500";
+    }
+  };
 
   useEffect(() => {
     checkDatabaseStatus();
+    checkNetwork();
   }, []);
 
   return (
     <>
       <Header title="Status" />
+
       <main className="divide-y pr-2">
         {buttonData.map((button, index) => (
           <div
@@ -50,13 +83,13 @@ const Status = () => {
           >
             <div className="text-lg font-medium">{button.label}</div>
             <div
-              className={`size-2 rounded-full ${
+              className={`size-2 rounded-full ${getColorClass(
+                isLoading,
+                button.label,
                 button.label === "Database"
                   ? isDatabaseConnected
-                    ? "bg-green-500"
-                    : "bg-red-500"
-                  : "bg-green-500"
-              }`}
+                  : isNetworkConnected,
+              )}`}
             ></div>
           </div>
         ))}
@@ -64,4 +97,5 @@ const Status = () => {
     </>
   );
 };
+
 export default Status;

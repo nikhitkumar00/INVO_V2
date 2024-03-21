@@ -13,10 +13,12 @@ const Customize = () => {
 
   return (
     <div className="flex h-full w-full flex-col">
-      <Header title="Customize" />
+      <div className="flex">
+        <Header title="Customize" />
+        <AddColumn onAddColumn={handleRefresh} />
+      </div>
       <div className="grid grid-cols-3 gap-2 overflow-auto px-8">
         <Columns refresh={refresh} onRefresh={handleRefresh} />
-        <AddColumn onAddColumn={handleRefresh} />
       </div>
     </div>
   );
