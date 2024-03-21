@@ -107,7 +107,7 @@ const Billing = () => {
   };
 
   return (
-    <div className="flex h-full w-full flex-col px-4 duration-1000 animate-in fade-in">
+    <div className="flex h-full w-full flex-col px-4">
       <Header title="Billing" logout />
       <div className="my-2  grid grid-cols-1 gap-2 rounded-sm border border-secondary p-4 lg:grid-cols-4">
         {data.map((item, index) => (

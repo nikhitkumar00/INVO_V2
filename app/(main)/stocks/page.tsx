@@ -28,7 +28,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col duration-1000 animate-in fade-in">
+    <div className="flex h-screen flex-col">
       <Header title="Stocks" logout />
       <div className="flex w-full">
         <input

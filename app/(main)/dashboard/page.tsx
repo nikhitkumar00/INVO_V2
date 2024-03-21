@@ -1,50 +1,58 @@
+"use client";
+import React, { useState, useEffect } from "react";
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
-const DashboardPage = async () => {
-  var income: number = await fetch(
-    `${process.env.HOST_LINK}/dashboard/API/income`,
-    {
-      method: "POST",
-    },
-  ).then((res) => res.json());
 
-  var expense: number = await fetch(
-    `${process.env.HOST_LINK}/dashboard/API/expense`,
-    {
-      method: "POST",
-    },
-  ).then((res) => res.json());
+const DashboardPage = () => {
+  const [income, setIncome] = useState(0);
+  const [expense, setExpense] = useState(0);
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [ordersToday, setOrdersToday] = useState(0);
+  const [restock, setRestock] = useState([]);
 
-  var totalorders: number = await fetch(
-    `${process.env.HOST_LINK}/dashboard/API/totalorders`,
-    {
-      method: "POST",
-    },
-  ).then((res) => res.json());
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const incomeResponse = await fetch("/dashboard/API/income", {
+          method: "POST",
+        });
+        const incomeData = await incomeResponse.json();
+        setIncome(incomeData);
 
-  var today: number = await fetch(
-    `${process.env.HOST_LINK}/dashboard/API/orderstoday`,
-    {
-      method: "POST",
-    },
-  ).then((res) => res.json());
+        const expenseResponse = await fetch("/dashboard/API/expense", {
+          method: "POST",
+        });
+        const expenseData = await expenseResponse.json();
+        setExpense(expenseData);
 
-  const restock: { item_id: number; name: string; qty: number }[] = await fetch(
-    `${process.env.HOST_LINK}/dashboard/API/restock`,
-    {
-      method: "POST",
-    },
-  ).then((res) => res.json());
+        const totalOrdersResponse = await fetch("/dashboard/API/totalorders", {
+          method: "POST",
+        });
+        const totalOrdersData = await totalOrdersResponse.json();
+        setTotalOrders(totalOrdersData);
 
-  const data: {
-    name: string;
-    value: number;
-    unit: string;
-    status: string;
-    icon: JSX.Element;
-  }[] = [
+        const todayResponse = await fetch("/dashboard/API/orderstoday", {
+          method: "POST",
+        });
+        const todayData = await todayResponse.json();
+        setOrdersToday(todayData);
+
+        const restockResponse = await fetch("/dashboard/API/restock", {
+          method: "POST",
+        });
+        const restockData = await restockResponse.json();
+        setRestock(restockData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const data = [
     {
       name: "Income",
       value: income,
@@ -61,21 +69,22 @@ const DashboardPage = async () => {
     },
     {
       name: "Total Orders",
-      value: totalorders,
+      value: totalOrders,
       unit: "units",
       status: "+20.1% from last month",
       icon: <Billlog className="w-6 stroke-2" />,
     },
     {
       name: "Orders Today",
-      value: today,
+      value: ordersToday,
       unit: "units",
       status: "+20.1% from last month",
       icon: <Settings className="w-6 stroke-2" />,
     },
   ];
+
   return (
-    <div className="flex h-full w-full flex-col duration-1000 animate-in fade-in">
+    <div className="flex h-full w-full flex-col">
       <Header title="Dashboard" logout />
       <div className="flex justify-around">
         {data.map((item) => (
@@ -117,4 +126,5 @@ const DashboardPage = async () => {
     </div>
   );
 };
+
 export default DashboardPage;

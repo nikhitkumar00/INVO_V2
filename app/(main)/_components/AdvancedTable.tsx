@@ -1,5 +1,5 @@
-"use client";
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Input } from "@/components/Input";
 import { toast } from "sonner";
 import {
@@ -10,11 +10,6 @@ import {
   SheetTrigger,
 } from "@/components/sheet";
 import { Pen } from "@/public/Icons";
-
-interface PenProps {
-  className: string;
-  onClick: () => void;
-}
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -177,10 +172,13 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       .includes(searchTerm.toLowerCase()),
                   ),
                 )
-                .map((item) => (
-                  <tr
+                .map((item, index) => (
+                  <motion.tr
                     key={item.item_id}
                     className="odd:bg-quartinary hover:bg-tertiary"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: index * 0.05 }}
                   >
                     {keys.map((key) => (
                       <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
@@ -238,7 +236,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                         </Sheet>
                       </td>
                     )}
-                  </tr>
+                  </motion.tr>
                 ))}
             </tbody>
           </table>
@@ -246,7 +244,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
       ) : (
         <div className="h-full w-full p-2">
           <div className="flex h-full w-full items-center justify-center rounded-md border text-xl font-semibold animate-in fade-in zoom-in">
-            No data
+            Loading
           </div>
         </div>
       )}
