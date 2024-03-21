@@ -113,7 +113,23 @@ const Columns = ({
             </DialogHeader>
             <button
               className="rounded-md bg-red-600 py-2 text-white hover:bg-red-700"
-              onClick={() => handleDeleteColumn(item.Field)}
+              onClick={() => {
+                if (
+                  isLoading ||
+                  [
+                    "item_id",
+                    "name",
+                    "qty",
+                    "cost_price",
+                    "selling_price",
+                    "mrp",
+                  ].includes(item.Field)
+                ) {
+                  toast.error("Cannot delete permanent field");
+                  return;
+                }
+                handleDeleteColumn(item.Field);
+              }}
               disabled={isLoading}
             >
               {isLoading ? "Deleting..." : "Delete"}

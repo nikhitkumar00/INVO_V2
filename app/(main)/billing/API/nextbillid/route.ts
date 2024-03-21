@@ -15,8 +15,8 @@ export async function POST() {
         },
       );
     });
-    const nextbillid: number = results[0].nextbillid;
-    return NextResponse.json(nextbillid);
+    const nextBillId: number = results[0].next_bill_id || 9999;
+    return NextResponse.json({ nextBillId });
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(

@@ -5,7 +5,7 @@ export async function POST() {
   try {
     const results: any = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT CURDATE() AS purchase_date;",
+        "SELECT DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS purchase_date;",
         (err: any, result: any) => {
           if (err) {
             reject(err);
@@ -15,10 +15,8 @@ export async function POST() {
         },
       );
     });
-    const curdate: number = results[0].curdate
-    ;
-    return NextResponse.json(curdate
-      );
+    const purchaseDate: string = results[0].purchase_date;
+    return NextResponse.json({ purchaseDate });
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(
