@@ -1,3 +1,4 @@
+import RootContext from "@/context/RootContext";
 import Navbar from "./_components/Navbar";
 
 export default function RootLayout({
@@ -8,7 +9,9 @@ export default function RootLayout({
   return (
     <div className="flex h-screen w-screen">
       <Navbar />
-      <div className="w-full">{children}</div>
+      <div className="w-full">
+        <RootContext>{children}</RootContext>
+      </div>
     </div>
   );
 }
