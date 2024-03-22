@@ -91,6 +91,11 @@ const Billing = () => {
     setQuantity("");
   };
 
+  useEffect(() => {
+    const total = tableData.reduce((acc, item) => acc + item.amount, 0);
+    setTotalAmount(total);
+  }, [tableData]);
+
   const calculateAmount = (qty: string, rate: string) => {
     return qty ? +qty * parseFloat(String(rate || 0)) : "";
   };
@@ -119,7 +124,7 @@ const Billing = () => {
             <input
               type="text"
               placeholder={item.name}
-              value={item.value.toString()}
+              value={(item.value || "").toString()}
               onChange={(e) =>
                 item.name === "Item Id"
                   ? handleItemIdChange(e)
@@ -143,7 +148,7 @@ const Billing = () => {
           </div>
         ))}
         <button
-          className="flex items-center justify-center rounded bg-primary px-4 gap-2 py-2 font-medium text-background hover:bg-secondary"
+          className="flex items-center justify-center gap-2 rounded bg-primary px-4 py-2 font-medium text-background hover:bg-secondary"
           onClick={handleAddItem}
         >
           <Add className="size-5 stroke-2" />
@@ -151,7 +156,7 @@ const Billing = () => {
         </button>
       </div>
       <AdvancedTable data={tableData} searchTerm="" sortBy="" />
-      <div className="flex h-32 w-full items-center justify-between border px-4">
+      <div className="flex w-full items-center justify-between border px-4 py-2">
         <div className="text-lg font-semibold">
           Total Amount : <span className="text-3xl">₹ {totalAmount}</span>
         </div>
