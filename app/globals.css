@@ -515,6 +515,6 @@
     --background-color: #1a1a1a;
   }
   * {
-    @apply transition-all duration-200 ease-in;
+    @apply transition-all duration-200 ease-in-out;
   }
 }
