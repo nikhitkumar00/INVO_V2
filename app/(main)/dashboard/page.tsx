@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import CountUp from "react-countup";
+import { useState, useEffect } from "react";
 import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
@@ -97,7 +98,7 @@ const DashboardPage = () => {
                 {item.name}
               </div>
               <div className="text-2xl font-semibold">
-                {item.value.toLocaleString()}
+                <CountUp start={0} end={item.value} duration={2} />
                 <span className="text-sm">{" " + item.unit}</span>
               </div>
               <div className="text-xs font-semibold uppercase text-secondary">
