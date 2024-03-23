@@ -10,6 +10,10 @@
     --navbar-color: #000000;
     --background-color: #ffffff;
   }
+  
+  * {
+    @apply transition-all duration-200 ease-in-out;
+  }
 
   .theme-name-Default-Light {
     --primary-color: #000000;
@@ -513,8 +517,5 @@
     --quartinary-color: #8a0829;
     --navbar-color: #ff99aa;
     --background-color: #1a1a1a;
-  }
-  * {
-    @apply transition-all duration-200 ease-in-out;
   }
 }
