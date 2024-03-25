@@ -119,12 +119,18 @@ const DashboardPage = () => {
         ))}
       </div>
       <hr className="mt-4" />
-      <div className="flex max-h-[calc(100vh-14rem)]">
-        <div className="w-2/6 overflow-auto">
-          <AdvancedTable data={restock} />
+      <div className="flex w-full flex-grow overflow-auto">
+        <div className="flex h-full w-2/5 flex-col">
+          <div className="px-4 pt-2 text-xl font-semibold">Restock Items</div>
+          <div className="flex-grow overflow-auto">
+            <AdvancedTable data={restock} searchTerm="" sortBy="" />
+          </div>
         </div>
-        <div className="flex-grow">
-          <Chart />
+        <div className="flex h-full w-full flex-col border-l">
+          <div className="px-4 pt-2 text-xl font-semibold">Sales</div>
+          <div className="flex-grow p-4">
+            <Chart />
+          </div>
         </div>
       </div>
     </div>
