@@ -12,8 +12,10 @@ const DashboardPage = () => {
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
-  const [ ordersToday, setOrdersToday ] = useState( 0 );
-  const [restockThreshold, setRestockThreshold] = useRecoilState(restockThresholdState);
+  const [ordersToday, setOrdersToday] = useState(0);
+  const [restockThreshold, setRestockThreshold] = useRecoilState(
+    restockThresholdState,
+  );
   const [restock, setRestock] = useState([]);
 
   useEffect(() => {
@@ -43,17 +45,17 @@ const DashboardPage = () => {
         const todayData = await todayResponse.json();
         setOrdersToday(todayData);
 
-        const restockResponse = await fetch('/dashboard/API/restock', {
-          method: 'POST',
+        const restockResponse = await fetch("/dashboard/API/restock", {
+          method: "POST",
           body: JSON.stringify({ threshold: restockThreshold }),
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
         const restockData = await restockResponse.json();
         setRestock(restockData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -117,18 +119,12 @@ const DashboardPage = () => {
         ))}
       </div>
       <hr className="mt-4" />
-      <div className="flex w-full flex-grow">
-        <div className="w-2/5">
-          <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
-          <div className="h-[calc(100vh-50%)] overflow-auto">
-            <AdvancedTable data={restock} searchTerm="" sortBy="" />
-          </div>
+      <div className="flex max-h-[calc(100vh-14rem)]">
+        <div className="w-2/6 overflow-auto">
+          <AdvancedTable data={restock} searchTerm="" sortBy="" />
         </div>
-        <div className="h-full w-full border-l">
-          <div className="px-4 pt-4 text-xl font-semibold">Sales</div>
-          <div className="h-[calc(100vh-50%)]">
-            <Chart />
-          </div>
+        <div className="flex-grow">
+          <Chart />
         </div>
       </div>
     </div>
