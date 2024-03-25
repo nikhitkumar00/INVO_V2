@@ -121,7 +121,7 @@ const DashboardPage = () => {
       <hr className="mt-4" />
       <div className="flex max-h-[calc(100vh-14rem)]">
         <div className="w-2/6 overflow-auto">
-          <AdvancedTable data={restock} searchTerm="" sortBy="" />
+          <AdvancedTable data={restock} />
         </div>
         <div className="flex-grow">
           <Chart />

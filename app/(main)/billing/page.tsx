@@ -155,7 +155,7 @@ const Billing = () => {
           Add Item
         </button>
       </div>
-      <AdvancedTable data={tableData} searchTerm="" sortBy="" />
+      <AdvancedTable data={tableData} />
       <div className="flex w-full items-center justify-between border px-4 py-2">
         <div className="text-lg font-semibold">
           Total Amount : <span className="text-3xl">₹ {totalAmount}</span>

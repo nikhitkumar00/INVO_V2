@@ -13,8 +13,8 @@ import { Dashboard, Pen } from "@/public/Icons";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
-  searchTerm: string;
-  sortBy: string;
+  searchTerm?: string;
+  sortBy?: string;
   edit?: boolean;
 }
 
@@ -25,8 +25,8 @@ interface StockItem {
 
 const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   data,
-  searchTerm,
-  sortBy,
+  searchTerm = "",
+  sortBy = "",
   edit = false,
 }) => {
   const [sortedData, setSortedData] = useState<StockItem[]>([]);
