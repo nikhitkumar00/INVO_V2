@@ -5,12 +5,15 @@ import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
+import { useRecoilState } from "recoil";
+import { restockThresholdState } from "@/context/globalStates";
 
 const DashboardPage = () => {
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
-  const [ordersToday, setOrdersToday] = useState(0);
+  const [ ordersToday, setOrdersToday ] = useState( 0 );
+  const [restockThreshold, setRestockThreshold] = useRecoilState(restockThresholdState);
   const [restock, setRestock] = useState([]);
 
   useEffect(() => {
@@ -40,13 +43,17 @@ const DashboardPage = () => {
         const todayData = await todayResponse.json();
         setOrdersToday(todayData);
 
-        const restockResponse = await fetch("/dashboard/API/restock", {
-          method: "POST",
+        const restockResponse = await fetch('/dashboard/API/restock', {
+          method: 'POST',
+          body: JSON.stringify({ threshold: restockThreshold }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
         const restockData = await restockResponse.json();
         setRestock(restockData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 

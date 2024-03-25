@@ -1,4 +1,4 @@
-import RootContext from "@/context/RootContext";
+import RootContext from "@/layout/RootContext";
 import Navbar from "./_components/Navbar";
 
 export default function RootLayout({
