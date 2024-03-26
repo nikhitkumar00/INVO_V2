@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Input } from "@/components/Input";
-import { Add } from "@/public/Icons";
+import { Add } from "@/svg/Icons";
 import { toast } from "sonner";
 import {
   Dialog,

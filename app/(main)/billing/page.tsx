@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../_components/Header";
 import AdvancedTable from "../_components/AdvancedTable";
 import { toast } from "sonner";
-import { Add } from "@/public/Icons";
+import { Add } from "@/svg/Icons";
 
 interface ItemDetails {
   name: string;

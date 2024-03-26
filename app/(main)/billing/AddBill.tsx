@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/dialog";
-import { Add } from "@/public/Icons";
+import { Add } from "@/svg/Icons";
 import { toast } from "sonner";
 
 interface TableColumn {
@@ -32,12 +32,9 @@ const AddBill = () => {
 
   const fetchTableSchema = async () => {
     try {
-      const response = await fetch(
-        "/stocks/API/inputfields",
-        {
-          method: "POST",
-        },
-      );
+      const response = await fetch("/stocks/API/inputfields", {
+        method: "POST",
+      });
       const schema: TableColumn[] = await response.json();
       setTableSchema(schema);
     } catch (error) {
@@ -48,16 +45,13 @@ const AddBill = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        "/stocks/API/addStock",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch("/stocks/API/addStock", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(formData),
+      });
       if (response.ok) {
         toast.success("Stock added successfully");
         setFormData({});

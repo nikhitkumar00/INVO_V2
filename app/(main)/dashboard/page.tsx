@@ -1,12 +1,12 @@
 "use client";
 import CountUp from "react-countup";
 import { useState, useEffect } from "react";
-import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
+import { Billlog, Settings, Stocks, Dashboard } from "@/svg/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
 import { useRecoilState } from "recoil";
-import { restockThresholdState } from "@/context/globalStates";
+import { restockThresholdState } from "@/global/globalStates";
 
 const DashboardPage = () => {
   const [income, setIncome] = useState(0);

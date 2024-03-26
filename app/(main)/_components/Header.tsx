@@ -1,4 +1,4 @@
-import { Logout } from "@/public/Icons";
+import { Logout } from "@/svg/Icons";
 import Link from "next/link";
 
 const Header = ({ title, logout }: { title: string; logout?: boolean }) => {

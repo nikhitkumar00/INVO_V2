@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/sheet";
-import { Dashboard, Pen } from "@/public/Icons";
+import { Dashboard, Pen } from "@/svg/Icons";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];

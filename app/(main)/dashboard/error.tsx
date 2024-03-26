@@ -1,5 +1,5 @@
 "use client";
-import { Stocks } from "@/public/Icons";
+import { Stocks } from "@/svg/Icons";
 import { toast } from "sonner";
 
 const error = () => {

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/Input";
 import Header from "../../_components/Header";
-import { restockThresholdState } from "@/context/globalStates";
+import { restockThresholdState } from "@/global/globalStates";
 import { useRecoilState } from "recoil";
 
 const Page = () => {
