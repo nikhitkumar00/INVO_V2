@@ -10,7 +10,7 @@ import {
   Profile,
   Settings,
   Stocks,
-} from "@/public/Icons";
+} from "@/svg/Icons";
 
 const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
 
@@ -46,7 +46,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-navbar sticky top-0 flex h-dvh min-w-56 max-w-56 flex-col items-center gap-2 py-4">
+    <div className="sticky top-0 flex h-dvh min-w-56 max-w-56 flex-col items-center gap-2 bg-navbar py-4">
       <h1
         className={pacifico.className + " w-full px-6 pb-4 text-2xl text-white"}
       >

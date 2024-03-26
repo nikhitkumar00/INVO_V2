@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Input } from "@/components/Input";
-import { Add } from "@/public/Icons";
+import { Add } from "@/svg/Icons";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -52,9 +52,9 @@ const AddColumn = ({ onAddColumn }: { onAddColumn: () => void }) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="mr-8 flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-semibold uppercase text-background duration-200 hover:bg-secondary">
+        <div className="mr-2 flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold uppercase text-background hover:bg-secondary">
           <p className="">Add</p>
-          <Add className="size-6 stroke-2" />
+          <Add className="size-5 stroke-2" />
         </div>
       </DialogTrigger>
       <DialogContent>

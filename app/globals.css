@@ -17,6 +17,10 @@
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
   }
+  
+  * {
+    @apply transition-all duration-200 ease-in-out;
+  }
 
   .theme-name-Default-Light {
     --primary-color: #000000;
@@ -64,8 +68,5 @@
     --table-hover: #c5cae9;
     --dash-odd: #c5cae9;
     --dash-even: #e4e7f7;
-  }
-  * {
-    @apply transition-all duration-200 ease-in;
   }
 }

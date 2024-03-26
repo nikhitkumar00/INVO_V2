@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../_components/Header";
 import AdvancedTable from "../_components/AdvancedTable";
 import { toast } from "sonner";
+import { Add } from "@/svg/Icons";
 
 interface ItemDetails {
   name: string;
@@ -17,6 +18,7 @@ interface BillingData {
 
 const Billing = () => {
   const [billId, setBillId] = useState<number | null>(null);
+  const [totalAmount, setTotalAmount] = useState<number>(0);
   const [billDate, setBillDate] = useState<string>("");
   const [itemId, setItemId] = useState<string>("");
   const [quantity, setQuantity] = useState<string>("");
@@ -89,6 +91,11 @@ const Billing = () => {
     setQuantity("");
   };
 
+  useEffect(() => {
+    const total = tableData.reduce((acc, item) => acc + item.amount, 0);
+    setTotalAmount(total);
+  }, [tableData]);
+
   const calculateAmount = (qty: string, rate: string) => {
     return qty ? +qty * parseFloat(String(rate || 0)) : "";
   };
@@ -117,7 +124,7 @@ const Billing = () => {
             <input
               type="text"
               placeholder={item.name}
-              value={item.value.toString()}
+              value={(item.value || "").toString()}
               onChange={(e) =>
                 item.name === "Item Id"
                   ? handleItemIdChange(e)
@@ -134,20 +141,30 @@ const Billing = () => {
                 item.name === "Rate" ||
                 item.name === "Amount"
               }
-              className="rounded-md border bg-transparent p-2 text-black placeholder-gray-600"
+              className="rounded-md border bg-transparent p-2 font-medium text-black placeholder-gray-600"
               required
               autoFocus={item.name === "Item Id"}
             />
           </div>
         ))}
         <button
-          className="rounded bg-primary px-4 py-2 text-background hover:bg-secondary"
+          className="flex items-center justify-center gap-2 rounded bg-primary px-4 py-2 font-medium text-background hover:bg-secondary"
           onClick={handleAddItem}
         >
+          <Add className="size-5 stroke-2" />
           Add Item
         </button>
       </div>
-      <AdvancedTable data={tableData} searchTerm="" sortBy="" />
+      <AdvancedTable data={tableData} />
+      <div className="flex w-full items-center justify-between border px-4 py-2">
+        <div className="text-lg font-semibold">
+          Total Amount : <span className="text-3xl">₹ {totalAmount}</span>
+        </div>
+        <button className="flex items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-medium text-background hover:bg-secondary">
+          <Add className="size-5 stroke-2" />
+          Add Bill
+        </button>
+      </div>
     </div>
   );
 };

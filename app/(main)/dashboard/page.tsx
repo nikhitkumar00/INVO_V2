@@ -1,15 +1,21 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Billlog, Settings, Stocks, Dashboard } from "@/public/Icons";
+import CountUp from "react-countup";
+import { useState, useEffect } from "react";
+import { Billlog, Settings, Stocks, Dashboard } from "@/svg/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
+import { useRecoilState } from "recoil";
+import { restockThresholdState } from "@/global/globalStates";
 
 const DashboardPage = () => {
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
   const [ordersToday, setOrdersToday] = useState(0);
+  const [restockThreshold, setRestockThreshold] = useRecoilState(
+    restockThresholdState,
+  );
   const [restock, setRestock] = useState([]);
 
   useEffect(() => {
@@ -41,6 +47,10 @@ const DashboardPage = () => {
 
         const restockResponse = await fetch("/dashboard/API/restock", {
           method: "POST",
+          body: JSON.stringify({ threshold: restockThreshold }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
         const restockData = await restockResponse.json();
         setRestock(restockData);
@@ -99,7 +109,7 @@ const DashboardPage = () => {
                 {item.name}
               </div>
               <div className="text-2xl font-semibold">
-                {item.value.toLocaleString()}
+                <CountUp start={0} end={item.value} duration={2} />
                 <span className="text-sm">{" " + item.unit}</span>
               </div>
               <div className="text-xs font-semibold uppercase text-secondary">
@@ -111,16 +121,16 @@ const DashboardPage = () => {
         ))}
       </div>
       <hr className="mt-4" />
-      <div className="flex w-full flex-grow">
-        <div className="w-2/5">
-          <div className="px-4 pt-4 text-xl font-semibold">Restock Items</div>
-          <div className="h-[calc(100vh-50%)] overflow-auto">
+      <div className="flex w-full flex-grow overflow-auto">
+        <div className="flex h-full w-2/5 flex-col">
+          <div className="px-4 pt-2 text-xl font-semibold">Restock Items</div>
+          <div className="flex-grow overflow-auto">
             <AdvancedTable data={restock} searchTerm="" sortBy="" />
           </div>
         </div>
-        <div className="h-full w-full border-l">
-          <div className="px-4 pt-4 text-xl font-semibold">Sales</div>
-          <div className="h-[calc(100vh-50%)]">
+        <div className="flex h-full w-full flex-col border-l">
+          <div className="px-4 pt-2 text-xl font-semibold">Sales</div>
+          <div className="flex-grow p-4">
             <Chart />
           </div>
         </div>

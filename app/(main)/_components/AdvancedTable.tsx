@@ -9,12 +9,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/sheet";
-import { Dashboard, Pen } from "@/public/Icons";
+import { Dashboard, Pen } from "@/svg/Icons";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
-  searchTerm: string;
-  sortBy: string;
+  searchTerm?: string;
+  sortBy?: string;
   edit?: boolean;
 }
 
@@ -25,8 +25,8 @@ interface StockItem {
 
 const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   data,
-  searchTerm,
-  sortBy,
+  searchTerm = "",
+  sortBy = "",
   edit = false,
 }) => {
   const [sortedData, setSortedData] = useState<StockItem[]>([]);
@@ -138,7 +138,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   return (
     <>
       {data.length > 0 ? (
-        <div className="m-2 rounded-md border p-1">
+        <div className="m-2 flex-grow rounded-md border p-1">
           <table className="w-full">
             <thead className="sticky top-0 border-b-2 bg-white">
               <tr className="text-left capitalize">
@@ -243,8 +243,8 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
         </div>
       ) : (
         <div className="h-full w-full p-2">
-          <div className="flex h-full w-full items-center justify-center gap-4 rounded-md border text-xl animate-in fade-in zoom-in">
-            <Dashboard className="size-10 stroke-1" /> No Data
+          <div className="flex h-full w-full items-center justify-center gap-4 rounded-md border text-xl font-medium animate-in fade-in zoom-in">
+            <Dashboard className="size-10 stroke-2" /> No Data
           </div>
         </div>
       )}

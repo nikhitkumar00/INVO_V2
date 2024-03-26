@@ -7,23 +7,23 @@ const Chart = () => {
   const [chartType, setChartType] = useState<CurveType>("natural");
 
   const dummyData = [
-    { name: "Jun", uv: 4000, pv: 3400, amt: 3000 },
-    { name: "Jul", uv: 3000, pv: 1398, amt: 2210 },
-    { name: "Aug", uv: 2000, pv: 9800, amt: 2290 },
-    { name: "Sep", uv: 2780, pv: 3908, amt: 2000 },
-    { name: "Oct", uv: 1890, pv: 4800, amt: 2181 },
-    { name: "Nov", uv: 2390, pv: 3800, amt: 2500 },
-    { name: "Dec", uv: 3490, pv: 4300, amt: 2100 },
-    { name: "Jan", uv: 2000, pv: 2400, amt: 2400 },
-    { name: "Feb", uv: 2780, pv: 3908, amt: 2000 },
-    { name: "Mar", uv: 1890, pv: 4800, amt: 2181 },
+    { name: "Jun", uv: 400, pv: 340, amt: 300 },
+    { name: "Jul", uv: 300, pv: 138, amt: 221 },
+    { name: "Aug", uv: 200, pv: 980, amt: 229 },
+    { name: "Sep", uv: 278, pv: 398, amt: 200 },
+    { name: "Oct", uv: 189, pv: 480, amt: 218 },
+    { name: "Nov", uv: 230, pv: 380, amt: 250 },
+    { name: "Dec", uv: 349, pv: 430, amt: 210 },
+    { name: "Jan", uv: 200, pv: 240, amt: 240 },
+    { name: "Feb", uv: 270, pv: 398, amt: 200 },
+    { name: "Mar", uv: 180, pv: 480, amt: 218 },
   ];
 
   const chartTypes: CurveType[] = ["natural", "monotone", "step", "linear",];
 
   return (
     <AreaChart
-      className="h-full p-4"
+      className="h-[98%]"
       data={dummyData}
       index="name"
       categories={["uv", "pv", "amt"]}

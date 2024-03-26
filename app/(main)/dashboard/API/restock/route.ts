@@ -7,11 +7,14 @@ interface Product {
   qty: number;
 }
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const requestBody = await request.json();
+    const threshold = requestBody.threshold || 20;
+
     const results: Product[] = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT item_id, name, qty FROM `stocks` WHERE qty < 20;",
+        `SELECT item_id, name, qty FROM stocks WHERE qty < ${threshold};`,
         (err: any, result: any) => {
           if (err) {
             reject(err);
@@ -21,6 +24,7 @@ export async function POST() {
         },
       );
     });
+
     return NextResponse.json(results);
   } catch (error: any) {
     console.error(error);
