@@ -4,25 +4,15 @@ import { Input } from "@/components/Input";
 import Header from "../../_components/Header";
 import { restockThresholdState } from "@/global/globalStates";
 import { useRecoilState } from "recoil";
+import { toast } from "sonner";
 
 const Page = () => {
   const [restockData, setRestockData] = useRecoilState(restockThresholdState);
-  const [prevRestockData, setPrevRestockData] = useState(restockData);
 
   useEffect(() => {
-    if (restockData !== prevRestockData) {
-      console.log("Restock threshold updated:", restockData);
-      localStorage.setItem("restockThreshold", restockData.toString());
-      setPrevRestockData(restockData);
-    }
-  }, [restockData, prevRestockData]);
-
-  useEffect(() => {
-    const defaultRestockThreshold = localStorage.getItem("restockThreshold");
-    if (defaultRestockThreshold !== null) {
-      setRestockData(Number(defaultRestockThreshold));
-    }
-  }, [setRestockData]);
+    localStorage.setItem("restockThreshold", restockData ? restockData.toString() : "");
+    toast.success("Restock Threshold set successfully");
+  }, [restockData]);
 
   return (
     <div>

@@ -1,17 +1,14 @@
 "use client";
 import { atom } from "recoil";
 
-const getDefaultValueFromLocalStorage = () => {
-  if (typeof window !== "undefined") {
-    const storedValue = localStorage.getItem("restockThreshold");
-    return storedValue ? parseInt(storedValue, 10) : 20;
-  }
-  return 20;
-};
-
 const restockThresholdState = atom({
   key: "restockThreshold",
-  default: getDefaultValueFromLocalStorage(),
+  default: parseInt(localStorage.getItem("restockThreshold") || "20", 10),
 });
 
-export { restockThresholdState };
+const themeState = atom({
+  key: "theme",
+  default: localStorage.getItem("theme")?.toString() || "",
+});
+
+export { restockThresholdState, themeState };

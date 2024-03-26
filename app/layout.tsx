@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/sonner";
+import RootContext from "@/context/RootContext";
 export const dynamic = "force-dynamic";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "INVO V2",
+  title: "INVO v2 💵",
+  description: "Simplifying Inventory",
 };
 
 export default function RootLayout({
@@ -14,9 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-background text-primary">
-        {children}
-        <Toaster />
+      <body>
+        <RootContext>
+          {children}
+          <Toaster />
+        </RootContext>
       </body>
     </html>
   );

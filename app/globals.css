@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  * {
+    @apply transition-all duration-200 ease-in-out;
+  }
   :root {
     --primary-color: #000000;
     --secondary-color: #404040;
@@ -17,12 +20,8 @@
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
   }
-  
-  * {
-    @apply transition-all duration-200 ease-in-out;
-  }
 
-  .theme-name-Default-Light {
+  .Default-Light {
     --primary-color: #000000;
     --secondary-color: #404040;
     --tertiary-color: #d4d4d4;
@@ -38,7 +37,7 @@
     --dash-even: #ffffff;
   }
 
-  .theme-name-Default-Dark {
+  .Default-Dark {
     --primary-color: #ffffff;
     --secondary-color: #d4d4d4;
     --tertiary-color: #404040;
@@ -54,7 +53,7 @@
     --dash-even: #404040;
   }
 
-  .theme-name-Purple-Light {
+  .Purple-Light {
     --primary-color: #c5cae9;
     --secondary-color: #660808;
     --tertiary-color: #ffffff;

@@ -1,7 +1,8 @@
 "use client";
 import { toast } from "sonner";
 import Header from "@/app/(main)/_components/Header";
-import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { themeState } from "@/global/globalStates";
 
 type theme = {
   name: string;
@@ -21,7 +22,7 @@ type theme = {
 };
 const data: theme[] = [
   {
-    name: "Default Light",
+    name: "Default-Light",
     "--primary-color": "#000000",
     "--secondary-color": "#404040",
     "--tertiary-color": "#d4d4d4",
@@ -37,7 +38,7 @@ const data: theme[] = [
     "--dash-even": "#ffffff",
   },
   {
-    name: "Default Dark",
+    name: "Default-Dark",
     "--primary-color": "#ffffff",
     "--secondary-color": "#d4d4d4",
     "--tertiary-color": "#404040",
@@ -53,7 +54,7 @@ const data: theme[] = [
     "--dash-even": "#404040",
   },
   {
-    name: "Purple Light",
+    name: "Purple-Light",
     "--primary-color": "#000000",
     "--secondary-color": "#660808",
     "--tertiary-color": "#ffffff",
@@ -70,76 +71,11 @@ const data: theme[] = [
   },
 ];
 
-
 const Themes = () => {
+  const [theme, setTheme] = useRecoilState(themeState);
   const applyTheme = (theme: theme) => {
-    document.documentElement.style.setProperty(
-      "--primary-color",
-      theme["--primary-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--secondary-color",
-      theme["--secondary-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--tertiary-color",
-      theme["--tertiary-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--quartinary-color",
-      theme["--quartinary-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--navbar-color",
-      theme["--navbar-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--background-color",
-      theme["--background-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--nav-background-color",
-      theme["--nav-background-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--nav-primary-color",
-      theme["--nav-primary-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--nav-secondary-color",
-      theme["--nav-secondary-color"],
-    );
-    document.documentElement.style.setProperty(
-      "--table-odd",
-      theme["--table-odd"],
-    );
-    document.documentElement.style.setProperty(
-      "--table-hover",
-      theme["--table-hover"],
-    );
-    document.documentElement.style.setProperty(
-      "--dash-odd",
-      theme["--dash-odd"],
-    );
-    document.documentElement.style.setProperty(
-      "--dash-even",
-      theme["--dash-even"],
-    );
-  };
-  useEffect(() => {
-    // Check if theme is stored in local storage
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      const theme = JSON.parse(storedTheme);
-      applyTheme(theme);
-    }
-  }, []); // Run only on mount
-
-  const handleThemeChange = (theme: theme) => {
-    applyTheme(theme);
-    // Store selected theme in local storage
-    localStorage.setItem("theme", JSON.stringify(theme));
-    toast.info("Theme Changed to " + theme.name);
+    localStorage.setItem("theme", theme.name);
+    setTheme(theme.name);
   };
 
   return (
@@ -153,7 +89,6 @@ const Themes = () => {
             className="flex h-36 cursor-pointer flex-col items-center justify-between p-2 duration-200 hover:scale-110 hover:border"
             onClick={() => {
               applyTheme(theme);
-              localStorage.setItem("theme", JSON.stringify(theme));
               toast.info("Theme Changed to " + theme.name);
             }}
           >
@@ -181,19 +116,6 @@ const Themes = () => {
               style={{ backgroundColor: theme["--background-color"] }}
               className="w-full flex-1"
             ></div>
-            {/* <div
-              style={{ backgroundColor: theme["--nav-background-color"] }}
-              className="w-full flex-1"
-            ></div>
-            <div
-              style={{ backgroundColor: theme["--nav-primary-color"] }}
-              className="w-full flex-1"
-            ></div>
-            <div
-              style={{ backgroundColor: theme["--nav-secondary-color"] }}
-              className="w-full flex-1 "
-            ></div> */}
-
             <p className="text-sm font-medium">{theme.name}</p>
           </div>
         ))}
