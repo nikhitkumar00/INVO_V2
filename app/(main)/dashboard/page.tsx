@@ -87,10 +87,12 @@ const DashboardPage = () => {
     <div className="flex h-full w-full flex-col">
       <Header title="Dashboard" logout />
       <div className="flex justify-around">
-        {data.map((item) => (
+        {data.map((item, index) => (
           <div
             key={item.name}
-            className="flex h-32 w-[23%] items-center justify-between rounded border p-4"
+            className={`flex h-32 w-[23%] items-center justify-between rounded border p-4 ${
+              index % 2 === 0 ? "bg-dashOdd" : "bg-dashEven"
+            }`}
           >
             <div className="flex flex-col gap-1">
               <div className="w-fit rounded-lg bg-tertiary px-2 py-1 text-xs font-semibold uppercase">

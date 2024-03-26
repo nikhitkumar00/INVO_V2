@@ -175,7 +175,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                 .map((item, index) => (
                   <motion.tr
                     key={item.item_id}
-                    className="odd:bg-quartinary hover:bg-tertiary"
+                    className="odd:bg-tableOdd hover:bg-tableHover"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}

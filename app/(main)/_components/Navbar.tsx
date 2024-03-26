@@ -57,8 +57,8 @@ const Navbar = () => {
           key={link.name}
           href={link.link}
           className={
-            `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-background hover:bg-secondary ` +
-            (pathname.includes(link.link) ? "bg-secondary" : "bg-primary")
+            `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-navBackground hover:bg-navSecondary ` +
+            (pathname.includes(link.link) ? "bg-navSecondary" : "bg-navPrimary")
           }
         >
           {link.icon}
@@ -69,8 +69,8 @@ const Navbar = () => {
       <Link
         href="/profile"
         className={
-          `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-background hover:bg-secondary ` +
-          (pathname.includes("/profile") ? "bg-secondary" : "bg-primary")
+          `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-navBackground hover:bg-navSecondary ` +
+          (pathname.includes("/profile") ? "bg-navSecondary" : "bg-navPrimary")
         }
       >
         <Profile className="size-6 stroke-2" />
@@ -79,8 +79,8 @@ const Navbar = () => {
       <Link
         href="/settings"
         className={
-          `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-background hover:bg-secondary ` +
-          (pathname.includes("/settings") ? "bg-secondary" : "bg-primary")
+          `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-navBackground hover:bg-navSecondary ` +
+          (pathname.includes("/settings") ? "bg-navSecondary" : "bg-navPrimary")
         }
       >
         <Settings className="size-6 stroke-2" />

@@ -19,7 +19,7 @@ const Chart = () => {
     { name: "Mar", uv: 1890, pv: 4800, amt: 2181 },
   ];
 
-  const chartTypes: CurveType[] = ["natural", "monotone", "step", "linear"];
+  const chartTypes: CurveType[] = ["natural", "monotone", "step", "linear",];
 
   return (
     <AreaChart
@@ -32,7 +32,7 @@ const Chart = () => {
       showLegend={false}
       showAnimation
       animationDuration={1500}
-      showGradient={false}
+      showGradient={true}
       curveType={chartType}
       onClick={() => {
         setChartType(
