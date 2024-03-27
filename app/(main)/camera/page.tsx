@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import Header from "../_components/Header";
 import { CameraError } from "@/svg/Icons";
 
-const page = () => {
+const Page = () => {
   const [cameraUsed, setCameraUsed] = useState<string>("Camera not connected");
   const [currentTime, setCurrentTime] = useState(
     new Date().toLocaleTimeString(),
@@ -56,4 +56,4 @@ const page = () => {
     </div>
   );
 };
-export default page;
+export default Page;
