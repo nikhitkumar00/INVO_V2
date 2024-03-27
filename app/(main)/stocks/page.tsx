@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../_components/Header";
 import AdvancedTable from "../_components/AdvancedTable";
 import AddStock from "./AddStock";
+import { toast } from "sonner";
 
 const Page = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +18,7 @@ const Page = () => {
         const data = await response.json();
         setData(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Error fetching data:" + error);
       }
     };
     fetchData();

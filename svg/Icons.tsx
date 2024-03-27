@@ -156,6 +156,33 @@ const Add = ({ className }: { className: string }) => {
     </svg>
   );
 };
+
+const CameraError = ({ className }: { className: string }) => {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none" stroke="currentColor">
+        <path d="m2 2l20 20M7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16M9.5 4h5L17 7h3a2 2 0 0 1 2 2v7.5" />
+        <path d="M14.121 15.121A3 3 0 1 1 9.88 10.88" />
+      </g>
+    </svg>
+  );
+};
+
+const Camera = ({ className }: { className: string }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={className}>
+      <g fill="none" stroke="currentColor">
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z" />
+        <circle cx="12" cy="13" r="3" />
+      </g>
+    </svg>
+  );
+};
+
 const Close = ({ className }: { className: string }) => {
   return (
     <svg
@@ -200,6 +227,8 @@ export {
   Add,
   Billing,
   Billlog,
+  Camera,
+  CameraError,
   Close,
   Contact,
   Dashboard,

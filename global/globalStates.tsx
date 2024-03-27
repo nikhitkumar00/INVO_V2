@@ -3,12 +3,18 @@ import { atom } from "recoil";
 
 const restockThresholdState = atom({
   key: "restockThreshold",
-  default: parseInt(localStorage.getItem("restockThreshold") || "20", 10),
+  default:
+    typeof window !== "undefined"
+      ? parseInt(localStorage.getItem("restockThreshold") || "20", 10)
+      : "20",
 });
 
 const themeState = atom({
   key: "theme",
-  default: localStorage.getItem("theme")?.toString() || "",
+  default:
+    typeof window !== "undefined"
+      ? localStorage.getItem("theme") || "light"
+      : "light",
 });
 
 export { restockThresholdState, themeState };

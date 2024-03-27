@@ -5,6 +5,7 @@ import { Pacifico } from "next/font/google";
 import {
   Billing,
   Billlog,
+  Camera,
   Contact,
   Dashboard,
   Profile,
@@ -37,6 +38,11 @@ const Navbar = () => {
       name: "Bill Logs",
       link: "/billlog",
       icon: <Billlog className="size-6 stroke-2" />,
+    },
+    {
+      name: "Camera",
+      link: "/camera",
+      icon: <Camera className="size-6 stroke-2" />,
     },
     {
       name: "Contact",
