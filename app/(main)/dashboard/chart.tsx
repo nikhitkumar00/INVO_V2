@@ -7,12 +7,29 @@ const Chart = () => {
   const [chartType, setChartType] = useState<CurveType>("natural");
 
   const dummyData = [
-    { sem: 1, navaneeth: 9.65, nikhit: 10, suru: 10, noah: 10, pranav: 10 },
-    { sem: 2, navaneeth: 8.88, nikhit: 10, suru: 9.3, noah: 9.86, pranav: 10 },
+    {
+      sem: 1,
+      navaneeth: 9.65,
+      nikhit: 10,
+      suryagayathri: 9.76,
+      suru: 10,
+      noah: 10,
+      pranav: 10,
+    },
+    {
+      sem: 2,
+      navaneeth: 8.88,
+      nikhit: 10,
+      suryagayathri: 10,
+      suru: 9.3,
+      noah: 9.86,
+      pranav: 10,
+    },
     {
       sem: 3,
       navaneeth: 8.14,
       nikhit: 9.36,
+      suryagayathri: 8.55,
       suru: 8.5,
       noah: 8.91,
       pranav: 9.09,
@@ -21,6 +38,7 @@ const Chart = () => {
       sem: 4,
       navaneeth: 7.91,
       nikhit: 9.32,
+      suryagayathri: 8.64,
       suru: 8.5,
       noah: 8.55,
       pranav: 9.09,
@@ -29,6 +47,7 @@ const Chart = () => {
       sem: 5,
       navaneeth: 7.72,
       nikhit: 8.41,
+      suryagayathri: 8.15,
       suru: 7.8,
       noah: 7.8,
       pranav: 8.39,
@@ -37,11 +56,20 @@ const Chart = () => {
       sem: 6,
       navaneeth: 8.63,
       nikhit: 8.96,
+      suryagayathri: 8.39,
       suru: 8.1,
       noah: 8.39,
       pranav: 8.61,
     },
-    { sem: 7, navaneeth: 9.1, nikhit: 9.3, suru: 8.3, noah: 9.1, pranav: 8.9 },
+    {
+      sem: 7,
+      navaneeth: 9.1,
+      nikhit: 9.3,
+      suryagayathri: 8.7,
+      suru: 8.3,
+      noah: 9.1,
+      pranav: 8.9,
+    },
   ];
 
   // const dummyData = [
@@ -56,7 +84,6 @@ const Chart = () => {
   //   { name: "Feb", uv: 270, pv: 398, amt: 200 },
   //   { name: "Mar", uv: 180, pv: 480, amt: 218 },
   // ];
-  const vari = "stroke-blue-500";
 
   const chartTypes: CurveType[] = ["natural", "monotone", "step", "linear"];
   return (
@@ -64,7 +91,14 @@ const Chart = () => {
       className="h-[98%]"
       data={dummyData}
       index="sem"
-      categories={["nikhit", "suru", "noah", "pranav", "navaneeth"]}
+      categories={[
+        "nikhit",
+        "suryagayathri",
+        "suru",
+        "noah",
+        "pranav",
+        "navaneeth",
+      ]}
       yAxisWidth={40}
       showLegend={false}
       colors={[
@@ -73,6 +107,7 @@ const Chart = () => {
         "neutral-500",
         "neutral-400",
         "neutral-700",
+        "neutral-300",
       ]}
       showGradient={false}
       curveType={chartType}
