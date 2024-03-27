@@ -54,7 +54,7 @@ const data: theme[] = [
     "--dash-even": "#404040",
   },
   {
-    name: "Purple-Light",
+    name: "Modern",
     "--primary-color": "#000000",
     "--secondary-color": "#660808",
     "--tertiary-color": "#ffffff",

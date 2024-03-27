@@ -1,6 +1,20 @@
-import { cn } from "@/lib/utils";
+import { themeState } from "@/global/globalStates";
+import { useRecoilState } from "recoil";
 
+export const useTheme = () => {
+  const [theme] = useRecoilState(themeState);
+  return { theme };
+};
 const Dashboard = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/home.png"
+        alt="home"
+      />
+    );
   return (
     <svg
       className={className}
@@ -16,6 +30,15 @@ const Dashboard = ({ className }: { className: string }) => {
 };
 
 const Stocks = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/database--v2.png"
+        alt="database--v2"
+      />
+    );
   return (
     <svg
       className={className}
@@ -32,6 +55,15 @@ const Stocks = ({ className }: { className: string }) => {
 };
 
 const Settings = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/settings.png"
+        alt="settings"
+      />
+    );
   return (
     <svg
       className={className}
@@ -47,6 +79,15 @@ const Settings = ({ className }: { className: string }) => {
 };
 
 const Billing = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/paid-bill.png"
+        alt="paid-bill"
+      />
+    );
   return (
     <svg
       className={className}
@@ -62,23 +103,16 @@ const Billing = ({ className }: { className: string }) => {
   );
 };
 
-const Navigation = ({ className }: { className: string }) => {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 15 15"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1.20308 1.04312C1.00481 0.954998 0.772341 1.0048 0.627577 1.16641C0.482813 1.32802 0.458794 1.56455 0.568117 1.75196L3.92115 7.50002L0.568117 13.2481C0.458794 13.4355 0.482813 13.672 0.627577 13.8336C0.772341 13.9952 1.00481 14.045 1.20308 13.9569L14.7031 7.95693C14.8836 7.87668 15 7.69762 15 7.50002C15 7.30243 14.8836 7.12337 14.7031 7.04312L1.20308 1.04312ZM4.84553 7.10002L2.21234 2.586L13.2689 7.50002L2.21234 12.414L4.84552 7.90002H9C9.22092 7.90002 9.4 7.72094 9.4 7.50002C9.4 7.27911 9.22092 7.10002 9 7.10002H4.84553Z"
-        fill="currentColor"
-      ></path>
-    </svg>
-  );
-};
-
 const Contact = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/contact-card.png"
+        alt="contact-card"
+      />
+    );
   return (
     <svg
       className={className}
@@ -95,6 +129,15 @@ const Contact = ({ className }: { className: string }) => {
 };
 
 const Profile = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/user-male-circle--v1.png"
+        alt="user-male-circle--v1"
+      />
+    );
   return (
     <svg
       className={className}
@@ -111,6 +154,15 @@ const Profile = ({ className }: { className: string }) => {
 };
 
 const Logout = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/exit--v1.png"
+        alt="exit--v1"
+      />
+    );
   return (
     <svg
       className={className}
@@ -127,6 +179,15 @@ const Logout = ({ className }: { className: string }) => {
 };
 
 const Billlog = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/order-history.png"
+        alt="order-history"
+      />
+    );
   return (
     <svg
       className={className}
@@ -143,6 +204,15 @@ const Billlog = ({ className }: { className: string }) => {
   );
 };
 const Add = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/add--v1.png"
+        alt="add--v1"
+      />
+    );
   return (
     <svg
       className={className}
@@ -158,6 +228,15 @@ const Add = ({ className }: { className: string }) => {
 };
 
 const CameraError = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/no-camera.png"
+        alt="no-camera"
+      />
+    );
   return (
     <svg
       className={className}
@@ -173,8 +252,21 @@ const CameraError = ({ className }: { className: string }) => {
 };
 
 const Camera = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/camera.png"
+        alt="camera"
+      />
+    );
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={className}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className={className}
+    >
       <g fill="none" stroke="currentColor">
         <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z" />
         <circle cx="12" cy="13" r="3" />
@@ -184,6 +276,15 @@ const Camera = ({ className }: { className: string }) => {
 };
 
 const Close = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/cancel.png"
+        alt="cancel"
+      />
+    );
   return (
     <svg
       className={className}
@@ -207,6 +308,15 @@ const Pen = ({
   className: string;
   onClick?: () => void;
 }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/edit--v1.png"
+        alt="edit--v1"
+      />
+    );
   return (
     <svg
       className={className}
@@ -233,7 +343,6 @@ export {
   Contact,
   Dashboard,
   Logout,
-  Navigation,
   Profile,
   Stocks,
   Settings,
