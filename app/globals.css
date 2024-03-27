@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* const colors = {
+     blue: "text-blue-500",
+     cyan: "text-cyan-500",
+     sky: "text-sky-500",
+     indigo: "text-indigo-500",
+     violet: "text-violet-500",
+   }; */
 @layer base {
   * {
     @apply transition-all duration-200 ease-in-out;
