@@ -1,3 +1,4 @@
+'use client';
 import Header from "../../_components/Header";
 
 const Termsofservice = () => {

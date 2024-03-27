@@ -315,6 +315,7 @@ const Pen = ({
         className={className}
         src="https://img.icons8.com/fluency/48/edit--v1.png"
         alt="edit--v1"
+        onClick={onClick}
       />
     );
   return (
