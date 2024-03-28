@@ -56,6 +56,22 @@
     --logo: #ffffff;
   }
 
+  .Purple-Light {
+    --primary-color: #c5cae9;
+    --secondary-color: #660808;
+    --tertiary-color: #ffffff;
+    --quartinary-color: #1074ba;
+    --navbar-color: #000000;
+    --background-color: #ffffff;
+    --nav-background-color: #ffffff;
+    --nav-primary-color: #263238;
+    --nav-secondary-color: #404040;
+    --table-odd: #e4e7f7;
+    --table-hover: #c5cae9;
+    --dash-odd: #c5cae9;
+    --dash-even: #e4e7f7;
+  }
+
   .Modern {
     --primary-color: #2f2a84;
     --secondary-color: #4641a8;
