@@ -145,7 +145,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
       {data.length > 0 ? (
         <div className="m-2 flex-grow rounded-md border p-1">
           <table className="w-full table-fixed">
-            <caption className="caption-bottom py-4">{caption}</caption>
+            <caption className="caption-bottom py-4 text-sm">{caption}</caption>
             <thead className="sticky top-0 bg-white">
               <tr className="border-b border-dashOdd text-left text-sm font-bold uppercase text-secondary ">
                 {keys.map((key) => (
@@ -185,7 +185,10 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                     transition={{ duration: 0.2, delay: index * 0.05 }}
                   >
                     {keys.map((key) => (
-                      <td className="px-1 py-2" key={`${item.item_id}-${key}`}>
+                      <td
+                        className="px-1 py-2 text-sm font-medium"
+                        key={`${item.item_id}-${key}`}
+                      >
                         {item[key]}
                       </td>
                     ))}

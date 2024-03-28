@@ -108,7 +108,7 @@ const DashboardPage = () => {
         {data.map((item, index) => (
           <div
             key={item.name}
-            className={`flex h-32 w-[23%] items-center justify-between rounded border p-4 ${
+            className={`rounded-shape flex h-32 w-[23%] items-center justify-between border p-4 ${
               index % 2 === 0 ? "bg-dashOdd" : "bg-dashEven"
             }`}
           >

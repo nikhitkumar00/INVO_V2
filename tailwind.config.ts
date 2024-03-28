@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        shape: "var(--dash-radius)",
+      },
+
       colors: {
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
@@ -22,7 +26,6 @@ const config: Config = {
         tableHover: "var(--table-hover)",
         dashOdd: "var(--dash-odd)",
         dashEven: "var(--dash-even)",
-        logo: "var(--logo)",
       },
     },
   },

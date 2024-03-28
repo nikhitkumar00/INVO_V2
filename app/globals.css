@@ -4,7 +4,6 @@
 @layer base {
   * {
     @apply transition-all duration-200 ease-in-out;
-    cursor: url("../public/cursor.png"), auto;
   }
   :root {
     --primary-color: #000000;
@@ -20,6 +19,7 @@
     --table-hover: #d4d4d4;
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
+    --dash-radius: 5px;
   }
 
   .Default-Light {
@@ -36,7 +36,6 @@
     --table-hover: #d4d4d4;
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
-    --logo: #ffffff;
   }
 
   .Default-Dark {
@@ -85,5 +84,7 @@
     --table-hover: #837cfe;
     --dash-odd: #d0d6fe;
     --dash-even: #d0d6fe;
+    --dash-radius: 20px;
+    cursor: url("../public/cursorModern.png"), auto;
   }
 }
