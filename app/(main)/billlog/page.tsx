@@ -38,7 +38,7 @@ const Page = () => {
         autoFocus
       />
       <div className="flex-grow overflow-auto">
-        <AdvancedTable data={data} searchTerm={searchTerm} sortBy="bill_id" />
+        <AdvancedTable data={data} searchTerm={searchTerm} sortBy="bill_id" caption="Bill Logs" />
       </div>
     </div>
   );

@@ -10,12 +10,15 @@ import {
   SheetTrigger,
 } from "@/components/sheet";
 import { Dashboard, Pen } from "@/svg/Icons";
+import { useRecoilState } from "recoil";
+import { themeState } from "@/global/globalStates";
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
   searchTerm?: string;
   sortBy?: string;
   edit?: boolean;
+  caption: string;
 }
 
 interface StockItem {
@@ -28,7 +31,9 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   searchTerm = "",
   sortBy = "",
   edit = false,
+  caption,
 }) => {
+  const [theme, setTheme] = useRecoilState(themeState);
   const [sortedData, setSortedData] = useState<StockItem[]>([]);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -139,13 +144,14 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
     <>
       {data.length > 0 ? (
         <div className="m-2 flex-grow rounded-md border p-1">
-          <table className="w-full">
-            <thead className="sticky top-0 border-b-2 bg-white">
-              <tr className="text-left">
+          <table className="w-full table-fixed">
+            <caption className="caption-bottom py-4">{caption}</caption>
+            <thead className="sticky top-0 bg-white">
+              <tr className="border-b border-dashOdd text-left text-sm font-bold uppercase text-secondary ">
                 {keys.map((key) => (
                   <th
                     key={key}
-                    className="w-fit cursor-pointer bg-background py-2 text-sm font-bold uppercase text-secondary"
+                    className="cursor-pointer bg-background py-2"
                     onClick={() => sortData(key)}
                   >
                     {sortConfig.key === key && (
@@ -157,9 +163,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                   </th>
                 ))}
                 {edit && (
-                  <th className="w-10 cursor-pointer bg-background text-sm font-medium capitalize">
-                    Edit
-                  </th>
+                  <th className="w-10 cursor-pointer bg-background">Edit</th>
                 )}
               </tr>
             </thead>
@@ -175,7 +179,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                 .map((item, index) => (
                   <motion.tr
                     key={item.item_id}
-                    className="odd:bg-tableOdd hover:bg-tableHover"
+                    className={`border-b border-dashOdd hover:bg-tableHover ${theme !== "Modern" ? "odd:bg-tableOdd" : ""}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -186,7 +190,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       </td>
                     ))}
                     {edit && (
-                      <td className="w-10 px-1 py-2">
+                      <td className="px-1 py-2">
                         <Sheet>
                           <SheetTrigger>
                             <Pen
@@ -209,7 +213,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                                       {key.replace("_", " ")}
                                     </label>
                                     <Input
-                                      className="w-52 px-1 py-2"
+                                      className="px-1 py-2"
                                       name={key}
                                       value={editedData[key]}
                                       onChange={(e) =>

@@ -133,7 +133,12 @@ const DashboardPage = () => {
         <div className="flex h-full w-2/5 flex-col">
           <div className="px-4 pt-2 text-xl font-semibold">Restock Items</div>
           <div className="flex-grow overflow-auto">
-            <AdvancedTable data={restock} searchTerm="" sortBy="" />
+            <AdvancedTable
+              data={restock}
+              searchTerm=""
+              sortBy=""
+              caption="You can change the Threshold in settings"
+            />
           </div>
         </div>
         <div className="flex h-full w-full flex-col border-l">

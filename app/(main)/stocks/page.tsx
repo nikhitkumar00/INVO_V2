@@ -48,6 +48,7 @@ const Page = () => {
           searchTerm={searchTerm}
           sortBy="item_id"
           edit
+          caption="Click on the Pencil Icon to edit values"
         />
       </div>
     </div>
