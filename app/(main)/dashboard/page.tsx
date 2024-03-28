@@ -1,7 +1,15 @@
 "use client";
 import CountUp from "react-countup";
 import { useState, useEffect } from "react";
-import { Billlog, Settings, Stocks, Dashboard } from "@/svg/Icons";
+import {
+  Billlog,
+  Settings,
+  Stocks,
+  Dashboard,
+  Income,
+  Expense,
+  Orders,
+} from "@/svg/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
@@ -68,28 +76,28 @@ const DashboardPage = () => {
       value: income,
       unit: "INR",
       status: "+20.1% from last month",
-      icon: <Dashboard className="w-6 stroke-2" />,
+      icon: <Income className="w-8 stroke-2" />,
     },
     {
       name: "Expense",
       value: expense,
       unit: "INR",
       status: "-20.1% from last month",
-      icon: <Stocks className="w-6 stroke-2" />,
+      icon: <Expense className="w-8 stroke-2" />,
     },
     {
       name: "Total Orders",
       value: totalOrders,
       unit: "units",
       status: "+20.1% from last month",
-      icon: <Billlog className="w-6 stroke-2" />,
+      icon: <Billlog className="w-8 stroke-2" />,
     },
     {
       name: "Orders Today",
       value: ordersToday,
       unit: "units",
       status: "+20.1% from last month",
-      icon: <Settings className="w-6 stroke-2" />,
+      icon: <Orders className="w-8 stroke-2" />,
     },
   ];
 

@@ -203,6 +203,7 @@ const Billlog = ({ className }: { className: string }) => {
     </svg>
   );
 };
+
 const Add = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
@@ -301,6 +302,7 @@ const Close = ({ className }: { className: string }) => {
     </svg>
   );
 };
+
 const Pen = ({
   className,
   onClick,
@@ -334,6 +336,80 @@ const Pen = ({
   );
 };
 
+const Income = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/refund-2.png"
+        alt="income"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none" stroke="currentColor">
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+        <path d="M14 2v4a2 2 0 0 0 2 2h4m-8 4v6m3-3l-3-3l-3 3" />
+      </g>
+    </svg>
+  );
+};
+
+const Expense = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/notes-and-coins.png"
+        alt="expense"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none" stroke="currentColor">
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+        <path d="M14 2v4a2 2 0 0 0 2 2h4m-8 10v-6m-3 3l3 3l3-3" />
+      </g>
+    </svg>
+  );
+};
+
+const Orders = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/shopping-cart.png"
+        alt="orders"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="none" stroke="currentColor">
+        <path d="M21 7h-3a2 2 0 0 1-2-2V2" />
+        <path d="M21 6v6.5c0 .8-.7 1.5-1.5 1.5h-7c-.8 0-1.5-.7-1.5-1.5v-9c0-.8.7-1.5 1.5-1.5H17Z" />
+        <path d="M7 8v8.8c0 .3.2.6.4.8c.2.2.5.4.8.4H15" />
+        <path d="M3 12v8.8c0 .3.2.6.4.8c.2.2.5.4.8.4H11" />
+      </g>
+    </svg>
+  );
+};
+
 export {
   Add,
   Billing,
@@ -348,4 +424,7 @@ export {
   Stocks,
   Settings,
   Pen,
+  Expense,
+  Orders,
+  Income,
 };

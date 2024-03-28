@@ -22,6 +22,7 @@ const config: Config = {
         tableHover: "var(--table-hover)",
         dashOdd: "var(--dash-odd)",
         dashEven: "var(--dash-even)",
+        logo: "var(--logo)",
       },
     },
   },

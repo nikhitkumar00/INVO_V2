@@ -1,6 +1,8 @@
 "use client";
+import { themeState } from "@/global/globalStates";
 import { AreaChart, CurveType } from "@tremor/react";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { toast } from "sonner";
 
 const Chart = () => {
@@ -86,6 +88,8 @@ const Chart = () => {
   // ];
 
   const chartTypes: CurveType[] = ["natural", "monotone", "step", "linear"];
+  const [theme, setTheme] = useRecoilState(themeState);
+
   return (
     <AreaChart
       className="h-[98%]"
@@ -101,14 +105,18 @@ const Chart = () => {
       ]}
       yAxisWidth={40}
       showLegend={false}
-      colors={[
-        "neutral-200",
-        "neutral-600",
-        "neutral-500",
-        "neutral-400",
-        "neutral-700",
-        "neutral-300",
-      ]}
+      colors={
+        theme === "Modern"
+          ? ["indigo", "cyan", "blue", "teal", "green", "purple"]
+          : [
+              "neutral-200",
+              "neutral-600",
+              "neutral-500",
+              "neutral-400",
+              "neutral-700",
+              "neutral-300",
+            ]
+      }
       showGradient={false}
       curveType={chartType}
       autoMinValue

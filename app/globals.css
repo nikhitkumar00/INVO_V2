@@ -1,16 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* const colors = {
-     blue: "text-blue-500",
-     cyan: "text-cyan-500",
-     sky: "text-sky-500",
-     indigo: "text-indigo-500",
-     violet: "text-violet-500",
-   }; */
 @layer base {
   * {
     @apply transition-all duration-200 ease-in-out;
+    cursor: url("../public/cursor.png"), auto;
   }
   :root {
     --primary-color: #000000;
@@ -30,7 +24,7 @@
 
   .Default-Light {
     --primary-color: #000000;
-    --secondary-color: #404040;
+    --secondary-color: #5e5e5e;
     --tertiary-color: #d4d4d4;
     --quartinary-color: #e5e5e5;
     --navbar-color: #000000;
@@ -42,6 +36,7 @@
     --table-hover: #d4d4d4;
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
+    --logo: #ffffff;
   }
 
   .Default-Dark {
@@ -58,21 +53,23 @@
     --table-hover: #404040;
     --dash-odd: #404040;
     --dash-even: #404040;
+    --logo: #ffffff;
   }
 
   .Modern {
-    --primary-color: #c5cae9;
-    --secondary-color: #660808;
+    --primary-color: #2f2a84;
+    --secondary-color: #4641a8;
     --tertiary-color: #ffffff;
     --quartinary-color: #1074ba;
-    --navbar-color: #000000;
-    --background-color: #ffffff;
+    --navbar-color: #e4e7f7;
+    --background-color: #e4e7f7;
     --nav-background-color: #ffffff;
-    --nav-primary-color: #263238;
-    --nav-secondary-color: #404040;
-    --table-odd: #e4e7f7;
-    --table-hover: #c5cae9;
-    --dash-odd: #c5cae9;
-    --dash-even: #e4e7f7;
+    --nav-primary-color: #837cfe;
+    --nav-secondary-color: #5a52fe;
+    --table-odd: #cac7fe;
+    --table-hover: #837cfe;
+    --dash-odd: #d0d6fe;
+    --dash-even: #d0d6fe;
+    --logo: #2f2a84;
   }
 }

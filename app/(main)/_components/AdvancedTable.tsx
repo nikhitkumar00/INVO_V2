@@ -141,11 +141,11 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
         <div className="m-2 flex-grow rounded-md border p-1">
           <table className="w-full">
             <thead className="sticky top-0 border-b-2 bg-white">
-              <tr className="text-left capitalize">
+              <tr className="text-left">
                 {keys.map((key) => (
                   <th
                     key={key}
-                    className="w-fit cursor-pointer bg-background py-2 text-sm font-medium capitalize"
+                    className="w-fit cursor-pointer bg-background py-2 text-sm font-bold uppercase text-secondary"
                     onClick={() => sortData(key)}
                   >
                     {sortConfig.key === key && (

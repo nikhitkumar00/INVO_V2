@@ -105,7 +105,7 @@ const AddStock = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="mx-2 flex w-36 items-center justify-center gap-2 rounded-md bg-primary font-semibold uppercase text-quartinary hover:bg-secondary">
+      <DialogTrigger className="mx-2 flex w-36 items-center justify-center gap-2 rounded-md bg-primary font-semibold uppercase text-background hover:bg-secondary">
         Add
         <Add className="size-4 stroke-2" />
       </DialogTrigger>
