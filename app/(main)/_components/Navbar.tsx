@@ -40,6 +40,11 @@ const Navbar = () => {
       icon: <Billlog className="size-6 stroke-2" />,
     },
     {
+      name: "ChatBot",
+      link: "/chat",
+      icon: <Dashboard className="size-6 stroke-2" />,
+    },
+    {
       name: "Camera",
       link: "/camera",
       icon: <Camera className="size-6 stroke-2" />,
