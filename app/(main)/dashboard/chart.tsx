@@ -109,12 +109,12 @@ const Chart = () => {
         theme === "Modern"
           ? ["indigo", "cyan", "blue", "teal", "green", "purple"]
           : [
-              "neutral-200",
-              "neutral-600",
-              "neutral-500",
-              "neutral-400",
-              "neutral-700",
               "neutral-300",
+              "neutral-600",
+              "neutral-800",
+              "neutral-500",
+              "neutral-700",
+              "neutral-400",
             ]
       }
       showGradient={false}

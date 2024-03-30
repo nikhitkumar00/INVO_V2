@@ -410,12 +410,38 @@ const Orders = ({ className }: { className: string }) => {
   );
 };
 
+const ChatIcon = ({ className }: { className: string }) => {
+  const { theme } = useTheme();
+  if (theme === "Modern")
+    return (
+      <img
+        className={className}
+        src="https://img.icons8.com/fluency/48/chat.png"
+        alt="chat"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2zm-8-7H7m10 4H7"
+      />
+    </svg>
+  );
+};
+
 export {
   Add,
   Billing,
   Billlog,
   Camera,
   CameraError,
+  ChatIcon,
   Close,
   Contact,
   Dashboard,

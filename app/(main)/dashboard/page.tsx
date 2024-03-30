@@ -1,15 +1,7 @@
 "use client";
 import CountUp from "react-countup";
 import { useState, useEffect } from "react";
-import {
-  Billlog,
-  Settings,
-  Stocks,
-  Dashboard,
-  Income,
-  Expense,
-  Orders,
-} from "@/svg/Icons";
+import { Billlog, Income, Expense, Orders } from "@/svg/Icons";
 import Header from "../_components/Header";
 import Chart from "./chart";
 import AdvancedTable from "../_components/AdvancedTable";
@@ -21,9 +13,7 @@ const DashboardPage = () => {
   const [expense, setExpense] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
   const [ordersToday, setOrdersToday] = useState(0);
-  const [restockThreshold, setRestockThreshold] = useRecoilState(
-    restockThresholdState,
-  );
+  const [restockThreshold] = useRecoilState(restockThresholdState);
   const [restock, setRestock] = useState([]);
 
   useEffect(() => {
@@ -68,7 +58,7 @@ const DashboardPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [restockThreshold]);
 
   const data = [
     {
@@ -108,11 +98,11 @@ const DashboardPage = () => {
         {data.map((item, index) => (
           <div
             key={item.name}
-            className={`rounded-shape flex h-32 w-[23%] items-center justify-between border p-4 ${
+            className={`flex h-32 w-[23%] items-center justify-between rounded-shape border p-4 ${
               index % 2 === 0 ? "bg-dashOdd" : "bg-dashEven"
             }`}
           >
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <div className="w-fit rounded-lg bg-tertiary px-2 py-1 text-xs font-semibold uppercase">
                 {item.name}
               </div>

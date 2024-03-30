@@ -6,6 +6,7 @@ import {
   Billing,
   Billlog,
   Camera,
+  ChatIcon,
   Contact,
   Dashboard,
   Profile,
@@ -42,7 +43,7 @@ const Navbar = () => {
     {
       name: "ChatBot",
       link: "/chat",
-      icon: <Dashboard className="size-6 stroke-2" />,
+      icon: <ChatIcon className="size-6 stroke-2" />,
     },
     {
       name: "Camera",

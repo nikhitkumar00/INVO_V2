@@ -249,9 +249,13 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
           </table>
         </div>
       ) : (
-        <div className="h-full w-full p-2 text-secondary">
-          <div className="flex h-full w-full items-center justify-center gap-4 rounded-md border text-xl font-medium animate-in fade-in zoom-in">
-            <Dashboard className="size-10 stroke-2" /> No Data
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="flex flex-col items-center justify-center gap-3 rounded-md border border-tertiary px-10 py-5">
+            <Dashboard className="size-10 stroke-2" />
+            No Data
+            <div className="text-xs text-secondary">
+              There is no data provided to be shown
+            </div>
           </div>
         </div>
       )}

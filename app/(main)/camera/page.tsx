@@ -37,20 +37,21 @@ const Page = () => {
         {cameraUsed === "Yes" ? (
           <Webcam className="h-full" />
         ) : (
-          <p className="flex items-center gap-2 text-xl text-secondary">
-            <CameraError className="size-10 stroke-2" />
-            <span>Camera not connected</span>
-          </p>
+          <div className="flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-3 rounded-md border border-tertiary px-10 py-5">
+              <CameraError className="size-10 stroke-2" />
+              Camera not connected
+              <div className="text-xs text-secondary">
+                Check if the camera is connected
+              </div>
+            </div>
+          </div>
         )}
-        <div className="space-y-2">
-          <p className="text-sm text-gray-600">
-            Date: {new Date().toLocaleDateString()}
-          </p>
-          <p className="text-sm text-gray-600">Time: {currentTime}</p>
-          <p className="text-sm text-gray-600">Camera used: {cameraUsed}</p>
-          <p className="text-sm text-gray-600">
-            Camera model: {Webcam.name || "Unknown"}
-          </p>
+        <div className="space-y-2 text-sm text-gray-600">
+          <p>Date: {new Date().toLocaleDateString()}</p>
+          <p>Time: {currentTime}</p>
+          <p>Camera used: {cameraUsed}</p>
+          <p>Camera model: {Webcam.name || "Unknown"}</p>
         </div>
       </div>
     </div>
