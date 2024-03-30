@@ -3,6 +3,7 @@
 import { useChat } from "ai/react";
 import Header from "../_components/Header";
 import { Input } from "@/components/Input";
+import { Profile } from "@/svg/Icons";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -18,18 +19,14 @@ export default function Chat() {
               (message.role === "user" ? "justify-end" : "justify-start")
             }
           >
-            {message.role !== "user" && (
-              <img src="man.png" alt="user" className="mr-1 size-6" />
-            )}
+            {message.role !== "user" && <Profile className="size-6 stroke-2" />}
             <div
               key={message.id}
               className={`max-w-lg rounded-lg border border-tertiary px-4 py-2 text-sm `}
             >
               {message.content}
             </div>
-            {message.role === "user" && (
-              <img src="man.png" alt="bot" className="ml-1 size-6" />
-            )}
+            {message.role === "user" && <Profile className="size-6 stroke-2" />}
           </div>
         ))}
       </div>
