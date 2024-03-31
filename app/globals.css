@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
   * {
-    @apply transition-all duration-200 ease-in-out;
+    @apply transition-all;
   }
   :root {
     --primary-color: #000000;
@@ -73,7 +73,7 @@
   .Modern {
     --primary-color: #2f2a84;
     --secondary-color: #4641a8;
-    --tertiary-color: #ffffff;
+    --tertiary-color: #5a52fe;
     --quartinary-color: #1074ba;
     --navbar-color: #5a52fe;
     --background-color: #e4e7f7;

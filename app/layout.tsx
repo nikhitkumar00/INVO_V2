@@ -6,8 +6,11 @@ import { Inter } from "next/font/google";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "INVO v2 💵",
+  title: "INVO v2",
   description: "Simplifying Inventory",
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 const inter = Inter({ subsets: ["latin"] });
