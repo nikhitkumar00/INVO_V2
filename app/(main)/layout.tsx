@@ -1,14 +1,12 @@
-"use client";
+'use client';
 import { useRecoilState } from "recoil";
 import Navbar from "./_components/Navbar";
 import { themeState } from "@/global/globalStates";
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const [theme, setTheme] = useRecoilState(themeState);
+}: Readonly<{ children: React.ReactNode }>) {
+  const [theme] = useRecoilState(themeState);
 
   return (
     <div
