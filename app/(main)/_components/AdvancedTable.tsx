@@ -33,7 +33,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   edit = false,
   caption,
 }) => {
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const [sortedData, setSortedData] = useState<StockItem[]>([]);
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -212,7 +212,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                                     className="mt-2 flex items-center justify-between gap-2"
                                     key={key}
                                   >
-                                    <label className="text-sm font-medium capitalize">
+                                    <label className="w-full text-sm font-medium capitalize">
                                       {key.replace("_", " ")}
                                     </label>
                                     <Input
