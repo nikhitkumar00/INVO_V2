@@ -117,7 +117,7 @@ const Billing = () => {
   return (
     <div className="flex h-full w-full flex-col">
       <Header title="Billing" logout />
-      <div className="flex flex-wrap gap-2 rounded border p-4">
+      <div className="grid grid-cols-4 gap-2 rounded border p-4">
         {billingData.map((item, index) => (
           <div key={index} className="">
             <label className="sr-only">{item.name}</label>
