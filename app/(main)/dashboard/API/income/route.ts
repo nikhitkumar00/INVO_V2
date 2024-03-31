@@ -5,7 +5,7 @@ export async function POST() {
   try {
     const results: any = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT SUM((s.selling_price - s.cost_price) * bi.item_qty) as income FROM stocks s JOIN bill_items bi ON s.item_id = bi.item_id;",
+        "SELECT ROUND(SUM(total_amt), 2) AS income FROM bills WHERE YEAR(purchase_date) = YEAR(CURRENT_DATE()) AND MONTH(purchase_date) = MONTH(CURRENT_DATE()) AND DAY(purchase_date) <= DAY(CURRENT_DATE());",
         (err: any, result: any) => {
           if (err) {
             reject(err);
