@@ -92,7 +92,7 @@ const AddBill = () => {
           setFormData({ ...formData, [field.Field]: e.target.value })
         }
         onKeyPress={(e) => handleKeyPress(e, index)}
-        ref={(el) => (inputRefs.current[index] = el)}
+        ref={(el) => { inputRefs.current[index] = el; }}
       />
     ));
   };
