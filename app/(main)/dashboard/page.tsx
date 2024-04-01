@@ -1,10 +1,12 @@
-import { Metadata } from "next";
 import DashboardPage from "./DashboardPage";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
-const page = () => {
+
+const Page = () => {
   return <DashboardPage />;
 };
-export default page;
+
+export default Page;

@@ -1,6 +1,7 @@
 import { themeState } from "@/global/globalStates";
+import Image from "next/image";
 import { useRecoilState } from "recoil";
-
+export const dynamic = "force-static";
 export const useTheme = () => {
   const [theme] = useRecoilState(themeState);
   return { theme };
@@ -9,7 +10,9 @@ const Dashboard = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/home.png"
         alt="home"
@@ -33,10 +36,12 @@ const Stocks = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/database--v2.png"
-        alt="database--v2"
+        alt="database-icon"
       />
     );
   return (
@@ -58,10 +63,12 @@ const Settings = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/settings.png"
-        alt="settings"
+        alt="settings-icon"
       />
     );
   return (
@@ -82,10 +89,12 @@ const Billing = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/paid-bill.png"
-        alt="paid-bill"
+        alt="bill-icon"
       />
     );
   return (
@@ -107,10 +116,12 @@ const Contact = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/contact-card.png"
-        alt="contact-card"
+        alt="contact-icon"
       />
     );
   return (
@@ -132,10 +143,12 @@ const Profile = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/user-male-circle--v1.png"
-        alt="user-male-circle--v1"
+        alt="profile-icon"
       />
     );
   return (
@@ -157,10 +170,12 @@ const Logout = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/exit--v1.png"
-        alt="exit--v1"
+        alt="logout-icon"
       />
     );
   return (
@@ -182,10 +197,12 @@ const Billlog = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/order-history.png"
-        alt="order-history"
+        alt="order-history-icon"
       />
     );
   return (
@@ -208,10 +225,12 @@ const Add = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/add--v1.png"
-        alt="add--v1"
+        alt="add-icon"
       />
     );
   return (
@@ -232,10 +251,12 @@ const CameraError = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/no-camera.png"
-        alt="no-camera"
+        alt="no-camera-icon"
       />
     );
   return (
@@ -256,10 +277,12 @@ const Camera = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/camera.png"
-        alt="camera"
+        alt="camera-icon"
       />
     );
   return (
@@ -280,10 +303,12 @@ const Close = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/cancel.png"
-        alt="cancel"
+        alt="cancel-icon"
       />
     );
   return (
@@ -313,10 +338,12 @@ const Pen = ({
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/edit--v1.png"
-        alt="edit--v1"
+        alt="edit-icon"
         onClick={onClick}
       />
     );
@@ -340,10 +367,12 @@ const Income = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/refund-2.png"
-        alt="income"
+        alt="income-icon"
       />
     );
   return (
@@ -364,10 +393,12 @@ const Expense = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/notes-and-coins.png"
-        alt="expense"
+        alt="expense-icon"
       />
     );
   return (
@@ -388,10 +419,12 @@ const Orders = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/shopping-cart.png"
-        alt="orders"
+        alt="orders-icon"
       />
     );
   return (
@@ -414,10 +447,12 @@ const ChatIcon = ({ className }: { className: string }) => {
   const { theme } = useTheme();
   if (theme === "Modern")
     return (
-      <img
+      <Image
+        width={50}
+        height={50}
         className={className}
         src="https://img.icons8.com/fluency/48/chat.png"
-        alt="chat"
+        alt="chat-icon"
       />
     );
   return (

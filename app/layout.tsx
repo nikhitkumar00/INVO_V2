@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Simplifying Inventory",
   icons: {
     icon: "/favicon.ico",
-  }
+  },
 };
 
 const inter = Inter({ subsets: ["latin"] });

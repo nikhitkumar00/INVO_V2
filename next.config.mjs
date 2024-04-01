@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
+  images: {
+    domains: ["img.icons8.com"],
+  },
+
+  async rewrites() {
     return [
       {
         source: "/",
         destination: "/dashboard",
-        permanent: true,
       },
     ];
   },

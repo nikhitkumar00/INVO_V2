@@ -1,12 +1,15 @@
 "use client";
+import dynamic from "next/dynamic";
 import CountUp from "react-countup";
 import { useState, useEffect } from "react";
 import { Billlog, Income, Expense, Orders } from "@/svg/Icons";
 import Header from "../_components/Header";
-import Chart from "./chart";
-import AdvancedTable from "../_components/AdvancedTable";
-import { useRecoilState, useRecoilValue } from "recoil";
+
+import { useRecoilValue } from "recoil";
 import { restockThresholdState } from "@/global/globalStates";
+
+const Chart = dynamic(() => import("./chart"));
+const AdvancedTable = dynamic(() => import("../_components/AdvancedTable"));
 
 const DashboardPage = () => {
   const [income, setIncome] = useState(0);
