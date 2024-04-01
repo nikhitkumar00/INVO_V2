@@ -10,6 +10,7 @@ const Header = ({ title, logout }: { title: string; logout?: boolean }) => {
       <div className="flex gap-4">
         {logout && (
           <Link href="/login">
+            <label className="sr-only">Logout</label>
             <Logout className="size-6 stroke-2 duration-200 animate-in fade-in slide-in-from-left-2" />
           </Link>
         )}

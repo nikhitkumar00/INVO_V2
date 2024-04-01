@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Input } from "@/components/Input";
 import { toast } from "sonner";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/sheet";
 import { Dashboard, Pen } from "@/svg/Icons";
 import { useRecoilState } from "recoil";
 import { themeState } from "@/global/globalStates";
+import dynamic from "next/dynamic";
+
+const EditedItem = dynamic(() => import("./EditedItem"), {
+  ssr: false,
+});
 
 interface TableWithSearchAndSortProps {
   data: StockItem[];
@@ -193,55 +190,15 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       </td>
                     ))}
                     {edit && (
-                      <td className="px-1 py-2">
-                        <Sheet>
-                          <SheetTrigger>
-                            <Pen
-                              className="w-5 cursor-pointer stroke-2"
-                              onClick={() => toggleEditMode(item)}
-                            />
-                          </SheetTrigger>
-                          {editedData &&
-                            editedData.item_id === item.item_id && (
-                              <SheetContent>
-                                <SheetHeader>
-                                  <SheetTitle>Edit / Delete Row</SheetTitle>
-                                </SheetHeader>
-                                {keys.map((key) => (
-                                  <div
-                                    className="mt-2 flex items-center justify-between gap-2"
-                                    key={key}
-                                  >
-                                    <label className="w-full text-sm font-medium capitalize">
-                                      {key.replace("_", " ")}
-                                    </label>
-                                    <Input
-                                      className="px-1 py-2"
-                                      name={key}
-                                      value={editedData[key]}
-                                      onChange={(e) =>
-                                        handleInputChange(e, key)
-                                      }
-                                      disabled={key === "item_id"}
-                                    />
-                                  </div>
-                                ))}
-                                <button
-                                  onClick={saveEditedData}
-                                  className="mt-4 w-full rounded-md bg-primary p-2 text-white"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  onClick={() => deleteStock(item.item_id)}
-                                  className="mt-2 w-full rounded-md border-2 bg-background p-2 text-primary"
-                                >
-                                  Delete
-                                </button>
-                              </SheetContent>
-                            )}
-                        </Sheet>
-                      </td>
+                      <EditedItem
+                        item={item}
+                        editedData={editedData}
+                        keys={keys}
+                        toggleEditMode={toggleEditMode}
+                        handleInputChange={handleInputChange}
+                        saveEditedData={saveEditedData}
+                        deleteStock={deleteStock}
+                      />
                     )}
                   </motion.tr>
                 ))}
