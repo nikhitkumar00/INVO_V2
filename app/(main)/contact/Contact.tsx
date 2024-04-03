@@ -14,7 +14,7 @@ const Contact = () => {
                 <label className="sr-only">First Name</label>
                 <input
                   type="text"
-                  className="block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                  className="block w-full rounded-lg border bg-transparent  placeholder-gray-600 border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                   placeholder="First Name"
                   required
                 />
@@ -24,7 +24,7 @@ const Contact = () => {
                 <label className="sr-only">Last Name</label>
                 <input
                   type="text"
-                  className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                  className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                   placeholder="Last Name"
                 />
               </div>
@@ -35,7 +35,7 @@ const Contact = () => {
               <input
                 type="email"
                 autoComplete="email"
-                className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                 placeholder="Email"
                 required
               />
@@ -45,7 +45,7 @@ const Contact = () => {
               <label className="sr-only">Phone Number</label>
               <input
                 type="text"
-                className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
+                className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                 placeholder="Phone Number"
                 required
               />
@@ -55,7 +55,7 @@ const Contact = () => {
               <label className="sr-only">Details</label>
               <textarea
                 name="hs-about-contacts-1"
-                className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-gray-900 focus:ring-gray-900 disabled:pointer-events-none disabled:opacity-50 "
+                className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-gray-900 focus:ring-gray-900 disabled:pointer-events-none disabled:opacity-50 "
                 placeholder="Details"
                 required
               ></textarea>
