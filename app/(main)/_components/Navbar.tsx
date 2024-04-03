@@ -86,16 +86,6 @@ const Navbar = () => {
       ))}
       <div className="flex-grow"></div>
       <Link
-        href="/profile"
-        className={
-          `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-navBackground hover:bg-navSecondary ` +
-          (pathname.includes("/profile") ? "bg-navSecondary" : "bg-navPrimary")
-        }
-      >
-        <Profile className="size-6 stroke-2" />
-        Profile
-      </Link>
-      <Link
         href="/settings"
         className={
           `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-navBackground hover:bg-navSecondary ` +
