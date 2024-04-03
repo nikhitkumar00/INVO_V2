@@ -55,11 +55,6 @@ const Navbar = () => {
       link: "/camera",
       icon: <Camera className="size-6 stroke-2" />,
     },
-    {
-      name: "Contact",
-      link: "/contact",
-      icon: <Contact className="size-6 stroke-2" />,
-    },
   ];
 
   return (
@@ -85,6 +80,16 @@ const Navbar = () => {
         </Link>
       ))}
       <div className="flex-grow"></div>
+      <Link
+        href="/contact"
+        className={
+          `flex h-10 w-11/12 items-center justify-start gap-3 rounded-md px-2 text-sm font-semibold capitalize text-navBackground hover:bg-navSecondary ` +
+          (pathname.includes("/contact") ? "bg-navSecondary" : "bg-navPrimary")
+        }
+      >
+        <Contact className="size-6 stroke-2" />
+        Contact
+      </Link>
       <Link
         href="/settings"
         className={

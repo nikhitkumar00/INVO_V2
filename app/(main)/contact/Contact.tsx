@@ -1,5 +1,4 @@
 "use client";
-
 import Header from "../_components/Header";
 
 const Contact = () => {
@@ -38,16 +37,10 @@ const Contact = () => {
               <div>
                 <label className="sr-only">Email</label>
                 <input
-<<<<<<< HEAD
-                  type="text"
-                  className="block w-full rounded-lg border bg-transparent  placeholder-gray-600 border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
-                  placeholder="First Name"
-=======
                   type="email"
                   autoComplete="email"
                   className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                   placeholder="Email"
->>>>>>> bda9f9227519e0f98236e5bf047356a0757ddfeb
                   required
                 />
               </div>
@@ -56,14 +49,9 @@ const Contact = () => {
                 <label className="sr-only">Phone Number</label>
                 <input
                   type="text"
-<<<<<<< HEAD
-                  className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
-                  placeholder="Last Name"
-=======
                   className=" block w-full rounded-lg border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
                   placeholder="Phone Number"
                   required
->>>>>>> bda9f9227519e0f98236e5bf047356a0757ddfeb
                 />
               </div>
 
@@ -78,37 +66,6 @@ const Contact = () => {
               </div>
             </div>
 
-<<<<<<< HEAD
-            <div>
-              <label className="sr-only">Email</label>
-              <input
-                type="email"
-                autoComplete="email"
-                className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
-                placeholder="Email"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="sr-only">Phone Number</label>
-              <input
-                type="text"
-                className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 "
-                placeholder="Phone Number"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="sr-only">Details</label>
-              <textarea
-                name="hs-about-contacts-1"
-                className=" block w-full rounded-lg bg-transparent placeholder-gray-600 border border-tertiary px-4 py-3 text-sm focus:border-gray-900 focus:ring-gray-900 disabled:pointer-events-none disabled:opacity-50 "
-                placeholder="Details"
-                required
-              ></textarea>
-=======
             <div className="mt-4 grid">
               <button
                 type="submit"
@@ -165,7 +122,6 @@ const Contact = () => {
                   />
                 </svg>
               </a>
->>>>>>> bda9f9227519e0f98236e5bf047356a0757ddfeb
             </div>
           </div>
           <div className="flex gap-x-7 py-6">

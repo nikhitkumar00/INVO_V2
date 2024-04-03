@@ -9,8 +9,8 @@ const CustomerTable = async () => {
   ).then((res) => res.json());
   return (
     <>
-      <div className="overflow-auto">
-        <AdvancedTable data={customerdata} searchTerm="" sortBy="" caption="" />
+      <div className="h-[89vh] overflow-auto">
+        <AdvancedTable data={customerdata} searchTerm="" sortBy="" caption="Customer Details" />
       </div>
     </>
   );

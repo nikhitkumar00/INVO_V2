@@ -1,15 +1,12 @@
 "use client";
-import { useState } from "react";
 import CustomerTable from "./CustomerTable";
 import Header from "../_components/Header";
 const Page = () => {
-  const [customerdata] = useState([]);
-
   return (
-    <div>
+    <div className="h-screen w-full">
       <Header title="Customer Registration" logout />
-      <div className="mt-12 flex items-center gap-6 px-14 lg:grid-cols-2 lg:gap-16">
-        <div className="flex flex-col rounded-xl border border-secondary p-4 sm:p-6 lg:p-8 ">
+      <div className="flex items-center gap-4 px-4">
+        <div className="flex flex-col rounded-xl border border-secondary p-4 ">
           <form>
             <div className="grid gap-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -64,7 +61,7 @@ const Page = () => {
             </div>
           </form>
         </div>
-        <div className="w-2/3">
+        <div className="w-full">
           <CustomerTable />
         </div>
       </div>
