@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Dashboard, Pen } from "@/svg/Icons";
+import { Dashboard } from "@/svg/Icons";
 import { useRecoilState } from "recoil";
 import { themeState } from "@/global/globalStates";
 import dynamic from "next/dynamic";

@@ -4,6 +4,7 @@ import Header from "../_components/Header";
 import AdvancedTable from "../_components/AdvancedTable";
 import { toast } from "sonner";
 import { Add } from "@/svg/Icons";
+import { useRouter } from "next/router";
 
 interface ItemDetails {
   name: string;
@@ -18,10 +19,13 @@ interface BillingData {
 
 const BillingPage = () => {
   const [billId, setBillId] = useState<number | null>(null);
+  const [updateBillId, setUpdateBillId] = useState<boolean>(false);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [billDate, setBillDate] = useState<string>("");
+  const [customerId, setCustomerId] = useState<string>("");
+  const [customerName, setCustomerName] = useState<string>("");
   const [itemId, setItemId] = useState<string>("");
-  const [quantity, setQuantity] = useState<string>("");
+  const [quantity, setQuantity] = useState<string>("1");
   const [tableData, setTableData] = useState<any[]>([]);
   const [itemDetails, setItemDetails] = useState<ItemDetails>({
     name: "",
@@ -30,7 +34,7 @@ const BillingPage = () => {
   });
 
   useEffect(() => {
-    fetch("/billing/API/nextBillId", { method: "POST" })
+    fetch("/billing/API/nextbillid", { method: "POST" })
       .then((response) => response.json())
       .then((data) => {
         setBillId(data.nextBillId);
@@ -42,7 +46,30 @@ const BillingPage = () => {
       currentDate.getMonth() + 1
     }/${currentDate.getFullYear()}`;
     setBillDate(formattedDate);
-  }, []);
+  }, [updateBillId]);
+
+  useEffect(() => {
+    if (customerId) {
+      fetchCustomerName(customerId);
+    } else {
+      setCustomerName("");
+    }
+  }, [customerId]);
+
+  const fetchCustomerName = (customerId: string) => {
+    fetch("/billing/API/customerSearch", {
+      method: "POST",
+      body: JSON.stringify({ customer_id: customerId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCustomerName(data.customer_name);
+      })
+      .catch((error) => console.error("Error fetching customer name:", error));
+  };
 
   const handleItemIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const itemId = e.target.value;
@@ -76,6 +103,12 @@ const BillingPage = () => {
       return;
     }
 
+    const isItemExists = tableData.some((item) => item.itemId === itemId);
+    if (isItemExists) {
+      toast.error("Item with the same ID already exists.");
+      return;
+    }
+
     const newItem = {
       slNo: tableData.length + 1,
       itemId: itemId,
@@ -88,7 +121,7 @@ const BillingPage = () => {
 
     setTableData([...tableData, newItem]);
     setItemId("");
-    setQuantity("");
+    setQuantity("1");
   };
 
   useEffect(() => {
@@ -100,9 +133,44 @@ const BillingPage = () => {
     return qty ? +qty * parseFloat(String(rate || 0)) : "";
   };
 
+  const handleAddBill = () => {
+    if (tableData.length === 0) {
+      toast.error("Please add items to the bill.");
+      return;
+    }
+
+    const billData = {
+      customerId: customerId || "",
+      billId: billId,
+      billDate: billDate,
+      items: tableData.map((item) => ({
+        itemId: item.itemId,
+        quantity: item.qty,
+      })),
+    };
+
+    fetch("/billing/API/addBill", {
+      method: "POST",
+      body: JSON.stringify(billData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then(() => {
+        toast.success("Bill added successfully.");
+        setTableData([]);
+        setUpdateBillId(!updateBillId);
+      })
+      .catch((error) => {
+        console.error("Error adding bill:", error);
+        toast.error("Failed to add bill. Please try again later.");
+      });
+  };
+
   const billingData: BillingData[] = [
-    { name: "Customer Id", value: "" },
-    { name: "Customer Name", value: "" },
+    { name: "Customer Id", value: customerId },
+    { name: "Customer Name", value: customerName },
     { name: "Bill Id", value: billId || "" },
     { name: "Bill Date", value: billDate },
     { name: "Barcode", value: "" },
@@ -111,7 +179,10 @@ const BillingPage = () => {
     { name: "Qty", value: quantity },
     { name: "MRP", value: itemDetails.mrp },
     { name: "Rate", value: itemDetails.rate },
-    { name: "Amount", value: calculateAmount(quantity, itemDetails.rate) },
+    {
+      name: "Amount",
+      value: calculateAmount(quantity, itemDetails.rate),
+    },
   ];
 
   return (
@@ -130,7 +201,9 @@ const BillingPage = () => {
                   ? handleItemIdChange(e)
                   : item.name === "Qty"
                     ? handleQuantityChange(e)
-                    : null
+                    : item.name === "Customer Id"
+                      ? setCustomerId(e.target.value)
+                      : null
               }
               name={item.name === "Item Id" ? "item" : "qty"}
               readOnly={
@@ -139,7 +212,8 @@ const BillingPage = () => {
                 item.name === "Item Name" ||
                 item.name === "MRP" ||
                 item.name === "Rate" ||
-                item.name === "Amount"
+                item.name === "Amount" ||
+                item.name === "Customer Name"
               }
               className="rounded-md border bg-transparent p-2 font-medium text-black placeholder-gray-600"
               required
@@ -160,7 +234,10 @@ const BillingPage = () => {
         <div className="text-lg font-semibold">
           Total Amount : <span className="text-3xl">₹ {totalAmount}</span>
         </div>
-        <button className="flex items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-medium text-background hover:bg-secondary">
+        <button
+          className="flex items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-medium text-background hover:bg-secondary"
+          onClick={handleAddBill}
+        >
           <Add className="size-5 stroke-2" />
           Add Bill
         </button>

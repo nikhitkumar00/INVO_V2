@@ -1,44 +1,59 @@
 import db from "@/utils/db";
 import { NextResponse } from "next/server";
 
-interface StockData {
-  [key: string]: any;
+function formatDate(inputDate: string): string {
+  const [month, day, year] = inputDate.split("/");
+  const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  return formattedDate;
 }
 
-export async function POST(request: any) {
+export async function POST(request: Request) {
   try {
-    const requestData: StockData = await request.json();
+    const billData: {
+      customerId: string;
+      billId: number;
+      billDate: string;
+      items: { itemId: string; quantity: string }[];
+    } = await request.json();
 
-    const keys: string[] = Object.keys(requestData);
-    const values: any[] = Object.values(requestData);
+    const formattedDate = formatDate(billData.billDate);
+    await Promise.all(
+      billData.items.map(async (item) => {
+        await new Promise<void>((resolve, reject) => {
+          db.query(
+            "INSERT INTO `bill_items` (bill_id, item_id, item_qty) VALUES (?, ?, ?)",
+            [billData.billId, item.itemId, item.quantity],
+            (err: any, result: any) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve();
+              }
+            },
+          );
+        });
+      }),
+    );
 
-    if (!keys.length || !values.length) {
-      return NextResponse.json(
-        { error: "No data provided for insertion" },
-        { status: 400 },
-      );
+    if (billData.billId && billData.billDate) {
+      await new Promise<void>((resolve, reject) => {
+        db.query(
+          "UPDATE `bills` SET purchase_date = ?, customer_id = ? WHERE bill_id = ?",
+          [formattedDate, billData.customerId || null, billData.billId],
+          (err: any, result: any) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
+          },
+        );
+      });
     }
 
-    const placeholders: string = Array.from(
-      { length: keys.length },
-      () => "?",
-    ).join(",");
-    const columns: string = keys.join(",");
-    const query: string = `INSERT INTO stocks (${columns}) VALUES (${placeholders})`;
-
-    await new Promise((resolve, reject) => {
-      db.query(query, values, (err: Error | null, result: any) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-
-    return NextResponse.json({ message: "Stock added successfully" });
-  } catch (error: Error | any) {
-    console.error("Error adding stock:", error);
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error(error);
     return NextResponse.json(
       { error: error.message || "An unexpected error occurred" },
       { status: 500 },
