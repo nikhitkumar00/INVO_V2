@@ -36,20 +36,6 @@ const Page = () => {
     console.log("Customer data to be saved:", customerData);
     // Add fetch request to save customer data to the server
   };
-fetch('https://example.com/customers', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(customerData),
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
 
   return (
     <div className="h-screen w-full">
