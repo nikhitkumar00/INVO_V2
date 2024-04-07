@@ -4,10 +4,10 @@ import { Pen } from "@/svg/Icons";
 import { Input } from "@/components/Input";
 
 interface EditItemProps {
- item: any; // Replace 'any' with the actual type of your item
- editedData: any; // Replace 'any' with the actual type of your editedData
+ item: any;
+ editedData: any;
  keys: string[];
- toggleEditMode: (item: any) => void; // Replace 'any' with the actual type of your item
+ toggleEditMode: (item: any) => void;
  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>, key: string) => void;
  saveEditedData: () => void;
  deleteStock: (itemId: number) => void;

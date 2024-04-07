@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Dashboard, Pen } from "@/svg/Icons";
+import { Dashboard, DeleteIcon } from "@/svg/Icons";
 import { useRecoilState } from "recoil";
 import { themeState } from "@/global/globalStates";
 import dynamic from "next/dynamic";
@@ -15,6 +15,7 @@ interface TableWithSearchAndSortProps {
   searchTerm?: string;
   sortBy?: string;
   edit?: boolean;
+  deleteItem?: boolean;
   caption: string;
 }
 
@@ -28,6 +29,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
   searchTerm = "",
   sortBy = "",
   edit = false,
+  deleteItem = false,
   caption,
 }) => {
   const [theme] = useRecoilState(themeState);
@@ -199,6 +201,12 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                         saveEditedData={saveEditedData}
                         deleteStock={deleteStock}
                       />
+                    )}
+                    {deleteItem && (
+                      //TODO: Add delete functionality
+                      <td>
+                        <DeleteIcon className="size-6 cursor-pointer stroke-2" />
+                      </td>
                     )}
                   </motion.tr>
                 ))}
