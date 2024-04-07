@@ -229,7 +229,7 @@ const BillingPage = () => {
           Add Item
         </button>
       </div>
-      <AdvancedTable data={tableData} caption="Bill Items" />
+      <AdvancedTable data={tableData} caption="Bill Items" deleteItem />
       <div className="flex w-full items-center justify-between border px-4 py-2">
         <div className="text-lg font-semibold">
           Total Amount : <span className="text-3xl">₹ {totalAmount}</span>

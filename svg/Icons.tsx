@@ -1,6 +1,6 @@
 import { themeState } from "@/global/globalStates";
 import Image from "next/image";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export const useTheme = () => {
   const theme = useRecoilValue(themeState);
@@ -470,6 +470,32 @@ const ChatIcon = ({ className }: { className: string }) => {
   );
 };
 
+const DeleteIcon = ({ className }: { className: string }) => {
+  const theme = useTheme();
+  if (theme === "Modern")
+    return (
+      <Image
+        width={50}
+        height={50}
+        className={className}
+        src="https://img.icons8.com/fluency/48/delete.png"
+        alt="delete-icon"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M16 9v10H8V9zm-1.5-6h-5l-1 1H5v2h14V4h-3.5zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2z"
+      />
+    </svg>
+  );
+};
+
 export {
   Add,
   Billing,
@@ -480,6 +506,7 @@ export {
   Close,
   Contact,
   Dashboard,
+  DeleteIcon,
   Logout,
   Profile,
   Stocks,
