@@ -10,7 +10,12 @@ const CustomerTable = async () => {
   return (
     <>
       <div className="h-[89vh] overflow-auto">
-        <AdvancedTable data={customerdata} searchTerm="" sortBy="" caption="Customer Details" />
+        <AdvancedTable
+          data={customerdata}
+          searchTerm=""
+          sortBy=""
+          caption="Customer Details"
+        />
       </div>
     </>
   );

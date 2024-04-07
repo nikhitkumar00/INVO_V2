@@ -6,7 +6,7 @@ const Page = () => {
     <div className="h-screen w-full">
       <Header title="Customer Registration" logout />
       <div className="flex items-center gap-4 px-4">
-        <div className="flex flex-col rounded-xl border border-secondary p-4 ">
+        <div className="flex flex-col rounded-md border border-secondary p-8 ">
           <form>
             <div className="grid gap-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

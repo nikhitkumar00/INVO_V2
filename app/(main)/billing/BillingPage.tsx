@@ -18,6 +18,8 @@ interface BillingData {
 
 const BillingPage = () => {
   const [billId, setBillId] = useState<number | null>(null);
+  const [customerId, setCustomerId] = useState<number | null>(null);
+  const [customerName, setCustomerName] = useState<string | null>(null);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [billDate, setBillDate] = useState<string>("");
   const [itemId, setItemId] = useState<string>("");
