@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Dashboard, DeleteIcon } from "@/svg/Icons";
@@ -203,7 +203,7 @@ const TableWithSearchAndSort: React.FC<TableWithSearchAndSortProps> = ({
                       />
                     )}
                     {deleteItem && (
-                      // TODO: Add delete functionality
+                      //TODO: Add delete functionality
                       <td>
                         <DeleteIcon className="size-6 cursor-pointer stroke-2" />
                       </td>
