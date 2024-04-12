@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     if (billData.billId && billData.billDate) {
       await new Promise<void>((resolve, reject) => {
         db.query(
-          "UPDATE `bills` SET purchase_date = ?, customer_id = ?, disc_amt = ? WHERE bill_id = ?",
+          "UPDATE `bills` SET purchase_date = ?, customer_id = ?, received_amt = ? WHERE bill_id = ?",
           [
             formattedDate,
             billData.customerId || null,

@@ -12,7 +12,7 @@ export async function POST() {
 	try {
 		const results: Product[] = await new Promise((resolve, reject) => {
 			db.query(
-				"SELECT b.bill_id, b.total_amt, b.disc_amt, DATE_FORMAT(b.purchase_date, '%d-%m-%Y') AS purchase_date, c.customer_name, c.phone, c.email FROM bills AS b LEFT JOIN customer AS c ON b.customer_id = c.customer_id",
+				"SELECT b.bill_id, b.total_amt, b.received_amt, DATE_FORMAT(b.purchase_date, '%d-%m-%Y') AS purchase_date, c.customer_name, c.phone, c.email FROM bills AS b LEFT JOIN customer AS c ON b.customer_id = c.customer_id",
 				(err: any, result: any) => {
 					if (err) {
 						reject(err);
