@@ -5,7 +5,7 @@ export async function POST() {
   try {
     const results: any = await new Promise((resolve, reject) => {
       db.query(
-        "select count(bill_id) as orderstoday from bills where purchase_date=CURDATE();;",
+        "select count(bill_id) as orderstoday from bills where purchase_date=CURDATE();",
         (err: any, result: any) => {
           if (err) {
             reject(err);

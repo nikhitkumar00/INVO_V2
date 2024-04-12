@@ -1,3 +1,4 @@
+-- Active: 1710254908444@@localhost@3306@invov2
 
 SHOW TRIGGERS;
 
