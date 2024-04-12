@@ -7,22 +7,12 @@ CREATE TRIGGER update_bills_on_submit AFTER INSERT ON bill_items
 FOR EACH ROW
 BEGIN
     DECLARE total_amount FLOAT;
-    DECLARE discount_amount FLOAT;
-    -- Calculate total amount based on bill_items
     SELECT SUM(item_qty * selling_price) INTO total_amount
     FROM bill_items bi
     JOIN stocks s ON bi.item_id = s.item_id
     WHERE bi.bill_id = NEW.bill_id;
-    -- Check if total amount is greater than or equal to 200
-    IF total_amount >= 50 THEN
-        SET discount_amount = total_amount * 0.06; -- 6% discount
-    ELSE
-        SET discount_amount = 0; -- No discount if total amount is less than 200
-    END IF;
-    -- Update total_amt, disc_amt, and purchase_date in bills table
     UPDATE bills
-    SET total_amt = ROUND(total_amount - discount_amount, 2), -- Subtract discount from total and round to 2 decimal places
-        disc_amt = discount_amount,
+    SET total_amt = ROUND(total_amount, 2), 
         purchase_date = CURDATE()
     WHERE bill_id = NEW.bill_id;
 END //
