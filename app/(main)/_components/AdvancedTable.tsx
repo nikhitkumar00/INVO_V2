@@ -20,7 +20,7 @@ interface TableWithSearchAndSortProps {
 }
 
 interface StockItem {
-  item_id: number;
+  item_id?: number;
   [key: string]: any;
 }
 
