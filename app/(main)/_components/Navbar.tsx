@@ -61,7 +61,7 @@ const Navbar = () => {
     <div className="sticky top-0 flex h-dvh min-w-56 max-w-56 flex-col items-center gap-2 bg-navbar py-4">
       <h1
         className={
-          pacifico.className + " w-full px-6 pb-4 text-2xl text-background"
+          pacifico.className + " w-full px-6 pb-4 text-2xl text-navBackground"
         }
       >
         INVO

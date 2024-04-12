@@ -55,15 +55,15 @@
   }
 
   .Purple-Light {
-    --primary-color: #c5cae9;
+    --primary-color: #162060;
     --secondary-color: #660808;
     --tertiary-color: #ffffff;
     --quartinary-color: #1074ba;
-    --navbar-color: #000000;
-    --background-color: #ffffff;
-    --nav-background-color: #ffffff;
-    --nav-primary-color: #383026;
-    --nav-secondary-color: #404040;
+    --navbar-color: #ffffff;
+    --background-color: #c1bedc;
+    --nav-background-color: #231c7f;
+    --nav-primary-color: #ffffff;
+    --nav-secondary-color: #c1bedc;
     --table-odd: #e4e7f7;
     --table-hover: #c5cae9;
     --dash-odd: #c5cae9;
@@ -77,7 +77,7 @@
     --quartinary-color: #1074ba;
     --navbar-color: #5a52fe;
     --background-color: #e4e7f7;
-    --nav-background-color: #ffffff;
+    --nav-background-color: #e4e7f7;
     --nav-primary-color: #5a52fe;
     --nav-secondary-color: #837cfe;
     --table-odd: #cac7fe;
