@@ -4,6 +4,32 @@
 
 INVO v2 is a web application designed to streamline the process of managing billing, inventory, and other related tasks for shopkeepers. It aims to provide a more efficient and cost-effective solution for managing database statistics and billing, eliminating the need for expensive software.
 
+## Mockup Images
+
+### Dashboard
+
+![Dashboard Mockup](mock/dashboard.png)
+
+The dashboard provides an overview of key metrics such as total sales, top-selling items, and pending bills. Shopkeepers can quickly glance at this page to understand the current status of their business.
+
+---
+
+### Bill Log
+
+![Bill Log Mockup](mock/billlog.png)
+
+The bill log displays a chronological list of all bills generated within a specified timeframe. Shopkeepers can review past transactions, print bills, or generate reports for accounting purposes.
+
+---
+
+### Stocks Page
+
+![Stocks Page Mockup](mock/stocks.png)
+
+The stocks page allows shopkeepers to manage their inventory efficiently. It provides a detailed view of available items, including quantity, price, and category. Shopkeepers can perform actions such as adding new items, updating stock levels, and categorizing items for better organization.
+
+---
+
 ## Features
 
 - **Customizable Dashboard**: Shopkeepers can customize the columns in the stock management section according to their needs, allowing for the addition of new columns such as dealer information, shelf numbers, and more.
@@ -43,8 +69,6 @@ INVO v2 is a web application designed to streamline the process of managing bill
 
 Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
 
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
