@@ -2,6 +2,50 @@
 
 SHOW TRIGGERS;
 
+
+DELIMITER //
+
+DROP TRIGGER IF EXISTS before_insert_bill_items 
+
+
+CREATE TRIGGER before_insert_bill_items
+BEFORE INSERT ON bill_items
+FOR EACH ROW
+BEGIN
+    DECLARE new_bill_id INT;
+
+    -- Check if the bill_id already exists for the current transaction
+    IF NOT EXISTS (
+        SELECT 1
+        FROM bills
+        WHERE bill_id = NEW.bill_id
+    ) THEN
+        -- Find the maximum existing bill_id in the bills table
+        SELECT IFNULL(MAX(bill_id), 0) + 1 INTO new_bill_id FROM bills;
+
+        -- Insert the new bill_id into the bills table if it doesn't exist already
+        INSERT IGNORE INTO bills (bill_id, total_amt, received_amt, purchase_date)
+        VALUES (new_bill_id, 0, 0, CURDATE());
+
+        -- Set the new bill_id for insertion into the bill_items table
+        SET NEW.bill_id = new_bill_id;
+    END IF;
+END
+//
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
 DELIMITER //
 DROP TRIGGER IF EXISTS update_bills_on_submit //
 CREATE TRIGGER update_bills_on_submit AFTER INSERT ON bill_items
@@ -267,6 +311,9 @@ SET customer_id =
         WHEN 28 THEN 13
         WHEN 29 THEN 14
     END;
+
+
+
 
 
 
