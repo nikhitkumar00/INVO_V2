@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `stocks` (
 
 -- Table structure for table `bills`
 CREATE TABLE IF NOT EXISTS `bills` (
-    `bill_id` INT(11) PRIMARY KEY, `total_amt` FLOAT NOT NULL, `disc_amt` FLOAT NOT NULL, `purchase_date` DATE DEFAULT NULL, `customer_id` INT(11) DEFAULT NULL, FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+    `bill_id` INT(11) PRIMARY KEY, `total_amt` FLOAT NOT NULL, `received_amt` FLOAT NOT NULL, `purchase_date` DATE DEFAULT NULL, `customer_id` INT(11) DEFAULT NULL, FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 -- Table structure for table `bill_items`
