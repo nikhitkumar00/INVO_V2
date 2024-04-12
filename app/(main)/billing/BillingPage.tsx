@@ -5,6 +5,7 @@ import AdvancedTable from "../_components/AdvancedTable";
 import { toast } from "sonner";
 import { Add } from "@/svg/Icons";
 import { useRouter } from "next/router";
+import { Input } from "@/components/Input";
 
 interface ItemDetails {
   name: string;
@@ -32,6 +33,7 @@ const BillingPage = () => {
     mrp: "",
     rate: "",
   });
+  const [totalReceivedAmount, setTotalReceivedAmount] = useState<number>(0);
 
   useEffect(() => {
     fetch("/billing/API/nextbillid", { method: "POST" })
@@ -127,6 +129,7 @@ const BillingPage = () => {
   useEffect(() => {
     const total = tableData.reduce((acc, item) => acc + item.amount, 0);
     setTotalAmount(total);
+    setTotalReceivedAmount(total);
   }, [tableData]);
 
   const calculateAmount = (qty: string, rate: string) => {
@@ -147,6 +150,7 @@ const BillingPage = () => {
         itemId: item.itemId,
         quantity: item.qty,
       })),
+      totalReceivedAmount: totalReceivedAmount,
     };
 
     fetch("/billing/API/addBill", {
@@ -203,7 +207,9 @@ const BillingPage = () => {
                     ? handleQuantityChange(e)
                     : item.name === "Customer Id"
                       ? setCustomerId(e.target.value)
-                      : null
+                      : item.name === "Total Received Amount"
+                        ? setTotalReceivedAmount(Number(e.target.value))
+                        : null
               }
               name={item.name === "Item Id" ? "item" : "qty"}
               readOnly={
@@ -233,6 +239,15 @@ const BillingPage = () => {
       <div className="flex w-full items-center justify-between border px-4 py-2">
         <div className="text-lg font-semibold">
           Total Amount : <span className="text-3xl">₹ {totalAmount}</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <label className="font-semibold">Total Received Amount</label>
+          <Input
+            type="number"
+            className="w-40"
+            value={totalReceivedAmount}
+            onChange={(e) => setTotalReceivedAmount(Number(e.target.value))}
+          />
         </div>
         <button
           className="flex items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-medium text-background hover:bg-secondary"

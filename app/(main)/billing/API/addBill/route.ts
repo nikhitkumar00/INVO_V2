@@ -14,9 +14,11 @@ export async function POST(request: Request) {
       billId: number;
       billDate: string;
       items: { itemId: string; quantity: string }[];
+      totalReceivedAmount: number;
     } = await request.json();
 
     const formattedDate = formatDate(billData.billDate);
+
     await Promise.all(
       billData.items.map(async (item) => {
         await new Promise<void>((resolve, reject) => {
@@ -38,8 +40,13 @@ export async function POST(request: Request) {
     if (billData.billId && billData.billDate) {
       await new Promise<void>((resolve, reject) => {
         db.query(
-          "UPDATE `bills` SET purchase_date = ?, customer_id = ? WHERE bill_id = ?",
-          [formattedDate, billData.customerId || null, billData.billId],
+          "UPDATE `bills` SET purchase_date = ?, customer_id = ?, disc_amt = ? WHERE bill_id = ?",
+          [
+            formattedDate,
+            billData.customerId || null,
+            billData.totalReceivedAmount || 0,
+            billData.billId,
+          ],
           (err: any, result: any) => {
             if (err) {
               reject(err);
