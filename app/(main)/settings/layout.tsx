@@ -8,8 +8,8 @@ const data = [
     link: "/settings/customize",
   },
   {
-    name: "Content",
-    link: "/settings/content",
+    name: "Threshold",
+    link: "/settings/threshold",
   },
   {
     name: "Status",
