@@ -3,65 +3,50 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
+    // Fetch income data
     const incomeResults: any = await new Promise((resolve, reject) => {
       db.query(
-        `
-        SELECT 
-          YEAR(b.purchase_date) AS year,
-          MONTH(b.purchase_date) AS month,
-          SUM((s.selling_price - s.cost_price) * bi.qty) AS total_income
-        FROM 
-          stocks s
-        JOIN 
-          bill_items bi ON s.item_id = bi.item_id
-        JOIN 
-          bills b ON bi.bill_id = b.bill_id
-        GROUP BY 
-          YEAR(b.purchase_date), MONTH(b.purchase_date);
-        `,
+        `SELECT CONCAT(SUBSTRING(DATE_FORMAT(purchase_date, '%b'), 1, 3)) AS name, ROUND(SUM(total_amt), 2) AS income FROM bills WHERE purchase_date IS NOT NULL GROUP BY YEAR(purchase_date), MONTH(purchase_date), name ORDER BY YEAR(purchase_date), MONTH(purchase_date);`,
         (err: any, result: any) => {
           if (err) {
             reject(err);
           } else {
             resolve(result);
           }
-        },
+        }
       );
     });
 
-    const ordersResults: any = await new Promise((resolve, reject) => {
+    // Fetch total orders data
+    const orderResults: any = await new Promise((resolve, reject) => {
       db.query(
-        `
-        SELECT 
-          YEAR(b.purchase_date) AS year,
-          MONTH(b.purchase_date) AS month,
-          COUNT(b.bill_id) AS total_orders
-        FROM 
-          bills b
-        GROUP BY 
-          YEAR(b.purchase_date), MONTH(b.purchase_date);
-        `,
+        `SELECT CONCAT(SUBSTRING(DATE_FORMAT(purchase_date, '%b'), 1, 3)) AS name, COUNT(*) AS orders FROM bills WHERE purchase_date IS NOT NULL GROUP BY YEAR(purchase_date), MONTH(purchase_date), name ORDER BY YEAR(purchase_date), MONTH(purchase_date);`,
         (err: any, result: any) => {
           if (err) {
             reject(err);
           } else {
             resolve(result);
           }
-        },
+        }
       );
     });
+    const chartData = incomeResults.map((incomeItem: any) => {
+      const correspondingOrderItem = orderResults.find(
+        (orderItem: any) => orderItem.name === incomeItem.name
+      );
+      return {
+        name: incomeItem.name,
+        income: incomeItem.income,
+        orders: correspondingOrderItem ? correspondingOrderItem.orders : 0
+      };
+    });
 
-    const combinedResults = {
-      income: incomeResults,
-      orders: ordersResults,
-    };
-
-    return NextResponse.json(combinedResults);
+    return NextResponse.json(chartData);
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(
       { error: error.message || "An unexpected error occurred" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

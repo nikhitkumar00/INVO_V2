@@ -19,6 +19,7 @@ type theme = {
   "--table-hover": string;
   "--dash-odd": string;
   "--dash-even": string;
+  "--dash-head": string;
 };
 const data: theme[] = [
   {
@@ -36,6 +37,7 @@ const data: theme[] = [
     "--table-hover": "#d4d4d4",
     "--dash-odd": "#ffffff",
     "--dash-even": "#ffffff",
+    "--dash-head": "#e5e5e5",
   },
   {
     name: "Default-Dark",
@@ -52,6 +54,7 @@ const data: theme[] = [
     "--table-hover": "#404040",
     "--dash-odd": "#404040",
     "--dash-even": "#404040",
+    "--dash-head": "#f4f3f3",
   },
   {
     name: "Purple-Light",
@@ -60,14 +63,15 @@ const data: theme[] = [
     "--tertiary-color": "#ffffff",
     "--quartinary-color": "#1074ba",
     "--navbar-color": "#ffffff",
-    "--background-color": "#c1bedc",
+    "--background-color": "#e4e7f7",
     "--nav-background-color": "#231c7f",
     "--nav-primary-color": "#ffffff",
     "--nav-secondary-color": "#c1bedc",
     "--table-odd": "#e4e7f7",
     "--table-hover": "#c5cae9",
     "--dash-odd": "#c5cae9",
-    "--dash-even": "#e4e7f7",
+    "--dash-even": "#d7d3f3",
+    "--dash-head": "#162060",
   },
   {
     name: "Modern",
@@ -82,8 +86,9 @@ const data: theme[] = [
     "--nav-secondary-color": "#404040",
     "--table-odd": "#E4E7F7",
     "--table-hover": "#C5CAE9",
-    "--dash-odd": "#C5CAE9",
-    "--dash-even": "#E4E7F7",
+    "--dash-odd": "#c7cef7",
+    "--dash-even": "#d0d6fe",
+    "--dash-head": "#d0d6fe",
   },
 ];
 

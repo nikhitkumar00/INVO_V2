@@ -104,7 +104,7 @@ const DashboardPage = () => {
             className="flex h-32 w-[23%] items-center justify-between rounded-shape border p-4 odd:bg-dashEven even:bg-dashOdd"
           >
             <div className="flex flex-col gap-2">
-              <div className="w-fit rounded-lg bg-navbar px-2 py-1 text-xs font-semibold uppercase text-background">
+              <div className="w-fit rounded-lg bg-navbar px-2 py-1 text-xs font-semibold uppercase text-dashHead">
                 {item.name}
               </div>
               <div className="text-2xl font-semibold">
