@@ -581,3 +581,54 @@ SET manufacturer = CASE
                     END;
 
 ALTER Table stocks add column nkns varchar(40);
+
+
+
+
+
+SELECT ROUND(SUM(total_amt), 2) AS total_income
+FROM bills;
+
+SELECT SUM((s.selling_price - s.cost_price) * bi.item_qty) as income FROM stocks s JOIN bill_items bi ON s.item_id = bi.item_id;
+
+SELECT ROUND(SUM(total_amt), 2) AS income
+FROM bills
+WHERE YEAR(purchase_date) = YEAR(CURRENT_DATE()) 
+AND MONTH(purchase_date) = MONTH(CURRENT_DATE()) 
+AND DAY(purchase_date) <= DAY(CURRENT_DATE());
+
+ALTER TABLE bills RENAME COLUMN disc_amt TO received_amt;
+SELECT * FROM bills; 
+
+
+
+
+
+
+
+SELECT 
+    CONCAT(SUBSTRING(DATE_FORMAT(purchase_date, '%b'), 1, 3)) AS month_name,
+    ROUND(SUM(total_amt), 2) AS total_income
+FROM 
+    bills
+WHERE 
+    purchase_date IS NOT NULL
+GROUP BY 
+    YEAR(purchase_date), MONTH(purchase_date), month_name
+ORDER BY 
+    YEAR(purchase_date), MONTH(purchase_date);
+
+
+
+
+SELECT 
+    CONCAT(SUBSTRING(DATE_FORMAT(purchase_date, '%b'), 1, 3)) AS month_name,
+    COUNT(*) AS total_orders
+FROM 
+    bills
+WHERE 
+    purchase_date IS NOT NULL
+GROUP BY 
+    YEAR(purchase_date), MONTH(purchase_date), month_name
+ORDER BY 
+    YEAR(purchase_date), MONTH(purchase_date);

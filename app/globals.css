@@ -19,6 +19,7 @@
     --table-hover: #d4d4d4;
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
+    --dash-head: #e5e5e5;
     --dash-radius: 5px;
   }
 
@@ -36,6 +37,7 @@
     --table-hover: #d4d4d4;
     --dash-odd: #ffffff;
     --dash-even: #ffffff;
+    --dash-head: #e5e5e5;
   }
 
   .Default-Dark {
@@ -52,6 +54,7 @@
     --table-hover: #404040;
     --dash-odd: #404040;
     --dash-even: #404040;
+    --dash-head: #f4f3f3;
   }
 
   .Purple-Light {
@@ -60,14 +63,15 @@
     --tertiary-color: #ffffff;
     --quartinary-color: #1074ba;
     --navbar-color: #ffffff;
-    --background-color: #c1bedc;
+    --background-color: #e4e7f7;
     --nav-background-color: #231c7f;
     --nav-primary-color: #ffffff;
     --nav-secondary-color: #c1bedc;
     --table-odd: #e4e7f7;
     --table-hover: #c5cae9;
     --dash-odd: #c5cae9;
-    --dash-even: #e4e7f7;
+    --dash-even: #d7d3f3;
+    --dash-head: #162060;
   }
 
   .Modern {
@@ -82,8 +86,9 @@
     --nav-secondary-color: #837cfe;
     --table-odd: #cac7fe;
     --table-hover: #837cfe;
-    --dash-odd: #d0d6fe;
+    --dash-odd: #c7cef7;
     --dash-even: #d0d6fe;
+    --dash-head: #d0d6fe;
     --dash-radius: 20px;
     cursor: url("../public/cursorModern.png"), auto;
   }
