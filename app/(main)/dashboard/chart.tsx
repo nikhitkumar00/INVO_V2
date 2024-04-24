@@ -7,7 +7,7 @@ import { AreaChart, CurveType } from "@tremor/react";
 import { themeState } from "@/global/globalStates";
 
 const Chart = () => {
-  const [chartType, setChartType] = useState<CurveType>("monotone");
+  const [chartType, setChartType] = useState<CurveType>("natural");
   const [chartData, setChartData] = useState<any[]>([]);
   const theme = useRecoilValue(themeState);
 

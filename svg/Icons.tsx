@@ -496,6 +496,58 @@ const DeleteIcon = ({ className }: { className: string }) => {
   );
 };
 
+const Up = ({ className }: { className: string }) => {
+  const theme = useTheme();
+  if (theme === "Modern")
+    return (
+      <Image
+        className={className}
+        width={100}
+        height={100}
+        src="https://img.icons8.com/fluency/48/circled-chevron-up.png"
+        alt="circled-chevron-up"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="black" stroke="white">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m8 14l4-4l4 4" />
+      </g>
+    </svg>
+  );
+};
+
+const Down = ({ className }: { className: string }) => {
+  const theme = useTheme();
+  if (theme === "Modern")
+    return (
+      <Image
+        className={className}
+        width={100}
+        height={100}
+        src="https://img.icons8.com/fluency/48/circled-chevron-down.png"
+        alt="circled-chevron-down"
+      />
+    );
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g fill="black" stroke="white">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m16 10l-4 4l-4-4" />
+      </g>
+    </svg>
+  );
+};
+
 export {
   Add,
   Billing,
@@ -515,4 +567,6 @@ export {
   Expense,
   Orders,
   Income,
+  Up,
+  Down,
 };
