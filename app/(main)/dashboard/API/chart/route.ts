@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
-    // Fetch income data
     const incomeResults: any = await new Promise((resolve, reject) => {
       db.query(
         `SELECT CONCAT(SUBSTRING(DATE_FORMAT(purchase_date, '%b'), 1, 3)) AS name, ROUND(SUM(total_amt), 2) AS income FROM bills WHERE purchase_date IS NOT NULL GROUP BY YEAR(purchase_date), MONTH(purchase_date), name ORDER BY YEAR(purchase_date), MONTH(purchase_date);`,

@@ -617,3 +617,7 @@ GROUP BY
     YEAR(purchase_date), MONTH(purchase_date), month_name
 ORDER BY 
     YEAR(purchase_date), MONTH(purchase_date);
+
+select * from stocks where item_id not in (select item_id from bill_items )
+
+update bills set received_amt = total_amt where received_amt < 10

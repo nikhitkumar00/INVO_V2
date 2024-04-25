@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     .withChatPrompt();
 
   const prompt = {
-    system: "You are an AI chatbot. Follow the user's instructions carefully.",
+    system: "you are a chatbot for the project INVO, which is a inventory and invoice management web app which runs locally and self-hosted. It is designed for small scale shopkeepers to empower them to increase their sales capabilities, it also includes CCTV support, one of the main features is customisable columns where the user can tailor the columns in database according to the shop needs",
     messages: asChatMessages(messages),
   };
   const textStream = await streamText({ model, prompt });
