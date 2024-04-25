@@ -4,7 +4,6 @@ import Header from "../_components/Header";
 import AdvancedTable from "../_components/AdvancedTable";
 import { toast } from "sonner";
 import { Add } from "@/svg/Icons";
-import { useRouter } from "next/router";
 import { Input } from "@/components/Input";
 
 interface ItemDetails {
@@ -177,7 +176,6 @@ const BillingPage = () => {
     { name: "Customer Name", value: customerName },
     { name: "Bill Id", value: billId || "" },
     { name: "Bill Date", value: billDate },
-    { name: "Barcode", value: "" },
     { name: "Item Id", value: itemId },
     { name: "Item Name", value: itemDetails.name },
     { name: "Qty", value: quantity },
@@ -192,13 +190,12 @@ const BillingPage = () => {
   return (
     <div className="flex h-full w-full flex-col">
       <Header title="Billing" logout />
-      <div className="grid grid-cols-4 gap-2 rounded border p-4">
+      <div className="grid grid-cols-4 gap-4 rounded border p-4">
         {billingData.map((item, index) => (
-          <div key={index} className="">
-            <label className="sr-only">{item.name}</label>
+          <div key={index} className="flex items-center justify-between">
+            <label className="text-sm font-medium">{item.name}</label>
             <input
               type="text"
-              placeholder={item.name}
               value={(item.value || "").toString()}
               onChange={(e) =>
                 item.name === "Item Id"
@@ -227,8 +224,9 @@ const BillingPage = () => {
             />
           </div>
         ))}
+        <div></div>
         <button
-          className="flex items-center justify-center gap-2 rounded bg-primary px-4 py-2 font-medium text-background hover:bg-secondary"
+          className="flex w-full items-center justify-center gap-2 rounded bg-primary px-4 py-2 font-medium text-background hover:bg-secondary"
           onClick={handleAddItem}
         >
           <Add className="size-5 stroke-2" />
