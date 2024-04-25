@@ -46,13 +46,13 @@ const Chart = () => {
       data={chartData}
       index="name"
       categories={["income","orders"]}
-      yAxisWidth={40}
-      showLegend={false}
+      yAxisWidth={45}
+      showLegend={true}
       colors={theme === "Modern"
       ? ["indigo", "cyan"]
       : theme === "Purple-Light" ? ["purple-700", "purple-800" ] : theme === "Default-Dark" ? ["gray-300", "gray-100"] :  ["neutral-700", "neutral-600" ] 
 }
-      showGradient={false}
+      showGradient={true}
       curveType={chartType}
       autoMinValue
       onClick={handleChartTypeChange}
