@@ -1,6 +1,6 @@
 # License
 
-**Nikhit Kumar** (INVO) grants permission to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, and distribute the Software for personal or non-commercial purposes only, provided that:
+**INVO** grants permission to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, and distribute the Software for personal or non-commercial purposes only, provided that:
 
 1. The Software is not modified in any way.
 2. The Software is not sold or redistributed for commercial purposes without the express written permission of the Author.

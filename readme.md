@@ -30,6 +30,10 @@ The stocks page allows shopkeepers to manage their inventory efficiently. It pro
 
 ---
 
+![Laptop Mockup](mock/Laptop.png)
+
+![Tablet Mockup](mock/Tablet.png)
+
 ## Features
 
 - **Customizable Dashboard**: Shopkeepers can customize the columns in the stock management section according to their needs, allowing for the addition of new columns such as dealer information, shelf numbers, and more.
