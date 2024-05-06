@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "sonner";
 import Header from "../_components/Header";
 
 const Contact = () => {
@@ -68,6 +69,10 @@ const Contact = () => {
 
             <div className="mt-4 grid">
               <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  toast.success("Thank you for your inquiry!");
+                }}
                 type="submit"
                 className="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-primary px-4 py-3 text-sm font-semibold text-tertiary hover:bg-gray-900 disabled:pointer-events-none disabled:opacity-50 "
               >
@@ -105,9 +110,9 @@ const Contact = () => {
               </p>
               <a
                 className="text-secondary-600 hover:text-secondary-800 mt-2 inline-flex items-center gap-x-2 text-sm font-medium "
-                href="#"
+                href="https://invo-website.vercel.app/docs/Getting-Started"
               >
-                Contact support
+                Documentation
                 <svg
                   className="h-2.5 w-2.5 flex-shrink-0 transition ease-in-out group-hover:translate-x-1"
                   width="16"
@@ -143,7 +148,7 @@ const Contact = () => {
               </p>
               <a
                 className="text-secondary-600 hover:text-secondary-800 mt-2 inline-flex items-center gap-x-2 text-sm font-medium "
-                href="#"
+                href="https://invo-website.vercel.app/#faq"
               >
                 Visit FAQ
                 <svg
@@ -175,16 +180,16 @@ const Contact = () => {
             </svg>
             <div className="grow">
               <h3 className="text-secondary-800 font-semibold ">
-                Developer APIs
+                Detailed Overview
               </h3>
               <p className="text-secondary-500 mt-1 text-sm">
-                Check out our development quickstart guide.
+                Check out our quickstart guide.
               </p>
               <a
                 className="text-secondary-600 hover:text-secondary-800 mt-2 inline-flex items-center gap-x-2 text-sm font-medium "
-                href="#"
+                href="https://invo-website.vercel.app/docs/Detailed-Features"
               >
-                Contact sales
+                More
                 <svg
                   className="h-2.5 w-2.5 flex-shrink-0 transition ease-in-out group-hover:translate-x-1"
                   viewBox="0 0 16 16"
@@ -220,7 +225,7 @@ const Contact = () => {
               </p>
               <a
                 className="text-secondary-600 hover:text-secondary-800 mt-2 inline-flex items-center gap-x-2 text-sm font-medium "
-                href="#"
+                href="mailto:invov2@gmail.com"
               >
                 invov2@gmail.com
               </a>

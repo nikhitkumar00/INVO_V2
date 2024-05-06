@@ -23,10 +23,6 @@ const data = [
     name: "Terms of Service",
     link: "/settings/termsofservice",
   },
-  {
-    name: "About",
-    link: "/settings",
-  },
 ];
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

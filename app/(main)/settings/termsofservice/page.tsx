@@ -3,7 +3,7 @@ import Header from "../../_components/Header";
 
 const Termsofservice = () => {
   return (
-    <div className="w-full px-4 pb-5 text-justify">
+    <div className="w-full px-4 pb-5 text-justify h-full overflow-auto">
       <Header title="Terms of Service for INVO" />
       <div>
         At Website Name, accessible at Website.com, one of our main priorities
