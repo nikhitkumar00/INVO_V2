@@ -51,10 +51,10 @@ const Chart = () => {
         theme === "Modern"
           ? ["indigo", "cyan"]
           : theme === "Purple-Light"
-            ? ["purple-700", "purple-800"]
+            ? ["purple-800", "purple-600"]
             : theme === "Default-Dark"
-              ? ["gray-300", "gray-100"]
-              : ["neutral-700", "neutral-600"]
+              ? ["gray-500", "gray-100"]
+              : ["neutral-700", "neutral-400"]
       }
       showGradient={true}
       curveType={chartType}
